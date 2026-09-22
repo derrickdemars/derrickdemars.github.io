@@ -73,6 +73,7 @@ a:focus-visible, button:focus-visible{outline:2px solid #2a6fdb; outline-offset:
 #pz-hint .pz-hint-edge{animation:pzHintEdge 1.2s ease-in-out infinite;}
 #pz-hint .pz-hint-arrow.pz-hint-diag{animation:pzHintNudgeD 1.1s ease-in-out infinite, pzHintIn .35s ease-out;}
 @media (prefers-reduced-motion: reduce){#pz-hint .pz-hint-edge, #pz-hint .pz-hint-arrow.pz-hint-diag{animation:none !important;}}
+#pz-hint .pz-hint-arrow.pz-hint-still{animation:pzHintIn .35s ease-out;}
 @keyframes haloFlash{0%{opacity:1}22%{opacity:0.1}44%{opacity:1}66%{opacity:0.1}100%{opacity:1}}
 @media (prefers-reduced-motion: reduce){.otto-sparkle{animation:none !important;} *{scroll-behavior:auto !important;}}
 [data-r="card"] p, [data-r="pubrow"] > div[data-desc], [data-r="pubrow"] > div[data-desc-hold]{font-family:var(--body-font, 'IBM Plex Sans', sans-serif);}
@@ -567,7 +568,7 @@ sup{font-size:.72em; line-height:0; vertical-align:baseline; position:relative; 
     if(S.puzzle===0){
       var q=PV[h.target];
       g.appendChild(el('circle',{cx:q.x,cy:q.y,r:24,fill:'none',stroke:'#2a6fdb','stroke-width':3,'class':'pz-hint-ring'}));
-      var ar=el('g',{'class':'pz-hint-arrow'}); g.appendChild(ar);
+      var ar=el('g',{'class':'pz-hint-arrow pz-hint-still'}); g.appendChild(ar);
       hintArrow(ar, q.x-58, q.y, q.x-27, q.y);
       hintLabel(ar, lines, q.x-70, q.y+5-(lines.length-1)*8.5, 'end');
     } else {
