@@ -57,6 +57,22 @@ a:focus-visible, button:focus-visible{outline:2px solid #2a6fdb; outline-offset:
 #pz-dot.pz-solved{animation:pzRing 1.1s ease-out 3;}
 [data-board].pz-solved{border-color:#2e8b57 !important; animation:pzBoard 1.1s ease-out 2;}
 @media (prefers-reduced-motion: reduce){#pz-status.pz-solved, #pz-dot.pz-solved, [data-board].pz-solved{animation:none !important;}}
+@keyframes pzHintRing{0%{transform:scale(.8); opacity:.95}100%{transform:scale(1.45); opacity:0}}
+@keyframes pzHintNudge{0%,100%{transform:translateX(0)}50%{transform:translateX(-7px)}}
+@keyframes pzHintIn{from{opacity:0}to{opacity:1}}
+#pz-hint{pointer-events:none;}
+#pz-hint .pz-hint-ring{transform-box:fill-box; transform-origin:center; animation:pzHintRing 1.3s ease-out infinite;}
+#pz-hint .pz-hint-arrow{animation:pzHintNudge 1.1s ease-in-out infinite, pzHintIn .35s ease-out; filter:drop-shadow(0 0 6px rgba(42,111,219,.75));}
+@media (prefers-reduced-motion: reduce){#pz-hint .pz-hint-ring, #pz-hint .pz-hint-arrow{animation:none !important;}}
+@keyframes pzArrowBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+#pz-next-arrow{position:absolute; left:50%; bottom:calc(100% + 6px); width:28px; height:32px; margin-left:-14px; pointer-events:none; opacity:0; transition:opacity .3s ease; filter:drop-shadow(0 0 6px rgba(42,111,219,.75)); z-index:2;}
+#pz-next-arrow.on{opacity:1; animation:pzArrowBob .9s ease-in-out .3s infinite;}
+@media (prefers-reduced-motion: reduce){#pz-next-arrow.on{animation:none !important;}}
+@keyframes pzHintEdge{0%,100%{stroke-opacity:.12}50%{stroke-opacity:.45}}
+@keyframes pzHintNudgeD{0%,100%{transform:translate(0,0)}50%{transform:translate(-5px,-5px)}}
+#pz-hint .pz-hint-edge{animation:pzHintEdge 1.2s ease-in-out infinite;}
+#pz-hint .pz-hint-arrow.pz-hint-diag{animation:pzHintNudgeD 1.1s ease-in-out infinite, pzHintIn .35s ease-out;}
+@media (prefers-reduced-motion: reduce){#pz-hint .pz-hint-edge, #pz-hint .pz-hint-arrow.pz-hint-diag{animation:none !important;}}
 @keyframes haloFlash{0%{opacity:1}22%{opacity:0.1}44%{opacity:1}66%{opacity:0.1}100%{opacity:1}}
 @media (prefers-reduced-motion: reduce){.otto-sparkle{animation:none !important;} *{scroll-behavior:auto !important;}}
 [data-r="card"] p, [data-r="pubrow"] > div[data-desc], [data-r="pubrow"] > div[data-desc-hold]{font-family:var(--body-font, 'IBM Plex Sans', sans-serif);}
@@ -275,7 +291,7 @@ sup{font-size:.72em; line-height:0; vertical-align:baseline; position:relative; 
           <div>
           <div style="font-size:14px; line-height:1.5; color:#5f5b54; margin:0 0 12px;">Four quick puzzles from my research. No math background needed.</div>
           <p style="font-size:15.5px; line-height:1.64; color:#54514a; margin:0 0 11px;">Each puzzle is a bite-sized version of a question I work on. The rules are simple: color some dots or lines without breaking the rule for that round. The catch is that every color you pick limits your next move, so the board slowly tightens until it either clicks into place or leaves you stuck. That squeeze is what makes these problems so much fun, and so hard.</p>
-          <p style="font-size:15.5px; line-height:1.64; color:#54514a; margin:0;">The puzzles build on each other. You will start by coloring dots, move on to coloring lines, and finish with the one closest to my own research: color the lines so that every triangle uses exactly two colors. Never one, never three. It sounds easy, so <strong style="font-weight:600; color:#3a3935;">give the puzzle a try!</strong> The card below explains the rules for each round, and if you get stuck, the answer is just one click away.</p>
+          <p style="font-size:15.5px; line-height:1.64; color:#54514a; margin:0;">The puzzles build on each other. You will start by coloring dots, move on to coloring lines, and finish with the one closest to my own research: color the lines so that every triangle uses exactly two colors. Never one, never three. It sounds easy, so <strong style="font-weight:600; color:#3a3935;">give the puzzle a try!</strong> To play, click or tap a dot or line to color it, and keep tapping it to cycle through the colors. When you solve a puzzle, the board glows green and the blue <strong style="font-weight:600; color:#3a3935;">Next puzzle</strong> button just below it takes you to the next round. The card below explains the rules for each round, and if you get stuck, the answer is just one click away.</p>
           </div>
     <div style="border:1px solid #e0ddd5; background:#efece6; border-radius:12px; padding:14px 16px;">
       <div style="display:flex; align-items:center; gap:9px; margin-bottom:8px; flex-wrap:wrap;">
@@ -290,7 +306,7 @@ sup{font-size:.72em; line-height:0; vertical-align:baseline; position:relative; 
     <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:#55524b;"><span style="display:inline-flex; align-items:center; gap:8px;"><span style="text-transform:uppercase; letter-spacing:.1em;">Score</span><span id="pz-clicks" style="color:#23241f; font-weight:600; font-size:14px;">0</span><span>clicks</span></span><span style="display:inline-flex; align-items:center; gap:7px;" aria-live="polite"><span id="pz-dot" style="width:9px; height:9px; border-radius:50%; background:#55524b; flex-shrink:0;"></span><span id="pz-status"></span></span></div>
     <div data-board="1" style="position:relative; border-radius:16px; background:transparent; border:1px solid #ddd9d1; padding:14px;">
       <svg id="pz-svg" viewBox="0 0 400 400" style="width:100%; height:auto; display:block; overflow:visible;" role="img" aria-label="Interactive graph coloring puzzle">
-        <g id="pz-halo-e"></g><g id="pz-edges"></g><g id="pz-hits"></g><g id="pz-halo-n"></g><g id="pz-nodes"></g><g id="pz-nodehits"></g>
+        <g id="pz-halo-e"></g><g id="pz-edges"></g><g id="pz-hits"></g><g id="pz-halo-n"></g><g id="pz-nodes"></g><g id="pz-nodehits"></g><g id="pz-hint"></g>
       </svg>
       <div id="pz-annot" style="position:absolute; left:20px; bottom:16px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.04em; color:#55524b;"></div>
     </div>
@@ -299,7 +315,7 @@ sup{font-size:.72em; line-height:0; vertical-align:baseline; position:relative; 
         <button type="button" id="pz-solve" style="font-family:'IBM Plex Sans',sans-serif; font-size:12px; font-weight:500; color:#55524b; background:transparent; border:1px solid #d6d1c8; border-radius:9px; padding:8px 12px; cursor:pointer;">Show solution 1</button>
         <button type="button" id="pz-reset" style="font-family:'IBM Plex Sans',sans-serif; font-size:12px; font-weight:500; color:#55524b; background:transparent; border:1px solid #d6d1c8; border-radius:9px; padding:8px 12px; cursor:pointer;">Reset</button>
         <button type="button" id="pz-prev" style="font-family:'IBM Plex Sans',sans-serif; font-size:12px; font-weight:500; color:#23241f; background:#faf8f4; border:1px solid #d6d1c8; border-radius:9px; padding:8px 13px; cursor:pointer;">&larr; Back</button>
-        <button type="button" id="pz-next" style="font-family:'IBM Plex Sans',sans-serif; font-size:12px; font-weight:600; color:#23241f; background:#faf8f4; border:1px solid #d6d1c8; border-radius:9px; padding:8px 13px; cursor:pointer;">Next puzzle &rarr;</button>
+        <span id="pz-next-wrap" style="position:relative; display:inline-flex;"><button type="button" id="pz-next" style="font-family:'IBM Plex Sans',sans-serif; font-size:12px; font-weight:600; color:#23241f; background:#faf8f4; border:1px solid #d6d1c8; border-radius:9px; padding:8px 13px; cursor:pointer;">Next puzzle &rarr;</button><span id="pz-next-arrow" aria-hidden="true"><svg viewBox="0 0 28 32" width="28" height="32"><path d="M10 2 h8 v15 h7 L14 30 L3 17 h7 z" fill="#2a6fdb"/></svg></span></span>
       </div>
       <div id="pz-instr" style="font-family:'IBM Plex Sans',sans-serif; font-size:12.5px; color:#55524b;"></div>
     </div>
@@ -507,10 +523,10 @@ sup{font-size:.72em; line-height:0; vertical-align:baseline; position:relative; 
   var SOLS={0:[[0,1,0,1,2,1,2,2,0,0],[0,1,2,0,1,1,0,0,2,2]],1:[[0,1,0,1,2,1,2,3,2,3,0,1,1,3,0],[0,1,0,1,2,1,2,2,2,0,0,0,1,3,3]],2:[[0,1,1,0,0,1,1,0,1,0],[1,0,1,0,0,0,1,1,1,0]],3:[[2,0,0,1,1,0,0,1,1,2,0,0,0,0,2],[0,0,0,0,0,1,1,2,2,2,1,2,2,1,1]]};
   var KEYS=['vcol','ecol','kcol','k6col'], NCOL=[3,4,2,6], LEN=[10,15,10,15];
   var PZ=[
-    {tag:'Puzzle 1 / 4', kind:'Color the dots', title:'Color the dots with three colors', goal:'Give each dot one of three colors so that no line connects two dots of the same color. This shape, called the Petersen graph, cannot be done with only two colors, but three is enough.', instr:'Click a dot to change its color.', annot:'Petersen graph \u00b7 3 colors needed'},
-    {tag:'Puzzle 2 / 4', kind:'Color the lines', title:'Color the lines with four colors', goal:'Now color the lines instead of the dots. Wherever lines meet at a dot, they must all be different colors. This shape needs four colors to do it; three will not work.', instr:'Click a line to change its color.', annot:'Petersen graph \u00b7 4 colors needed'},
-    {tag:'Puzzle 3 / 4', kind:'Avoid a one-color triangle', title:'Two colors, no one-color triangle', goal:'Every pair of these five dots is connected by a line. Color all ten lines red or blue so that no triangle (three dots joined by three lines) has all three lines the same color. With five dots it can be done, but add a sixth dot and it becomes impossible, a famous fact from Ramsey theory.', instr:'Click a line to switch it between red and blue.', annot:'5 dots \u00b7 every pair connected'},
-    {tag:'Puzzle 4 / 4', kind:'No one-color or all-different triangle', title:'Use as few colors as you can', goal:'Six dots, with every pair connected by a line. Color all 15 lines so that no triangle has all three lines the same color, and no triangle has three different colors, so every triangle must use exactly two colors. Use as few colors as you can. Triangles that break a rule flash red. Balancing these two rules is the heart of my research.', instr:'Click a line to change its color. Try to use as few colors as possible.', annot:'6 dots \u00b7 every pair connected'}
+    {tag:'Puzzle 1 / 4', kind:'Color the dots', title:'Color the dots with three colors', goal:'Give each dot one of three colors so that no line connects two dots of the same color. This shape, called the Petersen graph, cannot be done with only two colors, but three is enough.', instr:'Click or tap a dot to color it. Keep tapping the same dot to cycle through the three colors (a fourth tap clears it).', annot:'Petersen graph \u00b7 3 colors needed'},
+    {tag:'Puzzle 2 / 4', kind:'Color the lines', title:'Color the lines with four colors', goal:'Now color the lines instead of the dots. Wherever lines meet at a dot, they must all be different colors. This shape needs four colors to do it; three will not work.', instr:'Click or tap a line to color it. Keep tapping the same line to cycle through the four colors (a fifth tap clears it).', annot:'Petersen graph \u00b7 4 colors needed'},
+    {tag:'Puzzle 3 / 4', kind:'Avoid a one-color triangle', title:'Two colors, no one-color triangle', goal:'Every pair of these five dots is connected by a line. Color all ten lines red or blue so that no triangle (three dots joined by three lines) has all three lines the same color. With five dots it can be done, but add a sixth dot and it becomes impossible, a famous fact from Ramsey theory.', instr:'Click or tap a line once for red, twice for blue (a third tap clears it).', annot:'5 dots \u00b7 every pair connected'},
+    {tag:'Puzzle 4 / 4', kind:'No one-color or all-different triangle', title:'Use as few colors as you can', goal:'Six dots, with every pair connected by a line. Color all 15 lines so that no triangle has all three lines the same color, and no triangle has three different colors, so every triangle must use exactly two colors. Use as few colors as you can. Triangles that break a rule flash red. Balancing these two rules is the heart of my research.', instr:'Click or tap a line to color it. Keep tapping the same line to cycle through up to six colors. Try to use as few as possible.', annot:'6 dots \u00b7 every pair connected'}
   ];
   var uncFill='#ffffff', uncStroke='#cdc8bf', muted='#55524b', ink='#23241f', good='#2e8b57', bad='#d1495b';
   var coarse=window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
@@ -527,6 +543,49 @@ sup{font-size:.72em; line-height:0; vertical-align:baseline; position:relative; 
   var svg=$('pz-svg'), gHE=$('pz-halo-e'), gE=$('pz-edges'), gHit=$('pz-hits'), gHN=$('pz-halo-n'), gN=$('pz-nodes'), gNH=$('pz-nodehits');
   var edgeEls=[], nodeEls=[], geo=null, lastHalo='';
   var wasSolved=false;
+  // First-visit coach marks: puzzle 1 points at the top dot, puzzle 2 at an outer line. After the first tap on
+  // that dot or line, the label says to tap again for a different color; after the second tap it disappears.
+  var HINT={0:{target:0, stage:0, done:false}, 1:{target:4, stage:0, done:false}};
+  function hintLabel(g, lines, tx, ty, anchor){
+    var lh=17, bg=el('rect',{rx:9,ry:9,fill:'#2a6fdb'}); g.appendChild(bg);
+    var txt=el('text',{x:tx,y:ty,'text-anchor':anchor,fill:'#ffffff','font-size':14,'font-weight':600,'font-family':"'IBM Plex Sans', sans-serif"});
+    lines.forEach(function(t,i){ var ts=el('tspan',{x:tx,dy:i?lh:0}); ts.textContent=t; txt.appendChild(ts); });
+    g.appendChild(txt);
+    try{ var bb=txt.getBBox(); bg.setAttribute('x',bb.x-9); bg.setAttribute('y',bb.y-6); bg.setAttribute('width',bb.width+18); bg.setAttribute('height',bb.height+12); return {x:bb.x-9,y:bb.y-6,w:bb.width+18,h:bb.height+12}; }catch(_){ return null; }
+  }
+  function hintArrow(g, x1, y1, x2, y2){
+    var dx=x2-x1, dy=y2-y1, L=Math.sqrt(dx*dx+dy*dy)||1, ux=dx/L, uy=dy/L, px=-uy, py=ux;
+    var bx=x2-ux*12, by=y2-uy*12;
+    g.appendChild(el('line',{x1:x1,y1:y1,x2:x2-ux*8,y2:y2-uy*8,stroke:'#2a6fdb','stroke-width':4,'stroke-linecap':'round'}));
+    g.appendChild(el('polygon',{points:x2+','+y2+' '+(bx+px*8)+','+(by+py*8)+' '+(bx-px*8)+','+(by-py*8),fill:'#2a6fdb'}));
+  }
+  function drawHint(){
+    var g=$('pz-hint'); if(!g) return;
+    while(g.firstChild) g.removeChild(g.firstChild);
+    var h=HINT[S.puzzle]; if(!h || h.done) return;
+    var lines = h.stage===0 ? ['Tap / click here'] : ['Tap again for a','different color'];
+    if(S.puzzle===0){
+      var q=PV[h.target];
+      g.appendChild(el('circle',{cx:q.x,cy:q.y,r:24,fill:'none',stroke:'#2a6fdb','stroke-width':3,'class':'pz-hint-ring'}));
+      var ar=el('g',{'class':'pz-hint-arrow'}); g.appendChild(ar);
+      hintArrow(ar, q.x-58, q.y, q.x-27, q.y);
+      hintLabel(ar, lines, q.x-70, q.y+5-(lines.length-1)*8.5, 'end');
+    } else {
+      var e=PE[h.target], A=PV[e[0]], B=PV[e[1]], mx=(A.x+B.x)/2, my=(A.y+B.y)/2;
+      g.appendChild(el('line',{x1:A.x,y1:A.y,x2:B.x,y2:B.y,stroke:'#2a6fdb','stroke-width':14,'stroke-linecap':'round','class':'pz-hint-edge'}));
+      var ar2=el('g',{'class':'pz-hint-arrow pz-hint-diag'}); g.appendChild(ar2);
+      var box=hintLabel(ar2, lines, 12, 26, 'start');
+      var sx = box ? Math.min(box.x+box.w*0.55, mx-30) : 70, sy = box ? box.y+box.h+6 : 50;
+      hintArrow(ar2, sx, sy, mx-7, my-8);
+    }
+  }
+  function endHint(){ var h=HINT[S.puzzle]; if(h && !h.done){ h.done=true; drawHint(); } }
+  function hintTap(kind, i){
+    var h=HINT[S.puzzle]; if(!h || h.done) return;
+    if((S.puzzle===0 && kind!=='v') || (S.puzzle===1 && kind!=='e')) return;
+    if(i===h.target){ h.stage++; if(h.stage>=2) h.done=true; } else h.done=true;
+    drawHint();
+  }
 
   function geometry(p){
     if(p===0||p===1) return {V:PV, E:PE};
@@ -568,8 +627,9 @@ sup{font-size:.72em; line-height:0; vertical-align:baseline; position:relative; 
       gNH.appendChild(h);
     });
   }
-  function clickVertex(vi){ var a=S.vcol.slice(); a[vi]=cyc(a[vi],3); S.vcol=a; S.clicks++; update(); }
-  function clickEdge(ei){ var key=KEYS[S.puzzle]; var a=S[key].slice(); a[ei]=cyc(a[ei],NCOL[S.puzzle]); S[key]=a; S.clicks++; update(); }
+  function clickVertex(vi){ var a=S.vcol.slice(); a[vi]=cyc(a[vi],3); S.vcol=a; S.clicks++; update();
+    hintTap('v',vi); }
+  function clickEdge(ei){ var key=KEYS[S.puzzle]; var a=S[key].slice(); a[ei]=cyc(a[ei],NCOL[S.puzzle]); S[key]=a; S.clicks++; update(); hintTap('e',ei); }
   function setHov(h){ if(S.hov!==h){ S.hov=h; update(); } }
   function clrHov(){ if(S.hov!=null){ S.hov=null; update(); } }
   function tri(list, E){ return list.map(function(t){ return [idx(E,t[0],t[1]), idx(E,t[0],t[2]), idx(E,t[1],t[2])]; }); }
@@ -655,18 +715,19 @@ sup{font-size:.72em; line-height:0; vertical-align:baseline; position:relative; 
     nx.style.background = status.s ? '#2a6fdb' : '#faf8f4';
     nx.style.color = status.s ? '#ffffff' : ink;
     nx.style.borderColor = status.s ? '#2a6fdb' : '#d6d1c8';
+    var na=$('pz-next-arrow'); if(na) na.classList.toggle('on', !!status.s && p<3);
     // Celebrate the moment a puzzle becomes solved: the status pops and glows, the dot pulses, the board turns green.
     var solved=!!status.s, fx=[$('pz-status'), $('pz-dot'), root.querySelector('[data-board]')];
     if(solved && !wasSolved){ fx.forEach(function(e){ if(!e) return; e.classList.remove('pz-solved'); void e.offsetWidth; e.classList.add('pz-solved'); }); }
     else if(!solved){ fx.forEach(function(e){ if(e) e.classList.remove('pz-solved'); }); }
     wasSolved=solved;
   }
-  function goto(p){ clearTimers(); S.puzzle=p; S.clicks=0; S.hov=null; S.solIdx=0; build(); update(); }
+  function goto(p){ clearTimers(); if(HINT[S.puzzle]) HINT[S.puzzle].done=true; S.puzzle=p; S.clicks=0; S.hov=null; S.solIdx=0; build(); update(); drawHint(); }
   $('pz-next').addEventListener('click',function(){ goto((S.puzzle+1)%4); });
   $('pz-prev').addEventListener('click',function(){ goto(S.puzzle>0?S.puzzle-1:0); });
   $('pz-reset').addEventListener('click',function(){ clearTimers(); S[KEYS[S.puzzle]]=fill(LEN[S.puzzle]); S.clicks=0; S.hov=null; S.solIdx=0; update(); });
   $('pz-solve').addEventListener('click',function(){
-    clearTimers(); var p=S.puzzle, key=KEYS[p], sol=SOLS[p][S.solIdx||0];
+    endHint(); clearTimers(); var p=S.puzzle, key=KEYS[p], sol=SOLS[p][S.solIdx||0];
     S[key]=fill(LEN[p]); S.solIdx = S.solIdx===0 ? 1 : 0; update();
     var t=150;
     sol.forEach(function(c,q){ timers.push(setTimeout(function(){ var a=S[key].slice(); a[q]=c; S[key]=a; update(); }, t)); t+=120; });
@@ -681,7 +742,7 @@ sup{font-size:.72em; line-height:0; vertical-align:baseline; position:relative; 
   layout();
   if(window.ResizeObserver) new ResizeObserver(layout).observe(root);
   window.addEventListener('resize',layout);
-  build(); update();
+  build(); update(); drawHint();
 })();
 
 </script>
