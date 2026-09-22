@@ -675,5 +675,45 @@ sup{font-size:.72em; line-height:0; vertical-align:baseline; position:relative; 
 })();
 
 </script>
+<script>
+// Desktop only: make the sidebar box match the bio box's height. Extra height goes into text spacing first:
+// the gaps between contact rows (10px up to 30px), then the spacing around the photo, status line and
+// divider (14px up to 26px). Only height beyond that makes the photo taller.
+(function(){
+  var hero=document.querySelector('[data-r="hero"]'); if(!hero) return;
+  var bio=hero.querySelector('[data-r="card"]'), side=hero.querySelector('[data-r="sidecard"]');
+  var info=side && side.querySelector('[data-r="sideinfo"]');
+  var photo=side && side.querySelector('[data-r="photo"]'), contact=side && side.querySelector('[data-r="contact"]');
+  if(!bio||!side||!info||!photo||!contact) return;
+  var desk=window.matchMedia ? window.matchMedia('(min-width: 921px)') : null;
+  // Remember the original inline values so tablet and phone layouts are restored exactly.
+  var orig={cg:contact.style.gap, sg:side.style.gap, ig:info.style.gap, ph:photo.style.height, pa:photo.style.aspectRatio};
+  function reset(){ contact.style.gap=orig.cg; side.style.gap=orig.sg; info.style.gap=orig.ig; photo.style.height=orig.ph; photo.style.aspectRatio=orig.pa; }
+  function fit(){
+    reset();
+    if(!desk || !desk.matches) return;
+    var diff=bio.getBoundingClientRect().height - side.getBoundingClientRect().height;
+    if(diff<=0.5) return;
+    // 1) contact rows
+    var cGaps=Math.max(contact.children.length-1,1);
+    var cAdd=Math.min(diff/cGaps, 30-10);
+    contact.style.gap=(10+cAdd)+'px'; diff-=cAdd*cGaps;
+    // 2) photo / status line / divider / contact list spacing (1 gap in the card, 2 inside the info column)
+    if(diff>0.5){
+      var oAdd=Math.min(diff/3, 26-14);
+      side.style.gap=(14+oAdd)+'px'; info.style.gap=(14+oAdd)+'px'; diff-=oAdd*3;
+    }
+    // 3) anything left grows the photo
+    if(diff>0.5){ var h=photo.getBoundingClientRect().height, bd=h-photo.clientHeight; photo.style.aspectRatio='auto'; photo.style.height=(h-bd+diff)+'px'; }
+  }
+  var raf=0; function schedule(){ cancelAnimationFrame(raf); raf=requestAnimationFrame(fit); }
+  fit();
+  window.addEventListener('resize', schedule);
+  window.addEventListener('load', schedule);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(schedule);
+  if(window.ResizeObserver) new ResizeObserver(schedule).observe(bio);
+  if(desk){ if(desk.addEventListener) desk.addEventListener('change', schedule); else if(desk.addListener) desk.addListener(schedule); }
+})();
+</script>
 </body>
 </html>
