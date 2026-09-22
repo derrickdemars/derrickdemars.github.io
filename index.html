@@ -154,6 +154,11 @@ a[data-box]:hover{transform:scale(1.03);box-shadow:0 7px 20px rgba(20,22,28,0.16
   [data-r="foot"] > div{text-align:center !important;}
   [data-r="foot"] > div:nth-child(2){order:-1;}
 }
+/* Desktop: the bio box is a column so any extra height collects above the tags, which stay pinned to the bottom. */
+@media screen and (min-width:921px){
+  [data-r="hero"] [data-r="card"]{display:flex; flex-direction:column;}
+  [data-r="hero"] [data-r="card"] > div:last-child{margin-top:auto;}
+}
 @media print{
   @page{size:letter; margin:0.6in;}
   html,body{background:#ffffff !important;}
@@ -257,7 +262,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div data-r="cardgrid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px;">
           <div data-desc="Dissertation: Forbidding Monochromatic and Rainbow Cycles and Families of Cycles" style="background:#efece6; border:1px solid #e4e0d8; border-radius:12px; padding:20px;">
             <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#6f6b64; margin-bottom:10px;">2020–2023</div>
-            <div style="font-family:'Spectral',serif; font-size:18px; font-weight:600; line-height:1.2;">Ph.D., Mathematics</div>
+            <div style="font-family:'Spectral',serif; font-size:18px; font-weight:600; line-height:1.2;">Ph.D. Mathematics</div>
             <div style="font-size:13.5px; color:#6f6b64; margin-top:6px;">Auburn University</div>
           </div>
           <div style="background:#efece6; border:1px solid #e4e0d8; border-radius:12px; padding:20px;">
@@ -267,7 +272,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
           <div style="background:#efece6; border:1px solid #e4e0d8; border-radius:12px; padding:20px;">
             <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#6f6b64; margin-bottom:10px;">2011–2014</div>
-            <div style="font-family:'Spectral',serif; font-size:18px; font-weight:600; line-height:1.2;">B.S., Mathematics</div>
+            <div style="font-family:'Spectral',serif; font-size:18px; font-weight:600; line-height:1.2;">B.S. Mathematics</div>
             <div style="font-size:13.5px; color:#6f6b64; margin-top:6px;">Blue Mountain College</div>
           </div>
         </div>
@@ -761,7 +766,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>
 // Desktop only: make the sidebar box match the bio box's height. Extra height goes into text spacing first:
 // the gaps between contact rows (10px up to 40px), then the spacing around the photo, status line and
-// divider (14px up to 30px). Only height beyond that makes the photo taller.
+// divider (14px up to 30px). Only height beyond that makes the photo taller. If the sidebar is the taller box,
+// the bio box grows to match instead, and its tags stay pinned to its bottom (see the desktop CSS rule).
 (function(){
   var hero=document.querySelector('[data-r="hero"]'); if(!hero) return;
   var bio=hero.querySelector('[data-r="card"]'), side=hero.querySelector('[data-r="sidecard"]');
@@ -770,12 +776,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   if(!bio||!side||!info||!photo||!contact) return;
   var desk=window.matchMedia ? window.matchMedia('(min-width: 921px)') : null;
   // Remember the original inline values so tablet and phone layouts are restored exactly.
-  var orig={cg:contact.style.gap, sg:side.style.gap, ig:info.style.gap, ph:photo.style.height, pa:photo.style.aspectRatio};
-  function reset(){ contact.style.gap=orig.cg; side.style.gap=orig.sg; info.style.gap=orig.ig; photo.style.height=orig.ph; photo.style.aspectRatio=orig.pa; }
+  var orig={cg:contact.style.gap, sg:side.style.gap, ig:info.style.gap, ph:photo.style.height, pa:photo.style.aspectRatio, bm:bio.style.minHeight};
+  function reset(){ contact.style.gap=orig.cg; side.style.gap=orig.sg; info.style.gap=orig.ig; photo.style.height=orig.ph; photo.style.aspectRatio=orig.pa; bio.style.minHeight=orig.bm; }
   function fit(){
     reset();
     if(!desk || !desk.matches) return;
     var diff=bio.getBoundingClientRect().height - side.getBoundingClientRect().height;
+    // Sidebar taller: stretch the bio box down to meet it (min-height is set on the content box, so add the gap to it).
+    if(diff<-0.5){ bio.style.minHeight=(parseFloat(getComputedStyle(bio).height)-diff)+'px'; return; }
     if(diff<=0.5) return;
     // 1) contact rows
     var shown=[].filter.call(contact.children,function(c){ return !c.hidden && getComputedStyle(c).display!=='none'; }).length;
@@ -795,7 +803,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   window.addEventListener('resize', schedule);
   window.addEventListener('load', schedule);
   if(document.fonts && document.fonts.ready) document.fonts.ready.then(schedule);
-  if(window.ResizeObserver) new ResizeObserver(schedule).observe(bio);
+  if(window.ResizeObserver){ var ro=new ResizeObserver(schedule); ro.observe(bio); ro.observe(side); }
   if(desk){ if(desk.addEventListener) desk.addEventListener('change', schedule); else if(desk.addListener) desk.addListener(schedule); }
 })();
 </script>
