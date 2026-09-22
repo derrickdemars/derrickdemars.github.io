@@ -39,7 +39,6 @@
 <style>
 :root{--body-font:'Source Sans 3', sans-serif; --body-scale:1.02; --mono-font:'Source Code Pro', monospace; --head-font:'Spectral', serif; --nav-active:#21221f;}
 html,body{margin:0; background:#e7e4de;}
-button[data-print-btn]:hover{background:rgba(42,111,219,.08) !important;}
 #pz-root button:hover{filter:brightness(.97);}
 a:focus-visible, button:focus-visible{outline:2px solid #2a6fdb; outline-offset:3px; border-radius:4px;}
 @keyframes haloFlash{0%{opacity:1}22%{opacity:0.1}44%{opacity:1}66%{opacity:0.1}100%{opacity:1}}
@@ -202,7 +201,6 @@ sup{font-size:.72em; line-height:0; vertical-align:baseline; position:relative; 
             <div style="display:flex; justify-content:space-between; gap:12px;"><span style="color:#9a958c; flex-shrink:0;">math genealogy</span><a href="https://mathgenealogy.org/id.php?id=5327" target="_blank" rel="noopener" style="color:#2a6fdb; text-decoration:none; text-align:right;">Peter Johnson, Jr.</a></div>
             <div style="display:flex; justify-content:space-between; gap:12px;"><span style="color:#9a958c; flex-shrink:0;">linkedin</span><a href="https://www.linkedin.com/in/dr-demars/" style="color:#2a6fdb; text-decoration:none; text-align:right;">linkedin.com/in/dr-demars</a></div>
           </div>
-          <button data-noprint="1" onclick="ddPrint()" data-print-btn="1" style="font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.04em; color:#2a6fdb; background:transparent; border:1px solid rgba(42,111,219,.4); border-radius:9px; padding:9px 12px; cursor:pointer; width:100%;">Print as PDF</button>
           </div>
         </div>
 
@@ -666,20 +664,6 @@ sup{font-size:.72em; line-height:0; vertical-align:baseline; position:relative; 
   build(); update();
 })();
 
-</script>
-<script>
-// Print as PDF. If the page is being shown inside another site's frame (for example a domain-forwarding
-// frame), the browser cannot build a print preview, so open the real page in its own tab and print there.
-function ddPrint(){
-  var framed=false; try{ framed = window.self !== window.top; }catch(_){ framed=true; }
-  if(framed){ window.open(location.href.split('#')[0].split('?')[0]+'?print=1','_blank','noopener'); return; }
-  var go=function(){ setTimeout(function(){ window.focus(); window.print(); }, 80); };
-  if(document.fonts && document.fonts.ready) document.fonts.ready.then(go, go); else go();
-}
-if(/[?&]print=1/.test(location.search)){
-  try{ history.replaceState(null,'',location.pathname); }catch(_){}
-  window.addEventListener('load', function(){ setTimeout(ddPrint, 400); });
-}
 </script>
 </body>
 </html>
