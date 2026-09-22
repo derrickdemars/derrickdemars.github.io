@@ -204,8 +204,10 @@ sup{font-size:.72em; line-height:0; vertical-align:baseline; position:relative; 
             <div style="display:flex; justify-content:space-between; gap:12px;"><span style="color:#6f6b64; flex-shrink:0;">orcid</span><a href="https://orcid.org/0000-0001-9360-3537" target="_blank" rel="noopener" style="color:#2a6fdb; text-decoration:none; text-align:right;">0000-0001-9360-3537</a></div>
             <div style="display:flex; justify-content:space-between; gap:12px;"><span style="color:#6f6b64; flex-shrink:0;">mathscinet</span><a href="https://mathscinet.ams.org/mathscinet/MRAuthorID/1423136" target="_blank" rel="noopener" style="color:#2a6fdb; text-decoration:none; text-align:right;">1423136</a></div>
             <div style="display:flex; justify-content:space-between; gap:12px;"><span style="color:#6f6b64; flex-shrink:0;">google scholar</span><a href="https://scholar.google.com/citations?hl=en&amp;user=8eZwxW4AAAAJ" target="_blank" rel="noopener" style="color:#2a6fdb; text-decoration:none; text-align:right;">scholar.google.com</a></div>
-            <div style="display:flex; justify-content:space-between; gap:12px;"><span style="color:#6f6b64; flex-shrink:0;">arXiv</span><a aria-disabled="true" style="color:#2a6fdb; text-decoration:none; text-align:right; cursor:default;">Author Profile</a></div>
-            <div style="display:flex; justify-content:space-between; gap:12px;"><span style="color:#6f6b64; flex-shrink:0;">math genealogy</span><a href="https://mathgenealogy.org/id.php?id=5327" target="_blank" rel="noopener" style="color:#2a6fdb; text-decoration:none; text-align:right;">Peter Johnson, Jr.</a></div>
+            <!-- Hidden until ready: remove "display:none" / hidden to show this row again -->
+            <div hidden style="display:none; justify-content:space-between; gap:12px;"><span style="color:#6f6b64; flex-shrink:0;">arXiv</span><a aria-disabled="true" style="color:#2a6fdb; text-decoration:none; text-align:right; cursor:default;">Author Profile</a></div>
+            <!-- Hidden until ready: remove "display:none" / hidden to show this row again -->
+            <div hidden style="display:none; justify-content:space-between; gap:12px;"><span style="color:#6f6b64; flex-shrink:0;">math genealogy</span><a href="https://mathgenealogy.org/id.php?id=5327" target="_blank" rel="noopener" style="color:#2a6fdb; text-decoration:none; text-align:right;">Peter Johnson, Jr.</a></div>
             <div style="display:flex; justify-content:space-between; gap:12px;"><span style="color:#6f6b64; flex-shrink:0;">linkedin</span><a href="https://www.linkedin.com/in/dr-demars/" target="_blank" rel="noopener" style="color:#2a6fdb; text-decoration:none; text-align:right;">linkedin.com/in/dr-demars</a></div>
           </div>
           </div>
@@ -677,8 +679,8 @@ sup{font-size:.72em; line-height:0; vertical-align:baseline; position:relative; 
 </script>
 <script>
 // Desktop only: make the sidebar box match the bio box's height. Extra height goes into text spacing first:
-// the gaps between contact rows (10px up to 30px), then the spacing around the photo, status line and
-// divider (14px up to 26px). Only height beyond that makes the photo taller.
+// the gaps between contact rows (10px up to 40px), then the spacing around the photo, status line and
+// divider (14px up to 30px). Only height beyond that makes the photo taller.
 (function(){
   var hero=document.querySelector('[data-r="hero"]'); if(!hero) return;
   var bio=hero.querySelector('[data-r="card"]'), side=hero.querySelector('[data-r="sidecard"]');
@@ -695,12 +697,13 @@ sup{font-size:.72em; line-height:0; vertical-align:baseline; position:relative; 
     var diff=bio.getBoundingClientRect().height - side.getBoundingClientRect().height;
     if(diff<=0.5) return;
     // 1) contact rows
-    var cGaps=Math.max(contact.children.length-1,1);
-    var cAdd=Math.min(diff/cGaps, 30-10);
+    var shown=[].filter.call(contact.children,function(c){ return !c.hidden && getComputedStyle(c).display!=='none'; }).length;
+    var cGaps=Math.max(shown-1,1);
+    var cAdd=Math.min(diff/cGaps, 40-10);
     contact.style.gap=(10+cAdd)+'px'; diff-=cAdd*cGaps;
     // 2) photo / status line / divider / contact list spacing (1 gap in the card, 2 inside the info column)
     if(diff>0.5){
-      var oAdd=Math.min(diff/3, 26-14);
+      var oAdd=Math.min(diff/3, 30-14);
       side.style.gap=(14+oAdd)+'px'; info.style.gap=(14+oAdd)+'px'; diff-=oAdd*3;
     }
     // 3) anything left grows the photo
