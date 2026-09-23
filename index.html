@@ -99,6 +99,11 @@ a:focus-visible, button:focus-visible{outline:2px solid #2a6fdb; outline-offset:
 }
 @media screen and (min-width:921px){#pz-goal{font-family:var(--body-font, 'Source Sans 3', sans-serif) !important; font-size:calc(var(--body-scale, 1) * 15.5px) !important; line-height:1.64 !important; color:#54514a !important;}}
 #pz-goal strong{font-weight:600; color:#3a3935;} /* bold words in the rule cards match the page's other bold text */
+/* Desktop two-column puzzle: the rule card is centered vertically between the end of the intro paragraph and the
+   section's bottom border. The left column stretches to the section's height; the -18px bottom margin balances the
+   14px gap above the card against the section's 32px bottom padding below it, so the visible gaps come out equal. */
+#pz-root.pz-split > div:first-child{align-self:stretch; margin-bottom:-18px;}
+#pz-root.pz-split > div:first-child > div:last-child{margin:auto 0;}
 /* Puzzle button row (see the comment above #pz-btns in the page). */
 #pz-btns{display:flex; gap:6px; width:100%; --bf:12.5px;}
 #pz-btns .pz-grp{display:contents;}
@@ -362,7 +367,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div id="pz-root" style="width:100%; display:grid; grid-template-columns:minmax(0,1fr); gap:18px; align-items:start; font-family:'IBM Plex Sans',sans-serif;">
   <div style="display:flex; flex-direction:column; gap:14px; min-width:0;">
           <div>
-          <p style="font-size:15.5px; line-height:1.64; color:#54514a; margin:0;">Each puzzle is a bite-sized version of the questions I work on. The puzzles build on each other. You will start by coloring dots, move on to coloring lines, and finish with the one closest to my own research: color the lines so that every triangle uses exactly two colors. Never one, never three. It sounds easy, so <strong style="font-weight:600; color:#3a3935;">give the puzzle a go!</strong> To play, click or tap a dot or line to color it, and keep tapping it to cycle through the colors. When you solve a puzzle, the board glows green and the blue Next button just below it takes you to the next round. The card below explains the rules for each round. Made a mistake? The Undo button takes back your last move, and if you get stuck, the answer is just one click away.</p>
+          <p style="font-size:15.5px; line-height:1.64; color:#54514a; margin:0;">Each puzzle is a bite-sized version of the questions I work on. The puzzles build on each other. You will start by coloring dots, move on to coloring lines, and finish with the one closest to my own research: color the lines so that every triangle uses exactly two colors. Never one, never three. It sounds easy, so give the puzzle a go! To play, click or tap a dot or line to color it, and keep tapping it to cycle through the colors. When you solve a puzzle, the board glows blue and the blue Next button just below it takes you to the next round. The card below explains the rules for each round. Made a mistake? The Undo button takes back your last move, and if you get stuck, the answer is just one click away.</p>
           </div>
     <div style="border:1px solid #e0ddd5; background:#efece6; border-radius:12px; padding:14px 16px;">
       <div style="display:flex; align-items:center; gap:9px; margin-bottom:8px; flex-wrap:wrap;">
@@ -899,6 +904,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var w=root.getBoundingClientRect().width, split=w>=906;
     root.style.gridTemplateColumns = split ? 'minmax(0,1fr) 400px' : 'minmax(0,1fr)';
     root.style.gap = split ? '26px' : '18px';
+    root.classList.toggle('pz-split', split);
     fitButtons();
   }
   // Button text follows the board width (about 11.5px on small phones up to 14px), and the row splits into two
