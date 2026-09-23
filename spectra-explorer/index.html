@@ -52,7 +52,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=Source+Sans+3:ital,wght@0,400;0,600;1,400&amp;family=Source+Code+Pro:wght@400;500&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=1">
+<link rel="stylesheet" href="/assets/site.css?v=4">
 <style>
 /* Page-only styles for the Spectra Explorer. Shared styles (colors, fonts, top bar, frame, boxes,
    headings, text, links, buttons, pills, footer) come from /assets/site.css. */
@@ -153,7 +153,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <main class="page">
     <section class="card">
       <h1 class="title">Spectra Explorer</h1>
-      <p class="prose">This page studies edge-colorings of the complete graph <i>K<sub>n</sub></i>, in which every pair of the <i>n</i> vertices (dots) is joined by an edge. A <strong>mixed Ramsey problem</strong> fixes two forbidden subgraphs, <i>F</i> and <i>H</i>, and asks for edge-colorings with no <strong>monochromatic</strong> copy of <i>F</i> (every edge the same color) and no <strong>rainbow</strong> copy of <i>H</i> (every edge a different color). Too few colors force the first pattern; too many force the second. The <strong>mixed Ramsey spectrum</strong> MRS(<i>K<sub>n</sub></i>; <i>F</i>, <i>H</i>) is the set of all numbers of colors <i>k</i> for which some edge-coloring of <i>K<sub>n</sub></i> with exactly <i>k</i> colors avoids both, the object at the center of much of my research.</p>
+      <p class="prose">This page studies edge-colorings of the complete graph <i>K<sub>n</sub></i>, in which every pair of the <i>n</i> vertices (dots) is joined by an edge. A <strong>mixed Ramsey problem</strong> fixes two forbidden subgraphs, <i>F</i> and <i>H</i>, and asks for edge-colorings with no monochromatic copy of <i>F</i> (every edge the same color) and no rainbow copy of <i>H</i> (every edge a different color). Too few colors force the first pattern; too many force the second. The <strong>mixed Ramsey spectrum</strong> MRS(<i>K<sub>n</sub></i>; <i>F</i>, <i>H</i>) is the set of all numbers of colors <i>k</i> for which some edge-coloring of <i>K<sub>n</sub></i> with exactly <i>k</i> colors avoids both, the object at the center of much of my research.</p>
+      <div class="tags">
+        <span data-tag="1">Mixed Ramsey Theory</span>
+        <span data-tag="1">Edge-Colorings</span>
+        <span data-tag="1">Complete Graphs</span>
+        <span data-tag="1">Monochromatic Subgraphs</span>
+        <span data-tag="1">Rainbow Subgraphs</span>
+      </div>
     </section>
     <section class="card" aria-labelledby="explore-h">
       <h2 class="sec-h" id="explore-h" style="margin:0 0 8px;">To explore the spectra</h2>
@@ -191,11 +198,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <section class="card">
       <h2 class="sec-h" style="margin:0 0 8px;">How these values were found</h2>
       <p class="prose">Each spectrum comes from an exhaustive computer search over every coloring of the edges, up to renaming the colors, and was cross-checked by a second, independently written program. For five or fewer vertices, that program lists every possible coloring outright. The computed spectra were also checked against the results in my papers. Every example coloring on this page is re-checked in your browser against each triangle or cycle as it is drawn. The search program, the independent checkers, and the computed results are available to download: <a class="tl" href="/downloads/spectra-explorer-code.zip" download>spectra-explorer-code.zip</a>.</p>
+      <div class="tags">
+        <span data-tag="1">Exhaustive Search</span>
+        <span data-tag="1">Independent Verification</span>
+        <span data-tag="1">Color Symmetry</span>
+        <span data-tag="1">In-Browser Checking</span>
+        <span data-tag="1">Open Source Code</span>
+      </div>
     </section>
 
     <footer class="foot">
       <div class="f-left"><a class="tl" href="mailto:contact@derrickdemars.com">Contact Derrick DeMars</a></div>
-      <div class="f-mid"><a class="f-top" href="#top" data-box="1">↑ Back to top</a></div>
+      <div class="f-mid"><a class="f-top" href="#top" data-box="1">↑ Back to top</a><a class="f-top" href="/" data-box="1">Back to Main</a></div>
       <div class="f-right">Last updated September 2026</div>
     </footer>
   </main>
@@ -420,7 +434,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       : res.broken+' of '+res.total+' '+r.patterns+' break the rule.'));
     info.appendChild(ck);
     if(S.iso!=null) info.appendChild(h('p',{'class':'hint'},'Showing only the '+NAMES[S.iso]+' edges. Tap it again to show all.'));
+    writeHash();
   }
+
+  // ---- Shareable links: the address records the view as #rule=C&n=6&k=5&coloring=2 (rule A Triangles,
+  //      B Odd cycles / cycles, C 4-cycles, D Triangles + 5-cycles; coloring counts from 1). Opening such a link
+  //      restores that view; missing or invalid parts fall back to the defaults. The address is updated in place
+  //      (no new history entries), and only once the view differs from the default or a link was opened. ----
+  function readHash(){
+    var q={}; location.hash.replace(/^#/,'').split('&').forEach(function(kv){ var i=kv.indexOf('='); if(i>0){ try{ q[decodeURIComponent(kv.slice(0,i))]=decodeURIComponent(kv.slice(i+1)); }catch(_){} } });
+    if(!q.rule || !DATA[q.rule] || !ruleOf(q.rule)) return false;
+    S.rule=q.rule; S.iso=null;
+    var n=parseInt(q.n,10); if(DATA[S.rule][n]) S.n=n; else if(!DATA[S.rule][S.n]) S.n=maxDots(S.rule);
+    var E=S.n*(S.n-1)/2, k=parseInt(q.k,10); S.k=(k>=1 && k<=E) ? k : DATA[S.rule][S.n].s[0];
+    CV.key=null; syncCV();
+    var c=parseInt(q.coloring,10);
+    if(DATA[S.rule][S.n].w[S.k] && c>=1 && c<=colorList().list.length) CV.idx=c-1;
+    return true;
+  }
+  var hashOn=false, hashStart=null;
+  function viewHash(){ return '#rule='+S.rule+'&n='+S.n+'&k='+S.k+(DATA[S.rule][S.n].w[S.k] ? '&coloring='+(CV.idx+1) : ''); }
+  function writeHash(){
+    var hsh=viewHash();
+    if(hashStart==null) hashStart=hsh;
+    if(!hashOn && hsh===hashStart) return;
+    hashOn=true;
+    if(location.hash!==hsh){ try{ history.replaceState(null,'',location.pathname+location.search+hsh); }catch(_){} }
+  }
+  window.addEventListener('hashchange',function(){ if(readHash()){ hashOn=true; render(); } });
 
   // ---- "More information" popup: centered box over a dimmed page. Closes on a tap outside the box, the \u00d7, or Esc;
   //      Tab stays inside while it is open, and focus returns to the link afterward. ----
@@ -457,6 +498,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   });
 
   function render(){ renderControls(); renderStrip(); renderDetail(); }
+  hashOn=readHash();
   render();
 })();
 </script>
@@ -464,7 +506,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 /* Site behaviors: identical on every page of derrickdemars.com.
    1. The top-bar name plays a short press animation when tapped or clicked.
    2. The name and "Back to top" (both href="#top") scroll smoothly to the top of the page
-      (an instant jump for visitors who prefer reduced motion), without adding #top to the address. */
+      (an instant jump for visitors who prefer reduced motion), without adding #top to the address.
+   3. When the top-bar links do not fit (phones), they scroll sideways: the current page starts centered
+      (as near the middle as the scroll allows), and data-fade marks which edges have more to scroll to,
+      so site.css can fade them.
+   4. Each row of tags ([data-tag]) is shuffled into a random order on every page load. */
 (function(){
   var name=document.querySelector('.bar a.name');
   if(name){
@@ -477,6 +523,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     e.preventDefault();
     var still=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     try{ window.scrollTo({top:0, left:0, behavior: still ? 'auto' : 'smooth'}); }catch(_){ window.scrollTo(0,0); }
+  });
+  var nav=document.querySelector('.bar nav');
+  if(nav){
+    var fade=function(){
+      var max=nav.scrollWidth-nav.clientWidth, x=nav.scrollLeft, f=[];
+      if(max>1){ if(x>1) f.push('l'); if(x<max-1) f.push('r'); }
+      if(f.length) nav.setAttribute('data-fade', f.join(' ')); else nav.removeAttribute('data-fade');
+    };
+    var showCurrent=function(){
+      var cur=nav.querySelector('[aria-current="page"]'); if(!cur || nav.scrollWidth<=nav.clientWidth) return;
+      var cr=cur.getBoundingClientRect(), nr=nav.getBoundingClientRect();
+      var max=nav.scrollWidth-nav.clientWidth;
+      var x=nav.scrollLeft+(cr.left+cr.width/2)-(nr.left+nr.width/2); /* center the current link in the nav */
+      nav.scrollLeft=Math.max(0, Math.min(max, x));
+    };
+    showCurrent(); fade();
+    nav.addEventListener('scroll', fade, {passive:true});
+    if(window.ResizeObserver) new ResizeObserver(fade).observe(nav); else window.addEventListener('resize', fade);
+    if(document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ showCurrent(); fade(); });
+  }
+  var groups=[];
+  document.querySelectorAll('[data-tag]').forEach(function(t){ if(t.parentElement && groups.indexOf(t.parentElement)<0) groups.push(t.parentElement); });
+  groups.forEach(function(g){
+    var tags=[].slice.call(g.children).filter(function(c){ return c.hasAttribute('data-tag'); });
+    if(tags.length<2) return;
+    for(var i=tags.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=tags[i]; tags[i]=tags[j]; tags[j]=t; }
+    tags.forEach(function(t){ g.appendChild(t); });
   });
 })();
 </script>
