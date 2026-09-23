@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W3476JL2');</script>
+<!-- End Google Tag Manager -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5Z5SW66YG1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5Z5SW66YG1');
+</script>
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "ym49k6kw6h");
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page Not Found · Derrick DeMars</title>
+<meta name="description" content="This page does not exist on derrickdemars.com. Go to the Main, Spectra Explorer, or Manuscript Map page.">
+<meta name="robots" content="noindex, follow">
+<meta name="author" content="Derrick DeMars">
+<link rel="icon" href="/favicon.ico?v=4" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png?v=4">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=4">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png?v=4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=Source+Sans+3:ital,wght@0,400;0,600;1,400&amp;family=Source+Code+Pro:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css?v=4">
+<style>
+/* Page-only styles for the 404 page (GitHub Pages serves /404.html for any address that does not exist).
+   Every path here is absolute so the page works at any broken address. Shared styles come from /assets/site.css. */
+.page{min-height:50vh;}
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W3476JL2"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div class="frame">
+<div class="screen" id="top">
+  <header class="bar">
+    <a class="name" href="#top" data-plain="1">Derrick DeMars</a>
+    <nav aria-label="Site"><a href="/">Main</a><a href="/spectra-explorer/">Spectra Explorer</a><a href="/manuscript-map/">Manuscript Map</a></nav>
+  </header>
+  <main class="page">
+    <section class="card">
+      <h1 class="title">Page not found</h1>
+      <p class="prose">There is no page at this address. It may have moved, or the link may have a typo. Try the <a href="/">Main</a> page, the <a href="/spectra-explorer/">Spectra Explorer</a> page, or the <a href="/manuscript-map/">Manuscript Map</a> page.</p>
+    </section>
+
+    <footer class="foot">
+      <div class="f-left"><a class="tl" href="mailto:contact@derrickdemars.com">Contact Derrick DeMars</a></div>
+      <div class="f-mid"><a class="f-top" href="#top" data-box="1">↑ Back to top</a><a class="f-top" href="/" data-box="1">Back to Main</a></div>
+      <div class="f-right">Last updated September 2026</div>
+    </footer>
+  </main>
+</div>
+</div>
+<script>
+/* Site behaviors: identical on every page of derrickdemars.com.
+   1. The top-bar name plays a short press animation when tapped or clicked.
+   2. The name and "Back to top" (both href="#top") scroll smoothly to the top of the page
+      (an instant jump for visitors who prefer reduced motion), without adding #top to the address.
+   3. When the top-bar links do not fit (phones), they scroll sideways: the current page starts centered
+      (as near the middle as the scroll allows), and data-fade marks which edges have more to scroll to,
+      so site.css can fade them.
+   4. Each row of tags ([data-tag]) is shuffled into a random order on every page load. */
+(function(){
+  var name=document.querySelector('.bar a.name');
+  if(name){
+    name.addEventListener('click',function(){ name.classList.remove('name-tap'); void name.offsetWidth; name.classList.add('name-tap'); });
+    name.addEventListener('animationend',function(){ name.classList.remove('name-tap'); });
+  }
+  document.addEventListener('click',function(e){
+    var a=(e.target && e.target.closest) ? e.target.closest('a[href="#top"]') : null;
+    if(!a) return;
+    e.preventDefault();
+    var still=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    try{ window.scrollTo({top:0, left:0, behavior: still ? 'auto' : 'smooth'}); }catch(_){ window.scrollTo(0,0); }
+  });
+  var nav=document.querySelector('.bar nav');
+  if(nav){
+    var fade=function(){
+      var max=nav.scrollWidth-nav.clientWidth, x=nav.scrollLeft, f=[];
+      if(max>1){ if(x>1) f.push('l'); if(x<max-1) f.push('r'); }
+      if(f.length) nav.setAttribute('data-fade', f.join(' ')); else nav.removeAttribute('data-fade');
+    };
+    var showCurrent=function(){
+      var cur=nav.querySelector('[aria-current="page"]'); if(!cur || nav.scrollWidth<=nav.clientWidth) return;
+      var cr=cur.getBoundingClientRect(), nr=nav.getBoundingClientRect();
+      var max=nav.scrollWidth-nav.clientWidth;
+      var x=nav.scrollLeft+(cr.left+cr.width/2)-(nr.left+nr.width/2); /* center the current link in the nav */
+      nav.scrollLeft=Math.max(0, Math.min(max, x));
+    };
+    showCurrent(); fade();
+    nav.addEventListener('scroll', fade, {passive:true});
+    if(window.ResizeObserver) new ResizeObserver(fade).observe(nav); else window.addEventListener('resize', fade);
+    if(document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ showCurrent(); fade(); });
+  }
+  var groups=[];
+  document.querySelectorAll('[data-tag]').forEach(function(t){ if(t.parentElement && groups.indexOf(t.parentElement)<0) groups.push(t.parentElement); });
+  groups.forEach(function(g){
+    var tags=[].slice.call(g.children).filter(function(c){ return c.hasAttribute('data-tag'); });
+    if(tags.length<2) return;
+    for(var i=tags.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=tags[i]; tags[i]=tags[j]; tags[j]=t; }
+    tags.forEach(function(t){ g.appendChild(t); });
+  });
+})();
+</script>
+</body>
+</html>
