@@ -30,11 +30,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <title>Derrick DeMars</title>
 <meta name="description" content="Derrick DeMars, Ph.D.: graph theorist working on mixed Ramsey and anti-Ramsey problems, and two-time Teacher of the Year. Research, teaching, and puzzles.">
 <link rel="canonical" href="https://derrickdemars.com/">
+<meta name="author" content="Derrick DeMars">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta property="og:type" content="profile">
 <meta property="og:url" content="https://derrickdemars.com/">
 <meta property="og:site_name" content="Derrick DeMars">
-<meta property="og:title" content="Derrick DeMars — Graph Theorist &amp; Mathematics Educator">
+<meta property="og:title" content="Derrick DeMars · Graph Theorist &amp; Mathematics Educator">
 <meta property="og:description" content="Derrick DeMars, Ph.D.: graph theorist working on mixed Ramsey and anti-Ramsey problems, and two-time Teacher of the Year. Research, teaching, and puzzles.">
 <meta property="profile:first_name" content="Derrick">
 <meta property="profile:last_name" content="DeMars">
@@ -43,7 +44,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://derrickdemars.com/assets/photoofderrickdemars.jpg">
 <meta name="twitter:image:alt" content="Photo of Derrick DeMars">
-<meta name="twitter:title" content="Derrick DeMars — Graph Theorist &amp; Mathematics Educator">
+<meta name="twitter:title" content="Derrick DeMars · Graph Theorist &amp; Mathematics Educator">
 <meta name="twitter:description" content="Derrick DeMars, Ph.D.: graph theorist working on mixed Ramsey and anti-Ramsey problems, and two-time Teacher of the Year. Research, teaching, and puzzles.">
 <link rel="icon" href="/favicon.ico?v=4" sizes="48x48">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png?v=4">
@@ -53,11 +54,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=Source+Sans+3:ital,wght@0,400;0,600;1,400&amp;family=Source+Code+Pro:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css?v=1">
 <style>
-:root{--body-font:'Source Sans 3', sans-serif; --body-scale:1.02; --mono-font:'Source Code Pro', monospace; --head-font:'Spectral', serif; --nav-active:#21221f;}
-html,body{margin:0; background:#e7e4de;}
 #pz-root button:hover{filter:brightness(.97);}
-a:focus-visible, button:focus-visible{outline:2px solid #2a6fdb; outline-offset:3px; border-radius:4px;}
 @keyframes pzPop{0%{transform:scale(1)}35%{transform:scale(1.2)}60%{transform:scale(.97)}100%{transform:scale(1)}}
 @keyframes pzGlow{0%,100%{text-shadow:0 0 0 rgba(42,111,219,0)}50%{text-shadow:0 0 12px rgba(42,111,219,.6)}}
 @keyframes pzRing{0%{box-shadow:0 0 0 0 rgba(42,111,219,.6)}100%{box-shadow:0 0 0 11px rgba(42,111,219,0)}}
@@ -143,14 +142,8 @@ a:focus-visible, button:focus-visible{outline:2px solid #2a6fdb; outline-offset:
 [data-r="card"] p, [data-r="pubrow"] > div[data-desc], [data-r="pubrow"] > div[data-desc-hold]{font-family:var(--body-font, 'IBM Plex Sans', sans-serif);}
 [style*="IBM Plex Mono"]{font-family:var(--mono-font, 'IBM Plex Mono', monospace) !important;}
 [style*="Spectral"]{font-family:var(--head-font, 'Spectral', serif) !important;}
-html[data-bar~="hair"] [data-r="bar"]{border-bottom-color:#2a6fdb !important;}
-html[data-bar~="wash"] [data-r="bar"]{background:rgba(233,237,243,0.94) !important;}
-[data-r="card"] p{font-size:calc(var(--body-scale, 1) * 15.5px) !important;}
+[data-r="card"] p{font-size:var(--fs-body) !important; line-height:var(--lh-body) !important;} /* body text size from site.css */
 [data-r="pubrow"] > div[data-desc], [data-r="pubrow"] > div[data-desc-hold]{font-size:calc(var(--body-scale, 1) * 15px) !important;}
-a:not([data-box]):not([data-plain]){display:inline-block;transition:transform .16s ease, text-shadow .2s ease;}
-a:not([data-box]):not([data-plain]):hover{transform:scale(1.06);text-shadow:0 0 7px rgba(140,106,74,0.55);}
-a[data-box]{transition:transform .16s ease, box-shadow .25s ease;}
-a[data-box]:hover{transform:scale(1.03);box-shadow:0 7px 20px rgba(20,22,28,0.16);}
 [id^="d4-"]{scroll-margin-top:84px;}
 [data-desc]{position:relative; cursor:help;}
 [data-desc]::after{content:attr(data-desc); position:absolute; left:0; top:100%; margin-top:8px; width:320px; max-width:80vw; background:#21221f; color:#f4f2ee; font-size:13px; line-height:1.55; font-weight:400; padding:12px 14px; border-radius:10px; box-shadow:0 10px 28px rgba(20,22,28,0.24); opacity:0; visibility:hidden; transition:opacity .18s ease; z-index:60; pointer-events:none;}
@@ -158,19 +151,12 @@ a[data-box]:hover{transform:scale(1.03);box-shadow:0 7px 20px rgba(20,22,28,0.16
 [data-desc][data-open]::after{opacity:1; visibility:visible;}
 [data-hint="tap"]{display:none;}
 @media (hover:none),(max-width:920px){[data-hint="hover"]{display:none;} [data-hint="tap"]{display:inline;}}
-[data-r="navlinks"]{scrollbar-width:none; -webkit-overflow-scrolling:touch;}
-[data-r="navlinks"]::-webkit-scrollbar{display:none;}
-[data-r="navlinks"] > a{flex:0 0 auto;}
 @media (max-width:920px){
-  [data-r="navlinks"]{justify-content:flex-start !important; gap:20px;}
-  [data-tag]{font-size:11px !important; padding:5px 9px !important;}
   [data-r="sidecard"]{border-left:3px solid rgba(42,111,219,.5) !important;}
-  [data-r="card"] p{font-size:calc(var(--body-scale, 1) * 14px) !important; line-height:1.5 !important;}
   [data-r="pubrow"] > div[data-desc], [data-r="pubrow"] > div[data-desc-hold]{font-size:calc(var(--body-scale, 1) * 14px) !important; line-height:1.5 !important;}
 }
 @media (min-width:761px) and (max-width:920px){
-  [data-r="navlinks"]{margin-left:12px;}
-  [data-r="card"] p{font-size:calc(var(--body-scale, 1) * 15px) !important; line-height:1.6 !important; max-width:none !important;}
+  [data-r="card"] p{max-width:none !important;}
   [data-r="pubrow"] > div[data-desc], [data-r="pubrow"] > div[data-desc-hold]{font-size:calc(var(--body-scale, 1) * 15px) !important; line-height:1.6 !important;}
   [data-board]{width:85%; max-width:85%; margin:0 auto;}
   [data-r="cardgrid"]{grid-template-columns:repeat(auto-fit,minmax(185px,1fr)) !important; gap:12px !important;}
@@ -188,32 +174,17 @@ a[data-box]:hover{transform:scale(1.03);box-shadow:0 7px 20px rgba(20,22,28,0.16
   [data-r="contact"]{order:2; margin:auto 0;}
 }
 @media (max-width:760px){
-  [data-r="page"]{padding:12px 10px 22px !important; gap:16px !important;}
   [data-r="hero"]{gap:16px !important;}
-  [data-r="card"]{border-radius:12px !important;}
   [data-r="sidecard"]{border-radius:12px !important; padding:12px !important;}
   [data-r="photo"], [data-r="cardgrid"] > div{border-radius:10px !important;}
   [data-r="cardgrid"] > div{padding:16px !important;}
   [data-r="cardgrid"]{gap:12px !important;}
   [data-desc]::after{width:calc(100vw - 112px) !important; max-width:none !important;}
-  [data-r="bar"]{padding:8px 16px !important;}
-  [data-r="barname"]{font-size:15px !important; gap:7px !important;}
-  [data-r="barname"] img{width:21px !important; height:21px !important;}
-  [data-r="navlinks"]{gap:16px !important; flex-wrap:nowrap; white-space:nowrap; margin-left:12px; justify-content:flex-start !important;}
   [data-r="hero"]{grid-template-columns:1fr !important;}
   [data-r="photo"]{aspect-ratio:1/1 !important; object-position:50% 12% !important;}
-  [data-r="card"]{padding:18px 16px !important;}
   [data-r="pubrow"]{grid-template-columns:16px 1fr !important;}
   [data-r="pubrow"] > span:last-child{grid-column:2; justify-self:start !important; margin-top:6px;}
-  [data-r="foot"]{grid-template-columns:1fr !important; row-gap:12px; justify-items:center;}
-  [data-r="foot"] > div{text-align:center !important;}
-  [data-r="foot"] > div:nth-child(2){order:-1;}
 }
-/* Top-bar name: a quick press (slight shrink and a brown flash) when tapped or clicked. */
-@keyframes nameTap{0%{transform:scale(1); color:#21221f}35%{transform:scale(.94); color:#8c6f4e}100%{transform:scale(1); color:#21221f}}
-@keyframes nameTapStill{0%{color:#21221f}35%{color:#8c6f4e}100%{color:#21221f}}
-[data-r="barname"] a.name-tap{animation:nameTap .4s ease-out;}
-@media (prefers-reduced-motion: reduce){[data-r="barname"] a.name-tap{animation:nameTapStill .4s ease-out;}}
 /* Desktop: the bio box is a column so any extra height collects above the tags, which stay pinned to the bottom. */
 @media screen and (min-width:921px){
   [data-r="hero"] [data-r="card"]{display:flex; flex-direction:column;}
@@ -223,7 +194,7 @@ a[data-box]:hover{transform:scale(1.03);box-shadow:0 7px 20px rgba(20,22,28,0.16
   @page{size:letter; margin:0.6in;}
   html,body{background:#ffffff !important;}
   [data-screen-label]{box-shadow:none !important; border:0 !important; border-radius:0 !important; background:#ffffff !important;}
-  [data-r="bar"], #d4-puzzle, a[href$="-top"], [data-r="sidecard"]{display:none !important;}
+  #d4-puzzle, [data-r="sidecard"]{display:none !important;}
   [data-num]{display:none !important;}
   [data-print-only]{display:block !important;}
   [data-print-photo]{display:block !important; float:right; width:1.45in; height:1.8in; margin:0 0 10pt 14pt; border:1px solid #ccc; border-radius:4pt; background-image:url('assets/photoofderrickdemars.jpg'); background-size:cover; background-position:50% 18%;}
@@ -238,11 +209,9 @@ a[data-box]:hover{transform:scale(1.03);box-shadow:0 7px 20px rgba(20,22,28,0.16
   [data-r="pubrow"]{break-inside:avoid; padding-top:8pt !important; margin-top:8pt !important;}
   [data-desc]::after{display:none !important;}
   [data-tag]{font-size:8.5pt !important; padding:2pt 5pt !important; background:#f0efec !important; -webkit-print-color-adjust:exact; print-color-adjust:exact;}
-  [data-r="foot"]{font-size:8.5pt !important;}
+  .foot{font-size:8.5pt !important;}
   .otto-sparkle{animation:none !important; -webkit-text-fill-color:#2a6fdb !important; color:#2a6fdb !important;}
 }
-sub{font-size:.72em; line-height:0; vertical-align:baseline; position:relative; top:.28em;}
-sup{font-size:.72em; line-height:0; vertical-align:baseline; position:relative; top:-.42em;}
 @keyframes ottoSparkle{0%{background-position:100% 0;}7.7%{background-position:0% 0;}100%{background-position:0% 0;}}
 .otto-sparkle{background-image:linear-gradient(105deg,#2a6fdb 0%,#2a6fdb 46%,#e8f1ff 50%,#2a6fdb 54%,#2a6fdb 100%);background-size:300% 100%;background-position:0% 0;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#2a6fdb;animation:ottoSparkle 23s ease-in-out 1s infinite;}
 </style>
@@ -252,44 +221,34 @@ sup{font-size:.72em; line-height:0; vertical-align:baseline; position:relative; 
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W3476JL2"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-<div style="max-width:1180px; margin:0 auto;">
-<div data-screen-label="Home" style="background:#e7e4de; border:1px solid #d9d5cd; border-radius:5px; box-shadow:0 18px 50px rgba(20,22,28,.12); font-family:'IBM Plex Sans',sans-serif; color:#21221f;">
+<div class="frame">
+<div class="screen" id="top" data-screen-label="Home">
 
-    <div id="d4-top" data-r="bar" style="position:sticky; top:0; z-index:20; display:flex; align-items:center; justify-content:space-between; padding:11px 44px; background:rgba(239,236,230,0.93); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border-bottom:1px solid #ddd9d1; border-radius:5px 5px 0 0;">
-      <div data-r="barname" style="display:flex; align-items:center; gap:10px; font-family:'Spectral',serif; font-size:20px; font-weight:600; letter-spacing:-.01em; flex-shrink:0;"><a href="#d4-top" data-plain="1" style="display:inline-block; color:inherit; text-decoration:none; cursor:pointer;">Derrick DeMars</a></div>
-      <div data-r="navlinks" style="display:flex; gap:28px; font-size:14px; min-width:0; flex:1 1 auto; justify-content:flex-end; overflow-x:auto;">
-        <a href="#d4-top" data-nav="d4-top" style="color:#5f5b54; text-decoration:none;">Bio</a>
-        <a href="#d4-education" data-nav="d4-education" style="color:#5f5b54; text-decoration:none;">Education</a>
-        <a href="#d4-teaching" data-nav="d4-teaching" style="color:#5f5b54; text-decoration:none;">Teaching</a>
-        <a href="#d4-overview" data-nav="d4-overview" style="color:#5f5b54; text-decoration:none;">Research</a>
-        <a href="#d4-puzzle" data-nav="d4-puzzle" style="color:#5f5b54; text-decoration:none;">Puzzles</a>
-        <a href="#d4-publications" data-nav="d4-publications" style="color:#5f5b54; text-decoration:none;">Publications</a>
-        <a href="#d4-awards" data-nav="d4-awards" style="color:#5f5b54; text-decoration:none;">Awards</a>
-      </div>
-    </div>
+    <header class="bar">
+      <a class="name" href="#top" data-plain="1">Derrick DeMars</a>
+      <nav aria-label="Site"><span aria-current="page">Main</span><a href="/spectra-explorer/">Spectra Explorer</a><a href="/manuscript-map/">Manuscript Map</a></nav>
+    </header>
 
-    
-
-  <div data-r="page" style="padding:46px 44px 40px; display:flex; flex-direction:column; gap:22px;">
+  <div class="page" data-r="page">
 
       <div data-r="hero" style="display:grid; grid-template-columns:minmax(280px,1fr) clamp(262px,31.5%,328px); gap:22px; align-items:start;">
 
         <div style="display:flex; flex-direction:column; gap:22px;">
 
-          <div style="background:#f4f2ee; border:1px solid #ddd9d1; border-left:3px solid rgba(42,111,219,.5); border-radius:16px; padding:34px 36px;" data-r="card">
+          <div class="card" data-r="card">
             <div data-print-photo="1" style="display:none;"></div>
-            <h1 style="font-family:'Spectral',serif; font-size:clamp(32px,7.4vw,50px); line-height:1; font-weight:600; letter-spacing:-.02em; margin:0 0 14px;">Derrick DeMars</h1>
+            <h1 class="title">Derrick DeMars</h1>
             <div style="font-size:clamp(12.5px,3.5vw,17px); white-space:nowrap; color:#3a3935; font-weight:500; margin-bottom:16px;">Graph Theorist · Mathematics Educator</div>
             <div data-print-only="1" style="display:none; font-family:'IBM Plex Mono',monospace; font-size:9.5pt; color:#333; margin-bottom:4px;">contact@derrickdemars.com · ORCID 0000-0001-9360-3537 · linkedin.com/in/dr-demars</div>
             <div data-print-only="1" style="display:none; font-family:'IBM Plex Mono',monospace; font-size:9.5pt; color:#2a6fdb; margin-bottom:14px;">Open to postdoctoral and faculty positions</div>
             <p style="font-size:15.5px; line-height:1.6; color:#54514a; margin:0 0 12px; max-width:46em;">Use too few colors and Ramsey theory forces a monochromatic copy; use too many and anti-Ramsey theory forces a rainbow one. I work in the narrow band between, on edge-colorings of complete graphs that must avoid both at once. I also teach mathematics to students who are capable but were taught to believe otherwise. Both reward the same habit: staying with a problem after the easy progress runs out. I completed my Ph.D. at Auburn University under <a href="https://cosam.auburn.edu/directory/profile.php?id=johnspd" target="_blank" rel="noopener" style="color:#2a6fdb; text-decoration:none; border-bottom:1px solid rgba(42,111,219,.35);">Peter Johnson</a>, Professor Emeritus, and earned a <strong style="font-weight:600; color:#3a3935;">Departmental Citation</strong> for “exceptional contributions” to research. My dissertation forbade monochromatic and rainbow cycles, and families of cycles, at the same time; my current work builds the methods the harder cases require. Read on to <a href="#d4-overview" style="color:#2a6fdb; text-decoration:none; border-bottom:1px solid rgba(42,111,219,.35);">III. Research Interests</a> for the problems and methods, and to <a href="#d4-puzzle" style="color:#2a6fdb; text-decoration:none; border-bottom:1px solid rgba(42,111,219,.35);">IV for four puzzles</a> I built for you to try that demonstrate both.</p>
             <p style="font-size:15.5px; line-height:1.6; color:#54514a; margin:0 0 16px; max-width:46em;">Most of my students have some combination of dyslexia, ADHD, and autism, and I teach them at <a href="https://www.innovaprep.org/" target="_blank" rel="noopener" style="color:#2a6fdb; text-decoration:none; border-bottom:1px solid rgba(42,111,219,.35);">Innova Preparatory School</a>, where I was named <strong style="font-weight:600; color:#3a3935;">Teacher of the Year</strong> in 2024–2025 and again in 2025–2026. Research and teaching have each made me better at the other, and I am eager to bring both, along with a proven classroom record, to a postdoctoral or faculty role.</p>
             <div style="display:flex; flex-wrap:wrap; gap:8px;">
-              <span style="font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:#3a3935; background:#e4e0d8; border-radius:7px; padding:6px 11px;" data-tag="1">Mathematics Education</span>
-              <span style="font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:#3a3935; background:#e4e0d8; border-radius:7px; padding:6px 11px;" data-tag="1">Graph Theory</span>
-              <span style="font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:#3a3935; background:#e4e0d8; border-radius:7px; padding:6px 11px;" data-tag="1">Neurodivergent Learners</span>
-              <span style="font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:#3a3935; background:#e4e0d8; border-radius:7px; padding:6px 11px;" data-tag="1">Mixed Ramsey Theory</span>
-              <span style="font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:#3a3935; background:#e4e0d8; border-radius:7px; padding:6px 11px;" data-tag="1">Edge-Colorings</span>
+              <span data-tag="1">Mathematics Education</span>
+              <span data-tag="1">Graph Theory</span>
+              <span data-tag="1">Neurodivergent Learners</span>
+              <span data-tag="1">Mixed Ramsey Theory</span>
+              <span data-tag="1">Edge-Colorings</span>
             </div>
           </div>
 
@@ -317,8 +276,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       </div>
 
-      <div style="background:#f4f2ee; border:1px solid #ddd9d1; border-left:3px solid rgba(42,111,219,.5); border-radius:16px; padding:28px 34px;" data-r="card">
-        <h2 id="d4-education" style="font-family:'Spectral',serif; font-size:16.5px; font-weight:600; letter-spacing:.03em; color:#3a3935; margin:0 0 20px;"><span data-num="1">I. </span>Education</h2>
+      <div class="card" data-r="card">
+        <h2 id="d4-education" class="sec-h" style="margin:0 0 20px;"><span data-num="1">I. </span>Education</h2>
         <div data-r="cardgrid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px;">
           <div data-desc="Dissertation: Forbidding Monochromatic and Rainbow Cycles and Families of Cycles" style="background:#efece6; border:1px solid #e4e0d8; border-radius:12px; padding:20px;">
             <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#6f6b64; margin-bottom:10px;">2020–2023</div>
@@ -338,32 +297,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
 
-      <div style="background:#f4f2ee; border:1px solid #ddd9d1; border-left:3px solid rgba(42,111,219,.5); border-radius:16px; padding:28px 36px;" data-r="card">
-        <h2 id="d4-teaching" style="font-family:'Spectral',serif; font-size:16.5px; font-weight:600; letter-spacing:.03em; color:#3a3935; margin:0 0 14px;"><span data-num="1">II. </span>Teaching</h2>
+      <div class="card" data-r="card">
+        <h2 id="d4-teaching" class="sec-h"><span data-num="1">II. </span>Teaching</h2>
         <p style="font-size:15.5px; line-height:1.62; color:#54514a; margin:0 0 16px;">At <a href="https://www.innovaprep.org/" target="_blank" rel="noopener" style="color:#2a6fdb; text-decoration:none; border-bottom:1px solid rgba(42,111,219,.35);">Innova Preparatory School</a>, a small non-public school serving students with dyslexia, ADHD, and autism, I have learned that rigor and access are not opposites; good instruction delivers both. I <strong style="font-weight:600; color:#3a3935;">designed the curriculum</strong> for every class I have taught in grades 6 through 12, from middle school mathematics through Algebra I–III, Geometry, and AP courses. Each is aligned to state standards, with differentiation built in from the start: multiple entry points, scaffolding that comes down as fluency grows, and feedback specific enough to act on. Structure raises the floor without lowering the ceiling, and my students have posted <strong style="font-weight:600; color:#3a3935;">benchmark growth</strong> every year. I was named <strong style="font-weight:600; color:#3a3935;">Teacher of the Year</strong> in 2024–2025 and 2025–2026, and I have mentored a student teacher in lesson design and inclusive practice.</p>
         <div style="display:flex; flex-wrap:wrap; gap:8px;">
-          <span style="font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:#3a3935; background:#e4e0d8; border-radius:7px; padding:6px 11px;" data-tag="1">Mentorship</span>
-          <span style="font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:#3a3935; background:#e4e0d8; border-radius:7px; padding:6px 11px;" data-tag="1">Neurodivergent Learners</span>
-          <span style="font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:#3a3935; background:#e4e0d8; border-radius:7px; padding:6px 11px;" data-tag="1">Differentiated Instruction</span>
-          <span style="font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:#3a3935; background:#e4e0d8; border-radius:7px; padding:6px 11px;" data-tag="1">Curriculum Design</span>
-          <span style="font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:#3a3935; background:#e4e0d8; border-radius:7px; padding:6px 11px;" data-tag="1">Assessment Design</span>
+          <span data-tag="1">Mentorship</span>
+          <span data-tag="1">Neurodivergent Learners</span>
+          <span data-tag="1">Differentiated Instruction</span>
+          <span data-tag="1">Curriculum Design</span>
+          <span data-tag="1">Assessment Design</span>
         </div>
       </div>
 
-      <div id="d4-overview" style="background:#f4f2ee; border:1px solid #ddd9d1; border-left:3px solid rgba(42,111,219,.5); border-radius:16px; padding:32px 34px;" data-r="card">
-        <h2 style="font-family:'Spectral',serif; font-size:16.5px; font-weight:600; letter-spacing:.03em; color:#3a3935; margin:0 0 18px;"><span data-num="1">III. </span>Research Interests</h2>
-        <p style="font-size:15.5px; line-height:1.64; color:#54514a; margin:0 0 14px;">Forbidding monochromatic copies of a subgraph <em style="margin-right:.06em;">F</em> pushes an edge-coloring toward many colors, while forbidding rainbow copies of a subgraph <em style="margin-right:.06em;">H</em> pushes it toward few; the colorings that survive both are far more rigid than either constraint predicts, and that rigidity is the subject of my research. The mixed setting returns not a single threshold but a spectrum: the set of color counts admitting an edge-coloring of <em>K</em><sub>n</sub> with neither forbidden pattern. I have determined such spectra completely where earlier work reached only partial ranges (Paper 2), proved exact coincidence of mixed and anti-Ramsey thresholds in a family previously known to agree only asymptotically (Paper 5), and established rigidity for the extremal constructions at the bottom of the spectrum (Papers 4 and 6). My early results in this direction (Papers 1 and 2) earned a <strong style="font-weight:600; color:#3a3935;">Departmental Citation</strong>. The arguments combine extremal and stability methods, structural decompositions, including substitution and Gallai partitions, and explicit constructions of my own design. When a question reduces to a finite case, I encode it as a <strong style="font-weight:600; color:#3a3935;">Boolean satisfiability</strong> (SAT) problem and settle it with a <strong style="font-weight:600; color:#3a3935;">modern CDCL solver</strong>, primarily Kissat. I also use <strong style="font-weight:600; color:#3a3935;">AI-assisted exploration</strong> to generate and prune candidate structures before committing to a proof strategy. I am now extending the program to further cycle families and sparser host graphs, and toward a general account of when the mixed and anti-Ramsey pictures coincide.</p>
+      <div id="d4-overview" class="card" data-r="card">
+        <h2 class="sec-h" style="margin:0 0 18px;"><span data-num="1">III. </span>Research Interests</h2>
+        <p style="font-size:15.5px; line-height:1.64; color:#54514a; margin:0 0 14px;">Forbidding monochromatic copies of a subgraph <i style="margin-right:.06em;">F</i> pushes an edge-coloring toward many colors, while forbidding rainbow copies of a subgraph <i style="margin-right:.06em;">H</i> pushes it toward few; the colorings that survive both are far more rigid than either constraint predicts, and that rigidity is the subject of my research. The mixed setting returns not a single threshold but a spectrum: the set of color counts admitting an edge-coloring of <i>K</i><sub>n</sub> with neither forbidden pattern. I have determined such spectra completely where earlier work reached only partial ranges (Paper 2), proved exact coincidence of mixed and anti-Ramsey thresholds in a family previously known to agree only asymptotically (Paper 5), and established rigidity for the extremal constructions at the bottom of the spectrum (Papers 4 and 6). My early results in this direction (Papers 1 and 2) earned a <strong style="font-weight:600; color:#3a3935;">Departmental Citation</strong>. The arguments combine extremal and stability methods, structural decompositions, including substitution and Gallai partitions, and explicit constructions of my own design. When a question reduces to a finite case, I encode it as a <strong style="font-weight:600; color:#3a3935;">Boolean satisfiability</strong> (SAT) problem and settle it with a <strong style="font-weight:600; color:#3a3935;">modern CDCL solver</strong>, primarily Kissat. I also use <strong style="font-weight:600; color:#3a3935;">AI-assisted exploration</strong> to generate and prune candidate structures before committing to a proof strategy. I am now extending the program to further cycle families and sparser host graphs, and toward a general account of when the mixed and anti-Ramsey pictures coincide. To see these spectra computed, try the <a href="/spectra-explorer/" style="color:#2a6fdb; text-decoration:none; border-bottom:1px solid rgba(42,111,219,.35);">Spectra Explorer</a>; to see how the papers build on one another, open the <a href="/manuscript-map/" style="color:#2a6fdb; text-decoration:none; border-bottom:1px solid rgba(42,111,219,.35);">Manuscript Map</a>.</p>
         <div style="display:flex; flex-wrap:wrap; gap:8px;">
-          <span style="font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:#3a3935; background:#e4e0d8; border-radius:7px; padding:6px 11px;" data-tag="1">Ramsey Theory</span>
-          <span style="font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:#3a3935; background:#e4e0d8; border-radius:7px; padding:6px 11px;" data-tag="1">Mixed Ramsey Theory</span>
-          <span style="font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:#3a3935; background:#e4e0d8; border-radius:7px; padding:6px 11px;" data-tag="1">Extremal Graph Theory</span>
-          <span style="font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:#3a3935; background:#e4e0d8; border-radius:7px; padding:6px 11px;" data-tag="1">SAT Solving</span>
-          <span style="font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:#3a3935; background:#e4e0d8; border-radius:7px; padding:6px 11px;" data-tag="1">AI-Assisted Exploration</span>
+          <span data-tag="1">Ramsey Theory</span>
+          <span data-tag="1">Mixed Ramsey Theory</span>
+          <span data-tag="1">Extremal Graph Theory</span>
+          <span data-tag="1">SAT Solving</span>
+          <span data-tag="1">AI-Assisted Exploration</span>
         </div>
       </div>
 
-      <div id="d4-puzzle" style="background:#f4f2ee; border:1px solid #ddd9d1; border-left:3px solid rgba(42,111,219,.5); border-radius:16px; padding:32px 34px;" data-r="card">
-        <h2 style="font-family:'Spectral',serif; font-size:16.5px; font-weight:600; letter-spacing:.03em; color:#3a3935; margin:0 0 18px;">IV. Four Puzzles: Try It Yourself!</h2>
+      <div id="d4-puzzle" class="card" data-r="card">
+        <h2 class="sec-h" style="margin:0 0 18px;">IV. Four Puzzles: Try It Yourself!</h2>
         <div id="pz-root" style="width:100%; display:grid; grid-template-columns:minmax(0,1fr); gap:18px; align-items:start; font-family:'IBM Plex Sans',sans-serif;">
   <div style="display:flex; flex-direction:column; gap:14px; min-width:0;">
           <div>
@@ -404,15 +363,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
       </div>
 
-      <div id="d4-publications" style="background:#f4f2ee; border:1px solid #ddd9d1; border-left:3px solid rgba(42,111,219,.5); border-radius:16px; padding:28px 34px;" data-r="card">
+      <div id="d4-publications" class="card" data-r="card">
         <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:6px;">
-          <h2 style="font-family:'Spectral',serif; font-size:16.5px; font-weight:600; letter-spacing:.03em; color:#3a3935; margin:0;"><span data-num="1">V. </span>Publications &amp; Manuscripts</h2>
+          <h2 class="sec-h" style="margin:0;"><span data-num="1">V. </span>Publications &amp; Manuscripts</h2>
           <!-- Hidden until wanted: remove "hidden" and "display:none;" to show the summary hint again -->
           <div hidden style="display:none; font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:#6f6b64;"><span data-hint="hover">hover a title for a summary</span><span data-hint="tap">tap a title for a summary</span></div>
         </div>
+        <p style="font-size:15.5px; line-height:1.64; color:#54514a; margin:6px 0 0;">See how these connect in the <a href="/manuscript-map/" style="color:#2a6fdb; text-decoration:none; border-bottom:1px solid rgba(42,111,219,.35);">Manuscript Map</a>.</p>
         <div data-r="pubrow" style="display:grid; grid-template-columns:16px 1fr 104px; gap:10px; padding:18px 0 0; margin-top:18px; border-top:1px solid #e4e0d8; align-items:baseline;">
           <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#54514a;">6</div>
-          <div data-desc-hold="Initiates the study of colorings with no monochromatic and no rainbow five-cycle, where no Gallai-type structure theorem is available. Uses a substitution framework, a seven-vertex Gallai block, and a binary-tree covering argument to prove a rate-two ceiling and the local rigidity of the Bondy–Erdős doubling." style="font-size:15px; line-height:1.5;"><span style="font-weight:600;">DeMars, D.</span> Forbidding a rainbow <em>C</em><sub>5</sub> forces doubling: (<em>C</em><sub>5</sub>,<em>C</em><sub>5</sub>)-good colorings of complete graphs.</div>
+          <div data-desc-hold="Initiates the study of colorings with no monochromatic and no rainbow five-cycle, where no Gallai-type structure theorem is available. Uses a substitution framework, a seven-vertex Gallai block, and a binary-tree covering argument to prove a rate-two ceiling and the local rigidity of the Bondy–Erdős doubling." style="font-size:15px; line-height:1.5;"><span style="font-weight:600;">DeMars, D.</span> Forbidding a rainbow <i>C</i><sub>5</sub> forces doubling: (<i>C</i><sub>5</sub>,<i>C</i><sub>5</sub>)-good colorings of complete graphs.</div>
           <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.05em; text-transform:uppercase; color:#7a5aa8; justify-self:end;">● In Preparation</span>
         </div>
         <div data-r="pubrow" style="display:grid; grid-template-columns:16px 1fr 104px; gap:10px; padding:18px 0 0; margin-top:18px; border-top:1px solid #e4e0d8; align-items:baseline;">
@@ -422,7 +382,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div data-r="pubrow" style="display:grid; grid-template-columns:16px 1fr 104px; gap:10px; padding:18px 0 0; margin-top:18px; border-top:1px solid #e4e0d8; align-items:baseline;">
           <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#54514a;">4</div>
-          <div data-desc="Proves a bipartite collapse: within any Gallai coloring, forbidding the two shortest monochromatic odd cycles forces every color class to be bipartite, recovering the classical bipartite-cover threshold. Classifies the five extremal colorings at three colors, a distinction finer than any monochromatic degree sequence can detect." style="font-size:15px; line-height:1.5;"><span style="font-weight:600;">DeMars, D.</span> Gallai colorings with no monochromatic <em>K</em><sub>3</sub> or <em>C</em><sub>5</sub>: bipartite collapse, exact values, and extremal colorings.</div>
+          <div data-desc="Proves a bipartite collapse: within any Gallai coloring, forbidding the two shortest monochromatic odd cycles forces every color class to be bipartite, recovering the classical bipartite-cover threshold. Classifies the five extremal colorings at three colors, a distinction finer than any monochromatic degree sequence can detect." style="font-size:15px; line-height:1.5;"><span style="font-weight:600;">DeMars, D.</span> Gallai colorings with no monochromatic <i>K</i><sub>3</sub> or <i>C</i><sub>5</sub>: bipartite collapse, exact values, and extremal colorings.</div>
           <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.05em; text-transform:uppercase; color:#b07d22; justify-self:end;">● Submitted</span>
         </div>
         <div data-r="pubrow" style="display:grid; grid-template-columns:16px 1fr 104px; gap:10px; padding:18px 0 0; margin-top:18px; border-top:1px solid #e4e0d8; align-items:baseline;">
@@ -432,7 +392,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div data-r="pubrow" style="display:grid; grid-template-columns:16px 1fr 104px; gap:10px; padding:18px 0 0; margin-top:18px; border-top:1px solid #e4e0d8; align-items:baseline;">
           <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#54514a;">2</div>
-          <div data-desc="Extends the mixed Ramsey spectrum to families of graphs, determining it completely where earlier work reached only partial ranges. Uses Gallai’s theorem, balanced binary trees, and a result of Magnant and Nowbandegani." style="font-size:15px; line-height:1.5;"><span style="font-weight:600;">Derrick DeMars</span>, Peter Johnson. Forbidding monochromatic odd cycles and rainbow cycles in complete graphs, <span style="color:#6f6b64;">Congressus Numerantium, Volume 237, pp. 113–120.</span> <a href="https://doi.org/10.61091/cn237-08" style="color:#2a6fdb; text-decoration:none;">https://doi.org/10.61091/cn237-08</a>.</div>
+          <div data-desc="Extends the mixed Ramsey spectrum to families of graphs, determining it completely where earlier work reached only partial ranges. Uses Gallai’s theorem, balanced binary trees, and a result of Magnant and Nowbandegani." style="font-size:15px; line-height:1.5;"><span style="font-weight:600;">Derrick DeMars</span>, Peter Johnson. Forbidding monochromatic odd cycles and rainbow cycles in complete graphs, <span style="color:#6f6b64;">Congressus Numerantium, Volume 237, pp. 113–120.</span> <a href="https://doi.org/10.61091/cn237-08" target="_blank" rel="noopener" style="color:#2a6fdb; text-decoration:none; border-bottom:1px solid rgba(42,111,219,.35);">https://doi.org/10.61091/cn237-08</a>.</div>
           <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.05em; text-transform:uppercase; color:#2e8b57; justify-self:end;">● Published</span>
         </div>
         <div data-r="pubrow" style="display:grid; grid-template-columns:16px 1fr 104px; gap:10px; padding:18px 0 0; margin-top:18px; border-top:1px solid #e4e0d8; align-items:baseline;">
@@ -442,8 +402,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
 
-      <div style="background:#f4f2ee; border:1px solid #ddd9d1; border-left:3px solid rgba(42,111,219,.5); border-radius:16px; padding:28px 34px;" data-r="card">
-        <h2 id="d4-awards" style="font-family:'Spectral',serif; font-size:16.5px; font-weight:600; letter-spacing:.03em; color:#3a3935; margin:0 0 20px;"><span data-num="1">VI. </span>Awards &amp; Honors</h2>
+      <div class="card" data-r="card">
+        <h2 id="d4-awards" class="sec-h" style="margin:0 0 20px;"><span data-num="1">VI. </span>Awards &amp; Honors</h2>
         <div data-r="cardgrid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px;">
           <div style="background:#efece6; border:1px solid #e4e0d8; border-radius:12px; padding:20px;">
             <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#6f6b64; margin-bottom:10px;">2025–2026</div>
@@ -463,11 +423,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
 
-      <div data-r="foot" style="display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:16px; margin-top:28px; padding-top:16px; border-top:1px solid #e6e2da; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.04em; color:#5f5b54;">
-        <div style="text-align:left;"><a href="mailto:contact@derrickdemars.com" style="color:#2a6fdb; text-decoration:none; border-bottom:1px solid rgba(42,111,219,.35);">Contact Derrick DeMars</a></div>
-        <div style="text-align:center;"><a href="#d4-top" data-box="1" style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.04em; color:#5f5b54; text-decoration:none; border:1px solid #ddd9d1; border-radius:999px; padding:9px 18px; background:#f4f2ee;">↑ Back to top</a></div>
-        <div style="text-align:right;">Last updated September 2026</div>
-      </div>
+      <footer class="foot">
+        <div class="f-left"><a class="tl" href="mailto:contact@derrickdemars.com">Contact Derrick DeMars</a></div>
+        <div class="f-mid"><a class="f-top" href="#top" data-box="1">↑ Back to top</a></div>
+        <div class="f-right">Last updated September 2026</div>
+      </footer>
     </div></div>
 </div>
 <script>
@@ -484,74 +444,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </script>
 <script>
 (function(){
-  function update(){
-    var links=[].slice.call(document.querySelectorAll('a[data-nav]'));
-    if(links.length<2) return;
-    var groups=new Map();
-    links.forEach(function(a){
-      var el=document.getElementById(a.getAttribute('data-nav'));
-      if(!el) return;
-      var nav=a.parentElement;
-      if(!groups.has(nav)) groups.set(nav,[]);
-      groups.get(nav).push({el:el,a:a});
-    });
-    var se=document.scrollingElement||document.documentElement;
-    var atBottom = se && (se.scrollTop+window.innerHeight >= se.scrollHeight-4);
-    groups.forEach(function(arr){
-      if(!arr.length) return;
-      var thr=150, active=arr[0];
-      arr.forEach(function(s){ if(s.el.getBoundingClientRect().top<=thr) active=s; });
-      if(atBottom) active=arr[arr.length-1];
-      arr.forEach(function(s){ s.a.style.fontWeight='400'; s.a.style.color='#5f5b54'; });
-      active.a.style.fontWeight='700';
-      active.a.style.color='var(--nav-active, #21221f)';
-      // Keep the active item visible when the strip scrolls horizontally (phone/tablet).
-      var strip=active.a.parentElement;
-      if(strip && strip.scrollWidth>strip.clientWidth+4 && !(strip._userUntil>Date.now())){
-        var frac = 0.9;
-        var target=active.a.offsetLeft+active.a.offsetWidth/2-strip.clientWidth*frac;
-        target=Math.max(0,Math.min(target,strip.scrollWidth-strip.clientWidth));
-        if(Math.abs(strip.scrollLeft-target)>2){
-          try{ strip.scrollTo({left:target,behavior:'smooth'}); }catch(_){ strip.scrollLeft=target; }
-        }
-      }
-    });
-  }
-  var last='', paused=false;
-  function tick(){
-    if(paused){ requestAnimationFrame(tick); return; }
-    var sig=[].slice.call(document.querySelectorAll('a[data-nav]')).map(function(a){
-      var el=document.getElementById(a.getAttribute('data-nav'));
-      return el?Math.round(el.getBoundingClientRect().top):'x';
-    }).join(',');
-    if(sig!==last){ last=sig; update(); }
-    requestAnimationFrame(tick);
-  }
-  // Printing: stop all measuring/scrolling work until the print job is done.
-  window.addEventListener('beforeprint',function(){ paused=true; });
-  window.addEventListener('afterprint',function(){ paused=false; });
-  if(window.matchMedia){
-    var mq=window.matchMedia('print');
-    var onMQ=function(m){ paused=m.matches; };
-    if(mq.addEventListener) mq.addEventListener('change',onMQ);
-    else if(mq.addListener) mq.addListener(onMQ);
-  }
-
-  window.addEventListener('scroll',function(){ if(!paused) update(); },{passive:true});
-  window.addEventListener('resize',function(){ if(!paused) update(); },{passive:true});
-  document.addEventListener('scroll',function(){ if(!paused) update(); },{passive:true,capture:true});
-  requestAnimationFrame(tick);
-
-  // Manual swipe/drag/wheel on the strip pauses the auto-follow for a few seconds.
-  ['pointerdown','touchstart','wheel','keydown'].forEach(function(ev){
-    document.addEventListener(ev, function(e){
-      var t=e.target;
-      var strip=(t && t.closest) ? t.closest('[data-nav]') : null;
-      strip = strip ? strip.parentElement : ((t && t.closest) ? t.closest('[data-r="navlinks"]') : null);
-      if(strip) strip._userUntil = Date.now()+6000;
-    }, {passive:true, capture:true});
-  });
-
   // Touch devices: tap a [data-desc] element to reveal its summary, tap again or elsewhere to close.
   document.addEventListener('click', function(e){
     var t=e.target;
@@ -564,26 +456,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
   }, true);
 
-  // Top-bar name: replay the short tap animation on every click or tap.
-  var nameLink=document.querySelector('[data-r="barname"] a');
-  if(nameLink){
-    nameLink.addEventListener('click',function(){ nameLink.classList.remove('name-tap'); void nameLink.offsetWidth; nameLink.classList.add('name-tap'); });
-    nameLink.addEventListener('animationend',function(){ nameLink.classList.remove('name-tap'); });
-  }
-
-  // "Bio" and "Back to top" -> scroll to the very top of the page
-  document.addEventListener('click', function(e){
-    var t=e.target;
-    var a=(t && t.closest) ? t.closest('a[href$="-top"]') : null;
-    if(a){
-      e.preventDefault();
-      var x=window.scrollX||window.pageXOffset||0;
-      try{ window.scrollTo({top:0, left:x, behavior:'smooth'}); }catch(_){ window.scrollTo(x,0); }
-      if(document.scrollingElement) document.scrollingElement.scrollTop=0;
-      if(document.documentElement) document.documentElement.scrollTop=0;
-      if(document.body) document.body.scrollTop=0;
-    }
-  }, true);
 })();
 
 </script>
@@ -974,6 +846,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   if(document.fonts && document.fonts.ready) document.fonts.ready.then(schedule);
   if(window.ResizeObserver){ var ro=new ResizeObserver(schedule); ro.observe(bio); ro.observe(side); }
   if(desk){ if(desk.addEventListener) desk.addEventListener('change', schedule); else if(desk.addListener) desk.addListener(schedule); }
+})();
+</script>
+<script>
+/* Site behaviors: identical on every page of derrickdemars.com.
+   1. The top-bar name plays a short press animation when tapped or clicked.
+   2. The name and "Back to top" (both href="#top") scroll smoothly to the top of the page
+      (an instant jump for visitors who prefer reduced motion), without adding #top to the address. */
+(function(){
+  var name=document.querySelector('.bar a.name');
+  if(name){
+    name.addEventListener('click',function(){ name.classList.remove('name-tap'); void name.offsetWidth; name.classList.add('name-tap'); });
+    name.addEventListener('animationend',function(){ name.classList.remove('name-tap'); });
+  }
+  document.addEventListener('click',function(e){
+    var a=(e.target && e.target.closest) ? e.target.closest('a[href="#top"]') : null;
+    if(!a) return;
+    e.preventDefault();
+    var still=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    try{ window.scrollTo({top:0, left:0, behavior: still ? 'auto' : 'smooth'}); }catch(_){ window.scrollTo(0,0); }
+  });
 })();
 </script>
 </body>
