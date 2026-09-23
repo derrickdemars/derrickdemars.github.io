@@ -110,7 +110,6 @@ details.types dd{margin:0;}
 .jump{margin:0 0 12px;}
 .jump.jump-bottom{margin:12px 0 0;}
 .jump .cbtn{display:inline-flex; align-items:center; justify-content:center; padding-left:1em; padding-right:1em;}
-.diagram-note{font-size:12.5px; color:var(--label); margin:8px 2px 0;}
 
 /* list view */
 .plist{display:flex; flex-direction:column; gap:14px;}
@@ -145,8 +144,6 @@ details.types dd{margin:0;}
 .panel ol, .panel ul.contribs{margin:0; padding-left:18px; font-family:'Source Sans 3',sans-serif; font-size:15px; line-height:1.5; color:#3a3935;}
 .panel ul.contribs{list-style:none; padding-left:0;}
 .panel li{margin:0 0 10px;}
-.panel .detail{display:none; margin-top:6px; padding:9px 11px; background:var(--inner); border:1px solid var(--chip); border-radius:9px; font-size:14px; line-height:1.5; color:var(--text);}
-.panel.show-details .detail{display:block;}
 .panel code, .pcard code{font-family:'Source Code Pro',monospace; font-size:.86em; color:#5f5b54; background:#fff; border:1px solid var(--chip); border-radius:4px; padding:0 3px;}
 .tag{display:inline-flex; align-items:center; gap:5px; font-family:'IBM Plex Sans',sans-serif; font-size:11.5px; font-weight:600; color:#3a3935; margin-right:6px;}
 .tag i{width:8px; height:8px; border-radius:50%; display:inline-block;}
@@ -186,7 +183,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <section class="card">
       <h1 class="title">Manuscript Map</h1>
-      <p class="prose">How my papers build on one another. Each arrow points from a paper to a paper that builds on it, and each connection is broken down into the specific ways the two contribute to each other: results used or sharpened, methods reused, questions taken up, and more. Click a paper or an arrow to see the details, or filter the connections by type.</p>
+      <p class="prose">How my papers build on one another. Each arrow points to the paper that builds on it; click a paper or an arrow to see how they connect, or filter the connections by type.</p>
       <div class="tags">
         <span data-tag="1">Research Program</span>
         <span data-tag="1">Paper Dependencies</span>
@@ -213,7 +210,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="jump"><a class="cbtn" href="#view-card" data-plain="1" data-jump="end">↓ Go to Oldest Publications</a></div>
         <div id="diagram-view">
           <div class="diagram-scroll" id="diagram-scroll"><div class="stage" id="stage"></div></div>
-          <p class="diagram-note">Arrows point from a paper to the paper that builds on it, so later work sits higher; a double-headed arrow is a two-way connection.</p>
         </div>
         <div id="list-view" hidden><div class="plist" id="plist"></div></div>
         <div class="jump jump-bottom"><a class="cbtn" href="#view-card" data-plain="1" data-jump="start">↑ Go to Most Recent Work</a></div>
@@ -223,7 +219,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <section class="card">
       <h2 class="sec-h" style="margin:0 0 8px;">How this map was made</h2>
-      <p class="prose">Each connection comes from a close reading of the papers themselves: where one cites another, reuses a lemma or construction, generalizes a setting, sharpens a bound, or takes up an open question. Theorem and lemma names under “Show details” refer to the papers; for manuscripts that are not yet published they are the labels in the current draft.</p>
+      <p class="prose">Each connection comes from a close reading of the papers themselves: where one cites another, reuses a lemma or construction, generalizes a setting, sharpens a bound, or takes up an open question. Theorem and lemma names refer to the papers; for manuscripts not yet published, they are the labels in the current draft.</p>
       <div class="tags">
         <span data-tag="1">Close Reading</span>
         <span data-tag="1">Citation Analysis</span>
@@ -248,7 +244,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      ---------------------------------------------------------------------
      Source of truth: paper-map-notes.tex (in the project files).
        * Paper details and main results come from Part III of the notes.
-       * Link contributions come from Part IV (details) and Part VI (short lines).
+       * Link contributions come from Part VI (short lines).
      When the notes change, update the matching entry below.
 
      HOW TO ADD A PAPER
@@ -286,7 +282,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
        status    "published" | "submitted" | "preparation"
        doi       DOI without the https://doi.org/ part, or ""
        summary   the summary shown on the home page
-       results   2 to 4 main results: { short: one line, detail: precise version }
+       results   2 to 4 main results: { short: one line }
      --------------------------------------------------------------------- */
   var PAPERS = [
     {
@@ -300,12 +296,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       doi: "",
       summary: `Studies edge-colorings of complete graphs in which every triangle uses exactly two colors, and determines the maximum number of colors such a coloring can have.`,
       results: [
-        { short: `The full spectrum: a coloring of <i>K<sub>n</sub></i> in which every triangle uses exactly two colors can use exactly <i>k</i> colors precisely when <i>g</i>(<i>n</i>) ≤ <i>k</i> ≤ <i>n</i> − 1, where <i>g</i>(<i>n</i>) is ⌈2 log<sub>5</sub> <i>n</i>⌉ or ⌈2 log<sub>5</sub> <i>n</i>⌉ + 1.`,
-          detail: `Theorem 8. In later notation, MRS(<i>K<sub>n</sub></i>; <i>K</i><sub>3</sub>, <i>K</i><sub>3</sub>) = {<i>g</i>(<i>n</i>), …, <i>n</i> − 1}. The minimum <i>g</i>(<i>n</i>) is the <i>k</i> with <i>f</i>(<i>k</i> − 1) &lt; <i>n</i> ≤ <i>f</i>(<i>k</i>), where <i>f</i>(<i>k</i>) = 5<sup><i>k</i>/2</sup> for even <i>k</i> and 2·5<sup>(<i>k</i>−1)/2</sup> for odd <i>k</i> is the Chung–Graham function (Theorem 1, Lemma 2). For example, <i>g</i>(19) = 4 and <i>g</i>(51) = 6.` },
-        { short: `The maximum is <i>n</i> − 1: <i>n</i> colors always force a rainbow cycle, and <i>n</i> − 1 colors never have to.`,
-          detail: `Lemma 4 and Corollary 5: <i>n</i> colors on a connected <i>n</i>-vertex graph force a rainbow cycle. Theorem 6 (from Hoffman, Horn, Johnson, and Owens, with a short proof supplied): split a spanning tree at an edge, color the two sides with disjoint palettes, and give the cut one new color. Corollary 7: the maximum is <i>n</i> − 1.` },
-        { short: `Every count in between is reached by adding a vertex joined in one new color.`,
-          detail: `Proof of Theorem 8: a good (<i>k</i> − 1)-coloring of <i>K</i><sub><i>n</i>−1</sub> plus a new vertex whose edges all receive a new <i>k</i>th color is a good <i>k</i>-coloring of <i>K<sub>n</sub></i>.` }
+        { short: `The full spectrum: a coloring of <i>K<sub>n</sub></i> in which every triangle uses exactly two colors can use exactly <i>k</i> colors precisely when <i>g</i>(<i>n</i>) ≤ <i>k</i> ≤ <i>n</i> − 1, where <i>g</i>(<i>n</i>) is ⌈2 log<sub>5</sub> <i>n</i>⌉ or ⌈2 log<sub>5</sub> <i>n</i>⌉ + 1.` },
+        { short: `The maximum is <i>n</i> − 1: <i>n</i> colors always force a rainbow cycle, and <i>n</i> − 1 colors never have to.` },
+        { short: `Every count in between is reached by adding a vertex joined in one new color.` }
       ]
     },
     {
@@ -319,12 +312,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       doi: "10.61091/cn237-08",
       summary: `Extends the mixed Ramsey spectrum to families of graphs, determining it completely where earlier work reached only partial ranges. Uses Gallai’s theorem, balanced binary trees, and a result of Magnant and Nowbandegani.`,
       results: [
-        { short: `MRS(<i>K<sub>n</sub></i>; odd cycles, cycles) = {⌈log<sub>2</sub> <i>n</i>⌉, …, <i>n</i> − 1} for every <i>n</i> ≥ 2.`,
-          detail: `Main corollary (<code>cor: mainresult</code>), from <code>thm:binary-tree</code> (every value is attained) and <code>thm:minMRS</code> (nothing smaller works). The maximum <i>n</i> − 1 comes from Hoffman et al.: <i>n</i> colors force a rainbow cycle, and their (<i>n</i> − 1)-colorings also forbid monochromatic odd cycles.` },
-        { short: `Balanced binary trees give a coloring for every count in the range.`,
-          detail: `<code>thm:binary-tree</code>: split the vertex set in half repeatedly; the edges between two sibling sets get a color unused on higher levels; then merge colors on the same level one at a time, down to one color per level. Each color class is a union of complete bipartite graphs (no monochromatic odd cycle), and every cycle crosses the sibling cut of its lowest common ancestor at least twice (no rainbow cycle).` },
-        { short: `The minimum ⌈log<sub>2</sub> <i>n</i>⌉ comes from Gallai’s theorem with at most four parts.`,
-          detail: `<code>thm:minMRS</code>: a Gallai partition has at most five parts because <i>R</i>(3, 3) = 6, and five is ruled out because <i>K</i><sub>5</sub> needs three colors (<code>lem:minMRS-K_5=3</code>). Three parts reduce to two (an argument from Magnant and Nowbandegani); with two or four parts, the largest part has at least <i>n</i>/2 or <i>n</i>/4 vertices. Corollary: gr<sub><i>k</i></sub>(odd cycles : cycles) ≤ 2<sup><i>k</i></sup> + 1 for <i>k</i> ≥ 3.` }
+        { short: `MRS(<i>K<sub>n</sub></i>; odd cycles, cycles) = {⌈log<sub>2</sub> <i>n</i>⌉, …, <i>n</i> − 1} for every <i>n</i> ≥ 2.` },
+        { short: `Balanced binary trees give a coloring for every count in the range.` },
+        { short: `The minimum ⌈log<sub>2</sub> <i>n</i>⌉ comes from Gallai’s theorem with at most four parts.` }
       ]
     },
     {
@@ -338,12 +328,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       doi: "",
       summary: `Gives an elementary, self-contained alternate proof of the Axenovich–Choi theorem on monochromatic and rainbow four-cycles, highlighting intermediate results of independent interest.`,
       results: [
-        { short: `An elementary proof that max MRS(<i>K<sub>n</sub></i>; <i>C</i><sub>4</sub>, <i>C</i><sub>4</sub>) = <i>n</i> for <i>n</i> ≥ 4.`,
-          detail: `<code>thm:(n+1)notinVSPECn&gt;6</code>: <i>n</i> + <i>i</i> ∉ MRS(<i>K<sub>n</sub></i>; <i>C</i><sub>4</sub>, <i>C</i><sub>4</sub>) for every <i>i</i> ≥ 1. The proof forces a rainbow structure and studies its largest rainbow cycle: two triangles joined by a path (the <i>B<sub>t</sub></i> lemmas) and long rainbow cycles (chord-dropping; a rainbow <i>C</i><sub>7</sub> forces a monochromatic <i>C</i><sub>4</sub> on its chords) all produce a monochromatic or rainbow <i>C</i><sub>4</sub>.` },
-        { short: `A chain construction: {<i>n</i> + 2 − <i>m</i>, …, <i>n</i> + 1 − <i>m</i> + (<i>m</i>−1 choose 2)} ⊆ MRS(<i>K<sub>n</sub></i>; <i>C<sub>m</sub></i>, <i>C<sub>m</sub></i>) for 3 ≤ <i>m</i> ≤ <i>n</i>.`,
-          detail: `<code>thm:hypomax-andsmallrange-forMRSof-C_m</code>: color a base <i>K</i><sub><i>m</i>−1</sub> with <i>b</i> colors, join <i>v<sub>m</sub></i> in a new color, then join each later vertex to everything before it in a fresh color. The two edges of any <i>m</i>-cycle at its highest vertex match (so it is not rainbow), and some earlier edge differs (so it is not monochromatic). With the monotonicity step, {<i>n</i> − 2, <i>n</i> − 1, <i>n</i>} ⊆ MRS(<i>K<sub>n</sub></i>; <i>C</i><sub>4</sub>, <i>C</i><sub>4</sub>).` },
-        { short: `<i>n</i> + 1 colors force a rainbow connected subgraph with one more edge than vertices.`,
-          detail: `<code>lem:two-rainbow-cycles-and-connected</code> and <code>prop:EndOfLemTrain</code>: such a subgraph contains two edge-disjoint rainbow cycles or a rainbow Θ-graph, which drives the upper bound.` }
+        { short: `An elementary proof that max MRS(<i>K<sub>n</sub></i>; <i>C</i><sub>4</sub>, <i>C</i><sub>4</sub>) = <i>n</i> for <i>n</i> ≥ 4.` },
+        { short: `A chain construction: {<i>n</i> + 2 − <i>m</i>, …, <i>n</i> + 1 − <i>m</i> + (<i>m</i>−1 choose 2)} ⊆ MRS(<i>K<sub>n</sub></i>; <i>C<sub>m</sub></i>, <i>C<sub>m</sub></i>) for 3 ≤ <i>m</i> ≤ <i>n</i>.` },
+        { short: `<i>n</i> + 1 colors force a rainbow connected subgraph with one more edge than vertices.` }
       ]
     },
     {
@@ -357,14 +344,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       doi: "",
       summary: `Proves a bipartite collapse: within any Gallai coloring, forbidding the two shortest monochromatic odd cycles forces every color class to be bipartite, recovering the classical bipartite-cover threshold. Classifies the five extremal colorings at three colors, a distinction finer than any monochromatic degree sequence can detect.`,
       results: [
-        { short: `Bipartite collapse: in a Gallai coloring, no monochromatic <i>K</i><sub>3</sub> and no monochromatic <i>C</i><sub>5</sub> force every color class to be bipartite.`,
-          detail: `Theorem A (<code>thm:collapse</code>). Consequently an edge-coloring of a complete graph has no rainbow <i>K</i><sub>3</sub>, no monochromatic <i>K</i><sub>3</sub>, and no monochromatic <i>C</i><sub>5</sub> if and only if it has no rainbow cycle and no monochromatic odd cycle: the same class of colorings (<code>cor:edge--coloring-collapse</code>). Proof by induction on a Gallai partition with at most four parts; each color class is a blow-up of a bipartite reduced class plus smaller classes.` },
-        { short: `Exact value <i>f</i>(<i>k</i>) = 2<sup><i>k</i></sup>: the largest complete graph with such a <i>k</i>-coloring has 2<sup><i>k</i></sup> vertices.`,
-          detail: `Theorem B (<code>thm:gen</code>). Lower bound: the lexicographic coloring of {0, 1}<sup><i>k</i></sup>, <i>c</i>(<i>u</i>, <i>v</i>) = max{<i>i</i> : <i>u<sub>i</sub></i> ≠ <i>v<sub>i</sub></i>}. Upper bound, proved twice: a Gallai-partition recursion, and Theorem A plus the bipartite-cover bound (if <i>E</i>(<i>K<sub>n</sub></i>) is covered by <i>m</i> bipartite graphs then <i>n</i> ≤ 2<sup><i>m</i></sup>).` },
-        { short: `Exactly five extremal 3-colorings of <i>K</i><sub>8</sub>, two of which share every monochromatic degree sequence.`,
-          detail: `Theorem C (<code>thm:main</code>, <code>prop:enum</code>): <i>f</i>(3) = 8 and, up to edge-color isomorphism, there are five extremal colorings; one has no monochromatic <i>K</i><sub>4,4</sub>. Built from the <i>C</i><sub>4</sub>- and <i>P</i><sub>3</sub>-gadgets on <i>K</i><sub>4</sub> (<code>lem:K4enum</code>) and the uniqueness of the pentagon–pentagram on <i>K</i><sub>5</sub> (<code>lem:K5uniq</code>).` },
-        { short: `The spectrum {⌈log<sub>2</sub> <i>n</i>⌉, …, <i>n</i> − 1} holds for every family between {<i>K</i><sub>3</sub>, <i>C</i><sub>5</sub>} and all odd cycles.`,
-          detail: `<code>cor:mrs-family-collapse</code>: whenever {<i>K</i><sub>3</sub>, <i>C</i><sub>5</sub>} ⊆ ℱ ⊆ odd cycles and {<i>K</i><sub>3</sub>} ⊆ ℋ ⊆ cycles, MRS(<i>K<sub>n</sub></i>; ℱ, ℋ) = {⌈log<sub>2</sub> <i>n</i>⌉, …, <i>n</i> − 1}.` }
+        { short: `Bipartite collapse: in a Gallai coloring, no monochromatic <i>K</i><sub>3</sub> and no monochromatic <i>C</i><sub>5</sub> force every color class to be bipartite.` },
+        { short: `Exact value <i>f</i>(<i>k</i>) = 2<sup><i>k</i></sup>: the largest complete graph with such a <i>k</i>-coloring has 2<sup><i>k</i></sup> vertices.` },
+        { short: `Exactly five extremal 3-colorings of <i>K</i><sub>8</sub>, two of which share every monochromatic degree sequence.` },
+        { short: `The spectrum {⌈log<sub>2</sub> <i>n</i>⌉, …, <i>n</i> − 1} holds for every family between {<i>K</i><sub>3</sub>, <i>C</i><sub>5</sub>} and all odd cycles.` }
       ]
     },
     {
@@ -378,12 +361,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       doi: "",
       summary: `Shows that forbidding a monochromatic subgraph alongside a rainbow cycle costs no colors, sharpening a 2010 theorem of Axenovich and Choi from asymptotic to exact. Uses a Hoffman block coloring, an elementary edge-cut lemma, and the anti-Ramsey values of Montellano-Ballesteros and Neumann-Lara.`,
       results: [
-        { short: `max MRS(<i>K<sub>n</sub></i>; <i>F</i>, <i>C<sub>k</sub></i>) = ar(<i>K<sub>n</sub></i>, <i>C<sub>k</sub></i>) for every <i>n</i> ≥ <i>k</i>, whenever <i>F</i> is non-bipartite or bipartite with <i>s</i>(<i>F</i>) ≥ <i>k</i>.`,
-          detail: `Main theorem (<code>thm:main</code>). With <i>n</i> = (<i>k</i> − 1)<i>q</i> + <i>r</i>, the value is ((<i>k</i>−1 choose 2) + 1)<i>q</i> − 1 when <i>r</i> = 0, and ((<i>k</i>−1 choose 2) + 1)<i>q</i> + (<i>r</i> choose 2) otherwise; it does not depend on <i>F</i>. This sharpens the first branch of Axenovich and Choi (2010): no <i>O</i>(1) error term and no threshold on <i>n</i>.` },
-        { short: `The Hoffman block coloring uses exactly ar(<i>K<sub>n</sub></i>, <i>C<sub>k</sub></i>) colors.`,
-          detail: `<code>cons</code>, <code>prop:count</code>, <code>prop:match</code>: blocks of <i>k</i> − 1 vertices with private colors inside, and one source color from each block to every later block. No rainbow <i>C<sub>k</sub></i>, by an edge-cut lemma (a cycle crosses any cut at least twice); no monochromatic <i>F</i>, because each color class lies in a complete bipartite graph with one side of size at most <i>k</i> − 1. <code>prop:bip-fail</code> shows the condition <i>s</i>(<i>F</i>) ≥ <i>k</i> is sharp for this construction.` },
-        { short: `Extends to families of forbidden graphs and to sets of forbidden rainbow cycle lengths.`,
-          detail: `<code>cor:family</code> and <code>cor:cycle-set</code>: the answer is governed by the shortest forbidden rainbow length <i>g</i>, with ar(<i>K<sub>n</sub></i>, 𝒞<sub>ℒ</sub>) = ar(<i>K<sub>n</sub></i>, <i>C<sub>g</sub></i>). Worked table at <i>k</i> = 5 (<code>cor:diagonal-c5</code>): 7<i>q</i> − 1, 7<i>q</i>, 7<i>q</i> + 1, 7<i>q</i> + 3 for <i>n</i> = 4<i>q</i> + <i>r</i>.` }
+        { short: `max MRS(<i>K<sub>n</sub></i>; <i>F</i>, <i>C<sub>k</sub></i>) = ar(<i>K<sub>n</sub></i>, <i>C<sub>k</sub></i>) for every <i>n</i> ≥ <i>k</i>, whenever <i>F</i> is non-bipartite or bipartite with <i>s</i>(<i>F</i>) ≥ <i>k</i>.` },
+        { short: `The Hoffman block coloring uses exactly ar(<i>K<sub>n</sub></i>, <i>C<sub>k</sub></i>) colors.` },
+        { short: `Extends to families of forbidden graphs and to sets of forbidden rainbow cycle lengths.` }
       ]
     },
     {
@@ -397,12 +377,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       doi: "",
       summary: `Initiates the study of colorings with no monochromatic and no rainbow five-cycle, where no Gallai-type structure theorem is available. Uses a substitution framework, a seven-vertex Gallai block, and a binary-tree covering argument to prove a rate-two ceiling and the local rigidity of the Bondy–Erdős doubling.`,
       results: [
-        { short: `A new good family: an explicit ℤ<sub>7</sub>-indexed block gives <i>f</i>(<i>k</i> + 3) ≥ 7<i>f</i>(<i>k</i>).`,
-          detail: `Theorem A (<code>thmA</code>): substitute good colorings into a Gallai 3-coloring of <i>K</i><sub>7</sub> that is a block. Consequences: closed-form lower bounds on <i>f</i>, and minR(<i>K<sub>n</sub></i>; <i>C</i><sub>5</sub>, <i>C</i><sub>5</sub>) ≤ 3 log<sub>7</sub> <i>n</i> + <i>O</i>(1). The first known good family not arising from Bondy–Erdős doubling.` },
-        { short: `Rate ceiling: every <i>t</i>-color Gallai coloring with no monochromatic <i>C</i><sub>3</sub> or <i>C</i><sub>5</sub> has at most 2<sup><i>t</i></sup> vertices.`,
-          detail: `Theorem B (<code>thm:rate2</code>), by a Gallai partition with at most four parts and Kraft-inequality ranks. So the best substitution rate is exactly 2, attained by the doubling, and towers from doubling-size seeds never exceed 2<sup><i>k</i>+1</sup> vertices on <i>k</i> colors.` },
-        { short: `Local rigidity: for <i>k</i> ≥ 4 the Bondy–Erdős doubling cannot be extended by a single vertex.`,
-          detail: `Theorem C (<code>thm:rigidity</code>), via forbidden color multisets, a <i>V</i><sub>2</sub>-forcing lemma, and a covering problem on a complete binary tree. Separately, the Day–Johnson colorings (which beat rate 2 without the rainbow condition) contain a rainbow <i>C</i><sub>5</sub>, so they are not good. Conjecture: <i>f</i>(<i>k</i>) = 2<sup><i>k</i>+1</sup>.` }
+        { short: `A new good family: an explicit ℤ<sub>7</sub>-indexed block gives <i>f</i>(<i>k</i> + 3) ≥ 7<i>f</i>(<i>k</i>).` },
+        { short: `Rate ceiling: every <i>t</i>-color Gallai coloring with no monochromatic <i>C</i><sub>3</sub> or <i>C</i><sub>5</sub> has at most 2<sup><i>t</i></sup> vertices.` },
+        { short: `Local rigidity: for <i>k</i> ≥ 4 the Bondy–Erdős doubling cannot be extended by a single vertex.` }
       ]
     }
   ];
@@ -418,180 +395,139 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
          type     one of: Result, Method, Question, Framework, Scope, Contrast
          dir      which way this contribution runs, e.g. "2→4" or "4→2" or "4↔6"
          short    one plain-language line (Part VI of the notes)
-         detail   the full note (Part IV of the notes), shown under "Show details"
+       hidden     true to keep this link off the page; delete the flag to show it
      --------------------------------------------------------------------- */
   var LINKS = [
     {
       from: 1, to: 2, label: "extends",
       contributions: [
         { type: "Framework", dir: "1→2",
-          short: `Same kind of question: fix <i>n</i> and find every number of colors that works.`,
-          detail: `Both papers determine a full spectrum. Paper 1 phrases it as a Voloshin spectrum VSPEC′(<i>K<sub>n</sub></i>; <i>X</i>, <i>Y</i>) with the rainbow-forbidden graph first; Paper 2 adopts the Axenovich–Iverson MRS(<i>K<sub>n</sub></i>; ℱ, ℋ) with the monochromatic-forbidden graph first, and extends it to families. The order of the arguments is reversed between the two.` },
+          short: `Same kind of question: fix <i>n</i> and find every number of colors that works.` },
         { type: "Scope", dir: "1→2",
-          short: `One forbidden graph each way (<i>K</i><sub>3</sub>) becomes whole families: all odd cycles and all cycles.`,
-          detail: `Paper 1 forbids a monochromatic <i>K</i><sub>3</sub> and a rainbow <i>K</i><sub>3</sub>. Paper 2 forbids every monochromatic odd cycle and every rainbow cycle. Since no rainbow <i>K</i><sub>3</sub> already means no rainbow cycle (the chord lemma), the rainbow side describes the same colorings (Gallai colorings); the real extension is on the monochromatic side, from <i>K</i><sub>3</sub> to every odd cycle.` },
+          short: `One forbidden graph each way (<i>K</i><sub>3</sub>) becomes whole families: all odd cycles and all cycles.` },
         { type: "Result", dir: "1→2",
-          short: `Same maximum, <i>n</i> − 1, from the same rainbow-cycle bound.`,
-          detail: `With <i>n</i> colors a rainbow cycle is forced (Paper 1, Lemma 4 and Corollary 5), and <i>n</i> − 1 colors are attainable by a rainbow-cycle-forbidding coloring (Paper 1, Theorem 6; Paper 2, <code>thm:owens_n-1</code>, both from Hoffman et al.). Paper 2 adds that these colorings automatically have bipartite color classes, so they also avoid monochromatic odd cycles.` },
+          short: `Same maximum, <i>n</i> − 1, from the same rainbow-cycle bound.` },
         { type: "Contrast", dir: "1→2",
-          short: `The minimum falls from about 2 log<sub>5</sub> <i>n</i> to ⌈log<sub>2</sub> <i>n</i>⌉ once every odd cycle is forbidden.`,
-          detail: `Paper 1: <i>g</i>(<i>n</i>) ∈ {⌈2 log<sub>5</sub> <i>n</i>⌉, ⌈2 log<sub>5</sub> <i>n</i>⌉ + 1} (Lemma 2, from Chung–Graham). Paper 2: ⌈log<sub>2</sub> <i>n</i>⌉ (<code>thm:minMRS</code>). Paper 4 later explains the value 2<sup><i>k</i></sup> as the bipartite-cover threshold.` },
+          short: `The minimum falls from about 2 log<sub>5</sub> <i>n</i> to ⌈log<sub>2</sub> <i>n</i>⌉ once every odd cycle is forbidden.` },
         { type: "Method", dir: "1→2",
-          short: `The range is filled by merging colors on a binary tree instead of joining a vertex with a new color.`,
-          detail: `Paper 1 (proof of Theorem 8) joins a new vertex to a good coloring of <i>K</i><sub><i>n</i>−1</sub> using one new color. Paper 2 (<code>thm:binary-tree</code>) starts from the (<i>n</i> − 1)-color tree coloring and merges colors on the same level one at a time. Both change the count one color at a time; the tree version also keeps every color class bipartite.` }
+          short: `The range is filled by merging colors on a binary tree instead of joining a vertex with a new color.` }
       ]
     },
     {
       from: 2, to: 4, label: "sharpens",
       contributions: [
         { type: "Result", dir: "2→4",
-          short: `Same spectrum from far weaker hypotheses: {<i>K</i><sub>3</sub>, <i>C</i><sub>5</sub>} and {<i>K</i><sub>3</sub>} replace all odd cycles and all cycles.`,
-          detail: `Paper 4, <code>cor:mrs-family-collapse</code>: for every family between the two, MRS(<i>K<sub>n</sub></i>; ℱ, ℋ) = {⌈log<sub>2</sub> <i>n</i>⌉, …, <i>n</i> − 1}. The proof takes the full-family spectrum from Paper 2 for one inclusion and uses Theorem A (bipartite collapse) for the other. In Paper 4’s words, the theorem of Paper 2 “holds with its infinite lists of prohibitions replaced by {<i>K</i><sub>3</sub>, <i>C</i><sub>5</sub>} and {<i>K</i><sub>3</sub>}.”` },
+          short: `Same spectrum from far weaker hypotheses: {<i>K</i><sub>3</sub>, <i>C</i><sub>5</sub>} and {<i>K</i><sub>3</sub>} replace all odd cycles and all cycles.` },
         { type: "Method", dir: "2→4",
-          short: `Paper 2’s binary-tree coloring is the lexicographic coloring of {0, 1}<sup><i>k</i></sup>.`,
-          detail: `Paper 4, <code>sec:genlb</code>: the coloring <i>c</i>(<i>u</i>, <i>v</i>) = max{<i>i</i> : <i>u<sub>i</sub></i> ≠ <i>v<sub>i</sub></i>} “is the balanced-binary-tree edge-coloring of” Paper 2. Paper 4 gives it a closed formula and its classical attribution (Erdős–Graham).` },
+          short: `Paper 2’s binary-tree coloring is the lexicographic coloring of {0, 1}<sup><i>k</i></sup>.` },
         { type: "Method", dir: "2→4",
-          short: `The same Gallai-partition induction with at most four parts.`,
-          detail: `Paper 2, <code>thm:minMRS</code>: at most four parts, then a size count on the largest part. Paper 4, <code>sec:genub</code>: at most four parts (five would lift the pentagon–pentagram to a monochromatic <i>C</i><sub>5</sub>), then |<i>V<sub>i</sub></i>| ≤ <i>f</i>(<i>k</i> − 1) or <i>f</i>(<i>k</i> − 2) according to how many reduced colors leave the part. Same skeleton, with Paper 4 tracking the reduced colors more finely.` },
+          short: `The same Gallai-partition induction with at most four parts.` },
         { type: "Result", dir: "2→4",
-          short: `Paper 4 uses Paper 2’s fact: no rainbow cycle exactly when no rainbow triangle.`,
-          detail: `Paper 4, <code>sec:program</code>, cites Paper 2 for the fact that a coloring of <i>K<sub>n</sub></i> is rainbow-cycle-forbidding precisely when it is Gallai, and uses it to identify Paper 2’s rainbow hypothesis with its own Gallai hypothesis.` },
+          short: `Paper 4 uses Paper 2’s fact: no rainbow cycle exactly when no rainbow triangle.` },
         { type: "Contrast", dir: "4→2",
-          short: `Paper 4 explains the value 2<sup><i>k</i></sup>: these colorings are exactly covers by <i>k</i> bipartite graphs.`,
-          detail: `By Theorem A the colorings behind Paper 2’s spectrum are exactly covers of <i>E</i>(<i>K<sub>n</sub></i>) by <i>k</i> bipartite graphs, which exist precisely when <i>n</i> ≤ 2<sup><i>k</i></sup> (<code>lem:bipcover</code>, the Graham–Pollak addressing bound). Paper 2 proves the number; Paper 4 says what the number is.` },
+          short: `Paper 4 explains the value 2<sup><i>k</i></sup>: these colorings are exactly covers by <i>k</i> bipartite graphs.` },
         { type: "Scope", dir: "4→2",
-          short: `The spectrum is the same for every family in between, not just the two endpoints.`,
-          detail: `Paper 4 widens Paper 2 in the other direction: every pair of intermediate families gives the same spectrum as the full families.` }
+          short: `The spectrum is the same for every family in between, not just the two endpoints.` }
       ]
     },
     {
       from: 2, to: 6, label: "uses methods of",
       contributions: [
         { type: "Method", dir: "2→6",
-          short: `Binary trees: a construction device in Paper 2, the object proved rigid in Paper 6.`,
-          detail: `Paper 2 builds its colorings from a balanced binary tree of vertex subsets (<code>thm:binary-tree</code>). Paper 6’s Bondy–Erdős doubling (<code>def:BE</code>) is a complete binary tree of nested bipartitions, and its rigidity proof (Theorem C) reduces to a covering problem on that tree: no assignment of {0, 1, ⋆} to the internal nodes covers every leaf (<code>lem:tree-covering</code>).` },
+          short: `Binary trees: a construction device in Paper 2, the object proved rigid in Paper 6.` },
         { type: "Method", dir: "2→6",
-          short: `The same parity argument: a cycle crosses a cut at least twice, so it is not rainbow.`,
-          detail: `Paper 2: a cycle whose vertices first split at a tree vertex uses that sibling cut at least twice. Paper 6, <code>lem:least-color</code>: a cycle in the doubling uses its least color an even number of times. Paper 4’s proof for the lexicographic coloring is the same argument.` },
+          short: `The same parity argument: a cycle crosses a cut at least twice, so it is not rainbow.` },
         { type: "Contrast", dir: "2→6",
-          short: `All odd cycles give growth 2<sup><i>k</i></sup>; forbidding only <i>C</i><sub>5</sub> conjecturally allows 2<sup><i>k</i>+1</sup>.`,
-          detail: `Paper 6, “Relation to the all-odd-cycles problem”: Paper 2’s minimum ⌈log<sub>2</sub> <i>n</i>⌉ means the all-odd-cycles requirement “collapses the per-color growth from 2<sup><i>k</i>+1</sup> to 2<sup><i>k</i></sup>.” Forbidding only <i>C</i><sub>5</sub> conjecturally allows 2<sup><i>k</i>+1</sup> (<code>conj:revised</code>).` },
+          short: `All odd cycles give growth 2<sup><i>k</i></sup>; forbidding only <i>C</i><sub>5</sub> conjecturally allows 2<sup><i>k</i>+1</sup>.` },
         { type: "Method", dir: "2→6",
-          short: `Gallai-partition induction, refined with the Kraft inequality.`,
-          detail: `Paper 2, <code>thm:minMRS</code>: at most four parts and a size count. Paper 6, <code>thm:rate2</code>: at most four parts, then ranks <i>d<sub>i</sub></i> with Σ 2<sup>−<i>d<sub>i</sub></i></sup> ≤ 1 and |<i>V<sub>i</sub></i>| ≤ 2<sup><i>t</i>−<i>d<sub>i</sub></i></sup>, the bookkeeping that substitution needs.` },
+          short: `Gallai-partition induction, refined with the Kraft inequality.` },
         { type: "Scope", dir: "2→6",
-          short: `From whole families to the single length (<i>C</i><sub>5</sub>,<i>C</i><sub>5</sub>), and from a Gallai setting to one with no structure theorem.`,
-          detail: `Paper 2’s rainbow family contains <i>K</i><sub>3</sub>, so Gallai’s theorem applies. A rainbow-<i>C</i><sub>5</sub> ban gives no partition theorem, which is why Paper 6 must build structure by substitution.` }
+          short: `From whole families to the single length (<i>C</i><sub>5</sub>,<i>C</i><sub>5</sub>), and from a Gallai setting to one with no structure theorem.` }
       ]
     },
     {
       from: 4, to: 6, label: "continues",
       contributions: [
         { type: "Result", dir: "4→6",
-          short: `Paper 4’s bipartite collapse implies Paper 6’s rate ceiling <i>N</i> ≤ 2<sup><i>t</i></sup>.`,
-          detail: `Paper 6, <code>rem:masterlemma</code>: the companion paper “establishes the stronger structural fact that, under the same hypotheses, every color class is bipartite; the bound <i>N</i> ≤ 2<sup><i>t</i></sup> is then immediate from a bipartite cover, so Theorem <code>thm:rate2</code> also follows from that result.”` },
+          short: `Paper 4’s bipartite collapse implies Paper 6’s rate ceiling <i>N</i> ≤ 2<sup><i>t</i></sup>.` },
         { type: "Method", dir: "6→4",
-          short: `Paper 6 gives an independent proof of the same bound.`,
-          detail: `Paper 6 proves <code>thm:rate2</code> self-containedly with ranks and the Kraft inequality, “because the color-count step is exactly the bookkeeping needed for substitution”: a second proof of Paper 4’s <code>cor:actual-colors</code>.` },
+          short: `Paper 6 gives an independent proof of the same bound.` },
         { type: "Result", dir: "4↔6",
-          short: `Two faces of one 2<sup><i>t</i></sup> threshold: a monochromatic conclusion and a rainbow one.`,
-          detail: `Paper 4, <code>cor:short-odd-forcing</code>: every Gallai <i>k</i>-coloring of <i>K</i><sub>2<sup><i>k</i></sup>+1</sub> contains a monochromatic <i>K</i><sub>3</sub> or <i>C</i><sub>5</sub>. Paper 6, <code>cor:no-block</code>: a coloring whose classes have odd girth greater than 5, on more than 2<sup><i>t</i></sup> vertices, contains a rainbow cycle of length at most 5. One keeps the rainbow condition and concludes monochromatic; the other keeps the monochromatic condition and concludes rainbow.` },
+          short: `Two faces of one 2<sup><i>t</i></sup> threshold: a monochromatic conclusion and a rainbow one.` },
         { type: "Scope", dir: "4→6",
-          short: `The “two shortest odd cycles” hypothesis carried to substitution blocks and to every <i>C</i><sub>2ℓ+1</sub>.`,
-          detail: `No monochromatic <i>C</i><sub>3</sub> or <i>C</i><sub>5</sub> is Paper 4’s subject and Paper 6’s block condition (B1). Paper 6 extends the ceiling to <i>C</i><sub>2ℓ+1</sub>-blocks for every ℓ ≥ 2 (<code>cor:odd-block-rate</code>) and to generalized doubling, which Paper 4 does not treat.` },
+          short: `The “two shortest odd cycles” hypothesis carried to substitution blocks and to every <i>C</i><sub>2ℓ+1</sub>.` },
         { type: "Method", dir: "4→6",
-          short: `Gallai partition with at most four parts, five ruled out by the pentagon–pentagram.`,
-          detail: `Paper 4, <code>lem:K5uniq</code> and <code>sec:genub</code>; Paper 6, <code>cl:rate2-2</code> (a five-vertex graph with no <i>C</i><sub>3</sub> or <i>C</i><sub>5</sub> is bipartite).` },
+          short: `Gallai partition with at most four parts, five ruled out by the pentagon–pentagram.` },
         { type: "Contrast", dir: "6→4",
-          short: `Which hypothesis does what: the rainbow condition gives the partition, the short cycles give bipartiteness.`,
-          detail: `Paper 4 (Theorem A): inside Gallai colorings, the two monochromatic prohibitions alone force bipartite classes. Paper 6 (<code>thm:dj</code>, <code>cor:separation</code>): without a rainbow condition, the Day–Johnson colorings exceed rate 2, so the rainbow constraint is what enforces doubling in the mixed problem. Neither hypothesis works alone.` }
+          short: `Which hypothesis does what: the rainbow condition gives the partition, the short cycles give bipartiteness.` }
       ]
     },
     {
       from: 1, to: 3, label: "motivates",
       contributions: [
         { type: "Question", dir: "1→3",
-          short: `Paper 3 asks the <i>C</i><sub>4</sub> and <i>C<sub>m</sub></i> versions of Paper 1’s question.`,
-          detail: `Paper 3, introduction, after restating Paper 1’s theorem: “This led us to inquire about MRS(<i>K<sub>n</sub></i>; <i>C</i><sub>4</sub>, <i>C</i><sub>4</sub>) and more generally MRS(<i>K<sub>n</sub></i>; <i>C<sub>m</sub></i>, <i>C<sub>m</sub></i>).”` },
+          short: `Paper 3 asks the <i>C</i><sub>4</sub> and <i>C<sub>m</sub></i> versions of Paper 1’s question.` },
         { type: "Method", dir: "1→3",
-          short: `Paper 1’s rainbow-cycle lemma, strengthened to two rainbow cycles or a Θ-graph.`,
-          detail: `Paper 1, Lemma 4: <i>n</i> colors on a connected <i>n</i>-vertex graph force a rainbow cycle. Paper 3, <code>lem:two-rainbow-cycles-and-connected</code> and <code>prop:EndOfLemTrain</code>: <i>n</i> + 1 colors force a rainbow connected subgraph with |<i>E</i>| = |<i>V</i>| + 1, hence two edge-disjoint rainbow cycles or a rainbow Θ-graph. This drives Paper 3’s upper bound.` },
+          short: `Paper 1’s rainbow-cycle lemma, strengthened to two rainbow cycles or a Θ-graph.` },
         { type: "Method", dir: "1→3",
-          short: `The same vertex-join step, reused to prove monotonicity.`,
-          detail: `Joining a vertex with a new color (Paper 1, proof of Theorem 8) is exactly Paper 3’s proof of the Axenovich–Choi monotonicity proposition: if <i>k</i> is in the spectrum for <i>K<sub>n</sub></i>, then <i>k</i> + 1 is in the spectrum for <i>K</i><sub><i>n</i>+1</sub>.` },
+          short: `The same vertex-join step, reused to prove monotonicity.` },
         { type: "Result", dir: "1→3",
-          short: `Paper 1’s theorem is the <i>m</i> = 3 background for Paper 3’s <i>C<sub>m</sub></i> program.`,
-          detail: `Paper 3 restates Chung–Graham’s theorem and Paper 1’s main theorem as the triangle case of MRS(<i>K<sub>n</sub></i>; <i>C<sub>m</sub></i>, <i>C<sub>m</sub></i>); its chain construction at <i>m</i> = 3 gives <i>n</i> − 1, consistent with Paper 1’s maximum.` }
+          short: `Paper 1’s theorem is the <i>m</i> = 3 background for Paper 3’s <i>C<sub>m</sub></i> program.` }
       ]
     },
     {
-      from: 1, to: 4, label: "complements",
+      from: 1, to: 4, hidden: true, label: "complements",
       contributions: [
         { type: "Scope", dir: "1→4",
-          short: `Paper 4’s hypotheses are Paper 1’s plus “no monochromatic <i>C</i><sub>5</sub>.”`,
-          detail: `Paper 1: no monochromatic <i>K</i><sub>3</sub> and no rainbow <i>K</i><sub>3</sub> (every triangle two colors). Paper 4’s colorings (<code>def:f</code>) add no monochromatic <i>C</i><sub>5</sub>, and Theorem A shows that one extra condition makes the class equal to Paper 2’s.` },
+          short: `Paper 4’s hypotheses are Paper 1’s plus “no monochromatic <i>C</i><sub>5</sub>.”` },
         { type: "Contrast", dir: "1→4",
-          short: `Dropping that condition returns Paper 1’s problem: growth (√5)<sup><i>k</i></sup> instead of 2<sup><i>k</i></sup>.`,
-          detail: `Paper 4, “Sharpness of the hypotheses”: dropping the monochromatic-<i>C</i><sub>5</sub> condition lifts the maximum from 2<sup><i>k</i></sup> to the Chung–Graham value of order (√5)<sup><i>k</i></sup>, 10 at <i>k</i> = 3. That is Paper 1’s setting, whose minimum is about 2 log<sub>5</sub> <i>n</i> rather than ⌈log<sub>2</sub> <i>n</i>⌉.` },
+          short: `Dropping that condition returns Paper 1’s problem: growth (√5)<sup><i>k</i></sup> instead of 2<sup><i>k</i></sup>.` },
         { type: "Method", dir: "1→4",
-          short: `The pentagon–pentagram lies behind both.`,
-          detail: `The 2-coloring of <i>K</i><sub>5</sub> with both color classes a <i>C</i><sub>5</sub> is the extremal object behind Chung–Graham’s <i>f</i>(2) = 5, used in Paper 1, and it is Paper 4’s <code>lem:K5uniq</code>: the unique 2-coloring of <i>K</i><sub>5</sub> with no monochromatic <i>K</i><sub>3</sub>. Forbidding a monochromatic <i>C</i><sub>5</sub> is exactly what removes it.` }
+          short: `The pentagon–pentagram lies behind both.` }
       ]
     },
     {
       from: 1, to: 5, label: "recovers",
       contributions: [
         { type: "Result", dir: "1→5",
-          short: `Paper 5 at <i>k</i> = 3 and <i>F</i> = <i>K</i><sub>3</sub> recovers Paper 1’s maximum <i>n</i> − 1.`,
-          detail: `Paper 5’s <code>thm:main</code> (or <code>cor:clique</code>) with <i>k</i> = 3 and <i>F</i> = <i>K</i><sub>3</sub> gives max MRS(<i>K<sub>n</sub></i>; <i>K</i><sub>3</sub>, <i>C</i><sub>3</sub>) = ar(<i>K<sub>n</sub></i>, <i>C</i><sub>3</sub>) = <i>n</i> − 1: Paper 1’s Corollary 7, now a special case of a theorem covering every non-bipartite <i>F</i>.` },
+          short: `Paper 5 at <i>k</i> = 3 and <i>F</i> = <i>K</i><sub>3</sub> recovers Paper 1’s maximum <i>n</i> − 1.` },
         { type: "Framework", dir: "1→5",
-          short: `Paper 5 cites Paper 1 as prior result (i) and focuses on the maximum side of such spectra.`,
-          detail: `Paper 5’s “What is new” paragraph lists MRS(<i>K<sub>n</sub></i>; <i>K</i><sub>3</sub>, <i>K</i><sub>3</sub>) = {<i>g</i>(<i>n</i>), …, <i>n</i> − 1} as prior result (i), citing Paper 1.` },
+          short: `Paper 5 cites Paper 1 as prior result (i) and focuses on the maximum side of such spectra.` },
         { type: "Contrast", dir: "1→5",
-          short: `Paper 1 supplies the minimum, which Paper 5’s method cannot reach.`,
-          detail: `Paper 1 determines both ends of its spectrum; Paper 5’s edge-cut method is one-sided (it proves a maximum by matching a construction against ar) and says nothing about minima. For (<i>K</i><sub>3</sub>, <i>K</i><sub>3</sub>) the two papers are complementary halves of one spectrum.` }
+          short: `Paper 1 supplies the minimum, which Paper 5’s method cannot reach.` }
       ]
     },
     {
       from: 2, to: 5, label: "recovers",
       contributions: [
         { type: "Result", dir: "2→5",
-          short: `All odd cycles against all cycle lengths gives back Paper 2’s maximum, <i>n</i> − 1.`,
-          detail: `Paper 5’s <code>cor:family</code> (each odd cycle has χ = 3) with <code>cor:cycle-set</code> (all rainbow lengths, governed by the shortest, 3) gives max MRS(<i>K<sub>n</sub></i>; odd cycles, cycles) = ar(<i>K<sub>n</sub></i>, <i>C</i><sub>3</sub>) = <i>n</i> − 1, the maximum in Paper 2. Paper 5’s remark after <code>cor:family</code> cites Paper 2 for exactly this value.` },
+          short: `All odd cycles against all cycle lengths gives back Paper 2’s maximum, <i>n</i> − 1.` },
         { type: "Contrast", dir: "2→5",
-          short: `A single rainbow <i>C<sub>k</sub></i> allows far more colors than forbidding all cycles.`,
-          detail: `Paper 5, introduction (c): its family extension “differs from” Paper 2, “which has the family of all cycles as the rainbow constraint and consequently a smaller maximum”: about ((<i>k</i> − 2)/2)<i>n</i> colors instead of <i>n</i> − 1.` },
+          short: `A single rainbow <i>C<sub>k</sub></i> allows far more colors than forbidding all cycles.` },
         { type: "Framework", dir: "2→5",
-          short: `Forbidden families of graphs reappear in Paper 5’s corollaries.`,
-          detail: `Paper 2’s families ℱ and ℋ are the setting of Paper 5’s <code>cor:family</code> and <code>cor:cycle-set</code>.` }
+          short: `Forbidden families of graphs reappear in Paper 5’s corollaries.` }
       ]
     },
     {
-      from: 3, to: 5, label: "sharpens",
+      from: 3, to: 5, hidden: true, label: "sharpens",
       contributions: [
         { type: "Result", dir: "3→5",
-          short: `Paper 3’s chain reaches about <i>n</i> + 2 colors for <i>C</i><sub>5</sub>; Paper 5 reaches the optimum, about 7<i>n</i>/4.`,
-          detail: `Paper 5, introduction (a): its main theorem “strengthens the dissertation’s lower-bound construction significantly: for <i>F</i> = <i>C</i><sub>5</sub>, <i>n</i> large, the dissertation’s construction reaches roughly <i>n</i> + 2 colors while the present result establishes the optimum max MRS(<i>K<sub>n</sub></i>; <i>C</i><sub>5</sub>, <i>C</i><sub>5</sub>) = ar(<i>K<sub>n</sub></i>, <i>C</i><sub>5</sub>) ≈ 7<i>n</i>/4.” The dissertation construction is Paper 3’s chain.` },
+          short: `Paper 3’s chain reaches about <i>n</i> + 2 colors for <i>C</i><sub>5</sub>; Paper 5 reaches the optimum, about 7<i>n</i>/4.` },
         { type: "Question", dir: "3→5",
-          short: `Paper 3’s <i>C</i><sub>4</sub> result is the solved base case of Paper 5’s open bipartite branch.`,
-          detail: `Paper 5’s first open problem (<code>q:bipartite</code>) concerns bipartite <i>F</i> with <i>s</i>(<i>F</i>) &lt; <i>k</i>. <i>C</i><sub>4</sub> has <i>s</i> = 2, so Paper 3’s max MRS(<i>K<sub>n</sub></i>; <i>C</i><sub>4</sub>, <i>C</i><sub>4</sub>) = <i>n</i> is the solved <i>k</i> = 4 instance; Paper 5 notes it “was re-proved in DeMars’s dissertation via a different construction.”` },
+          short: `Paper 3’s <i>C</i><sub>4</sub> result is the solved base case of Paper 5’s open bipartite branch.` },
         { type: "Method", dir: "3→5",
-          short: `Chain construction versus Hoffman block construction.`,
-          detail: `Paper 3’s chain joins vertices one at a time with fresh colors and gives about <i>n</i> colors; Paper 5’s Hoffman blocks use private colors inside blocks of size <i>k</i> − 1 and give about ((<i>k</i> − 2)/2)<i>n</i>. Paper 5 names the distinction explicitly.` },
+          short: `Chain construction versus Hoffman block construction.` },
         { type: "Contrast", dir: "3→5",
-          short: `A long case analysis versus no case analysis at all.`,
-          detail: `Paper 3 proves its maximum by forcing rainbow substructures and a detailed case analysis. Paper 5 shows that on its branch the trivial bound max ≤ ar is already tight. Paper 3’s case (<i>C</i><sub>4</sub>, bipartite, <i>s</i> = 2 &lt; <i>k</i>) is exactly where Paper 5’s construction fails (<code>prop:bip-fail</code>), so the two methods do not overlap.` }
+          short: `A long case analysis versus no case analysis at all.` }
       ]
     },
     {
-      from: 5, to: 6, both: true, label: "complements",
+      from: 5, to: 6, both: true, hidden: true, label: "complements",
       contributions: [
         { type: "Contrast", dir: "5↔6",
-          short: `Paper 5 gives the maximum of MRS(<i>K<sub>n</sub></i>; <i>C</i><sub>5</sub>, <i>C</i><sub>5</sub>); Paper 6 studies its minimum.`,
-          detail: `Paper 5, <code>cor:diagonal-c5</code>: max MRS(<i>K<sub>n</sub></i>; <i>C</i><sub>5</sub>, <i>C</i><sub>5</sub>) = ar(<i>K<sub>n</sub></i>, <i>C</i><sub>5</sub>) exactly (7<i>q</i> − 1, 7<i>q</i>, 7<i>q</i> + 1, 7<i>q</i> + 3 for <i>n</i> = 4<i>q</i> + <i>r</i>). Paper 6: minR(<i>K<sub>n</sub></i>; <i>C</i><sub>5</sub>, <i>C</i><sub>5</sub>) ≤ 3 log<sub>7</sub> <i>n</i> + <i>O</i>(1) (<code>thm:upperbound</code>), conjecturally the inverse of <i>f</i>(<i>k</i>) = 2<sup><i>k</i>+1</sup>.` },
+          short: `Paper 5 gives the maximum of MRS(<i>K<sub>n</sub></i>; <i>C</i><sub>5</sub>, <i>C</i><sub>5</sub>); Paper 6 studies its minimum.` },
         { type: "Result", dir: "5↔6",
-          short: `The spectrum is an interval, so together the two papers describe it entirely.`,
-          detail: `By Axenovich and Choi (2011), MRS(<i>K<sub>n</sub></i>; <i>C</i><sub>5</sub>, <i>C</i><sub>5</sub>) is an interval for every <i>n</i>, so it equals {minR(<i>K<sub>n</sub></i>; <i>C</i><sub>5</sub>, <i>C</i><sub>5</sub>), …, ar(<i>K<sub>n</sub></i>, <i>C</i><sub>5</sub>)} for <i>n</i> ≥ 5: the maximum settled by Paper 5, the minimum bounded by Paper 6.` }
+          short: `The spectrum is an interval, so together the two papers describe it entirely.` }
       ]
     }
   ];
@@ -626,6 +562,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var typeByName={}; TYPES.forEach(function(t){ typeByName[t.name]=t; });
   var paperById={}; PAPERS.forEach(function(p){ paperById[p.id]=p; });
   function linkId(l){ return l.from+'-'+l.to; }
+  LINKS = LINKS.filter(function(l){ return !l.hidden; }); // links flagged hidden stay off the page
+  // Only types that appear on a shown link get a filter chip and a definition.
+  var USED_TYPES = TYPES.filter(function(t){ return LINKS.some(function(l){ return (l.contributions||[]).some(function(c){ return c.type===t.name; }); }); });
   var linkById={}; LINKS.forEach(function(l){ linkById[linkId(l)]=l; });
   function plain(html){ var d=document.createElement('div'); d.innerHTML=html; return d.textContent; }
 
@@ -658,7 +597,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   // ---- state ----
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var S = { view:'diagram', layout:'dep', filter:{}, sel:null, hover:null, details:false };
+  var S = { view:'diagram', layout:'dep', filter:{}, sel:null, hover:null };
   function filterOn(){ for(var k in S.filter) if(S.filter[k]) return true; return false; }
   function linkPasses(l){ if(!filterOn()) return true; return l.contributions.some(function(c){ return S.filter[c.type]; }); }
   function contribPasses(c){ return !filterOn() || !!S.filter[c.type]; }
@@ -910,13 +849,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var panel=$('panel');
   function tagHTML(type){ var t=typeByName[type]; return '<span class="tag"><i style="background:'+(t?t.color:'#999')+'"></i>'+type+'</span>'; }
   function statusPill(p){ var st=STATUS[p.status]||STATUS.preparation; return '<span class="pill" style="color:'+st.color+'"><i></i>'+st.name+'</span>'; }
-  function detailsToggle(){
-    var b=h('button',{type:'button','class':'toggle','aria-expanded':String(S.details)}, S.details?'Hide details':'Show details');
-    b.addEventListener('click',function(){ S.details=!S.details; panel.classList.toggle('show-details',S.details); b.textContent=S.details?'Hide details':'Show details'; b.setAttribute('aria-expanded',String(S.details)); });
-    return b;
-  }
   function renderPanel(){
-    panel.innerHTML=''; panel.classList.toggle('show-details', S.details);
+    panel.innerHTML='';
     if(!S.sel){
       panel.appendChild(h('p',{'class':'empty'},'<strong>Click a paper</strong> to see its summary, main results, and connections, or <strong>click an arrow</strong> (or its label) to see every way two papers contribute to each other.<br><br>Hover over a paper to light up everything connected to it.'));
       return;
@@ -932,8 +866,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       panel.appendChild(h('p',{'class':'sum'}, p.summary));
       var ruleFor={1:'A', 2:'B', 3:'C', 4:'D'}; // the Spectra Explorer rule each paper studies
       if(ruleFor[p.id]) panel.appendChild(h('p',{'class':'sum'}, 'Try this rule on the <a class="tl" href="/spectra-explorer/#rule='+ruleFor[p.id]+'">Spectra Explorer</a> page.'));
-      var rh=h('div',{'class':'ptop'}); rh.appendChild(h('h4',{style:'margin:6px 0 8px'},'Main results')); rh.appendChild(detailsToggle()); panel.appendChild(rh);
-      var ol=h('ol',{}); p.results.forEach(function(r){ ol.appendChild(h('li',{}, r.short+(r.detail?'<div class="detail">'+r.detail+'</div>':''))); }); panel.appendChild(ol);
+      var rh=h('div',{'class':'ptop'}); rh.appendChild(h('h4',{style:'margin:6px 0 8px'},'Main results')); panel.appendChild(rh);
+      var ol=h('ol',{}); p.results.forEach(function(r){ ol.appendChild(h('li',{}, r.short)); }); panel.appendChild(ol);
       connGroups(p.id).forEach(function(gr){
         if(!gr[1].length) return;
         panel.appendChild(h('h4',{}, gr[0]));
@@ -946,10 +880,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var pairs=h('div',{'class':'pairs'});
       [l.from,l.to].forEach(function(pid){ var pp=paperById[pid]; var b=h('button',{type:'button','class':'conn'},'Paper '+pid+' · '+pp.node); b.addEventListener('click',function(){ select({kind:'paper', id:pid}); }); pairs.appendChild(b); });
       panel.appendChild(pairs);
-      var ch=h('div',{'class':'ptop'}); ch.appendChild(h('h4',{style:'margin:10px 0 8px'}, l.contributions.length+' contribution'+(l.contributions.length>1?'s':''))); ch.appendChild(detailsToggle()); panel.appendChild(ch);
+      var ch=h('div',{'class':'ptop'}); ch.appendChild(h('h4',{style:'margin:10px 0 8px'}, l.contributions.length+' contribution'+(l.contributions.length>1?'s':''))); panel.appendChild(ch);
       if(filterOn()) panel.appendChild(h('p',{'class':'filter-note'},'Lines outside the selected types are faded.'));
       var ul=h('ul',{'class':'contribs'});
-      l.contributions.forEach(function(c){ ul.appendChild(h('li',{'class':contribPasses(c)?'':'faded'}, tagHTML(c.type)+(c.dir?'<span class="dir">'+c.dir+'</span>':'')+c.short+(c.detail?'<div class="detail">'+c.detail+'</div>':''))); });
+      l.contributions.forEach(function(c){ ul.appendChild(h('li',{'class':contribPasses(c)?'':'faded'}, tagHTML(c.type)+(c.dir?'<span class="dir">'+c.dir+'</span>':'')+c.short)); });
       panel.appendChild(ul);
     }
   }
@@ -993,13 +927,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     chipBox.innerHTML='';
     var all=h('button',{type:'button','aria-pressed':String(!filterOn())},'All types');
     all.addEventListener('click',function(){ S.filter={}; renderAll(); }); chipBox.appendChild(all);
-    TYPES.forEach(function(t){
+    USED_TYPES.forEach(function(t){
       var b=h('button',{type:'button','aria-pressed':String(!!S.filter[t.name]),title:t.def},'<i style="background:'+t.color+'"></i>'+t.name);
       b.addEventListener('click',function(){ S.filter[t.name]=!S.filter[t.name]; renderAll(); });
       chipBox.appendChild(b);
     });
   }
-  $('type-defs').innerHTML=TYPES.map(function(t){ return '<dt><i style="background:'+t.color+'"></i>'+t.name+'</dt><dd>'+t.def+'</dd>'; }).join('');
+  $('type-defs').innerHTML=USED_TYPES.map(function(t){ return '<dt><i style="background:'+t.color+'"></i>'+t.name+'</dt><dd>'+t.def+'</dd>'; }).join('');
   $('legend').innerHTML=Object.keys(STATUS).map(function(k){ return '<span><i style="background:'+STATUS[k].color+'"></i>'+STATUS[k].name+'</span>'; }).join('');
   [].forEach.call(document.querySelectorAll('[data-view]'),function(b){ b.addEventListener('click',function(){ S.view=b.getAttribute('data-view'); renderAll(); if(S.view==='diagram') layoutDiagram(false); }); });
   [].forEach.call(document.querySelectorAll('[data-layout]'),function(b){ b.addEventListener('click',function(){ if(S.layout===b.getAttribute('data-layout')) return; S.layout=b.getAttribute('data-layout'); renderAll(); layoutDiagram(true); }); });
