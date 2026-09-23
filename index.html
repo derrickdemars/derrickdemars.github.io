@@ -107,6 +107,20 @@ a:focus-visible, button:focus-visible{outline:2px solid #2a6fdb; outline-offset:
 @keyframes pzUndoFade{from{opacity:.8}to{opacity:0}}
 #pz-flash .pz-undo-flash{animation:pzUndoFlash .6s ease-out forwards; filter:drop-shadow(0 0 6px rgba(42,111,219,.8));}
 @media (prefers-reduced-motion: reduce){#pz-flash .pz-undo-flash{animation:pzUndoFade .6s linear forwards;}}
+/* Puzzle 4 extras: a 3-color solve gets a two-line "Solved in 3 colors!" overlay; a solve with more colors is
+   followed by a challenge card with a Try Again button (board stays dimmed and locked until the player acts). */
+#pz-win-word{display:flex; flex-direction:column; align-items:center; text-align:center;}
+#pz-win-word.pz-long{font-size:clamp(21px,5.6vw,30px);}
+#pz-win-sub{display:none; font-family:'IBM Plex Sans',sans-serif; font-size:.5em; font-weight:500; letter-spacing:0; color:#3a3935; margin-top:.25em;}
+#pz-win-word.pz-long #pz-win-sub{display:block;}
+#pz-card{display:none; width:max-content; max-width:80%; box-sizing:border-box; background:rgba(255,255,255,.95); border-radius:16px; padding:18px 20px; text-align:center; cursor:default; box-shadow:0 0 0 2px rgba(46,139,87,.35), 0 10px 28px rgba(20,22,28,.18); animation:pzHintIn .3s ease-out;}
+#pz-win.pz-cardmode{cursor:default;}
+#pz-win.pz-cardmode #pz-win-word{display:none;}
+#pz-win.pz-cardmode #pz-card{display:block;}
+.pz-card-h{font-family:var(--head-font, 'Spectral', serif); font-weight:600; font-size:clamp(20px,5.5vw,26px); line-height:1.15; color:#2e8b57; margin-bottom:6px;}
+#pz-card-msg{font-family:'IBM Plex Sans',sans-serif; font-size:clamp(13px,3.6vw,15px); line-height:1.45; color:#3a3935; margin:0 0 14px; max-width:26em;}
+#pz-tryagain{font-family:'IBM Plex Sans',sans-serif; font-size:14px; font-weight:600; color:#ffffff; background:#2a6fdb; border:1px solid #2a6fdb; border-radius:9px; padding:10px 22px; cursor:pointer;}
+@media (hover:none), (pointer:coarse){#pz-tryagain{min-height:44px;}}
 @media (prefers-reduced-motion: reduce){#pz-win-word{animation:none !important; box-shadow:0 0 0 2px rgba(46,139,87,.4), 0 0 18px rgba(46,139,87,.4);}}
 @keyframes haloFlash{0%{opacity:1}22%{opacity:0.1}44%{opacity:1}66%{opacity:0.1}100%{opacity:1}}
 @media (prefers-reduced-motion: reduce){.otto-sparkle{animation:none !important;} *{scroll-behavior:auto !important;}}
@@ -354,7 +368,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <svg id="pz-svg" viewBox="0 0 400 400" style="width:100%; height:auto; display:block; overflow:visible;" role="img" aria-label="Interactive graph coloring puzzle">
         <g id="pz-halo-e"></g><g id="pz-edges"></g><g id="pz-hits"></g><g id="pz-halo-n"></g><g id="pz-nodes"></g><g id="pz-nodehits"></g><g id="pz-flash"></g><g id="pz-hint"></g>
       </svg>
-      <div id="pz-win" aria-hidden="true"><span id="pz-win-word">Solved!</span></div>
+      <div id="pz-win"><div id="pz-win-word" aria-hidden="true"><span id="pz-win-main">Solved!</span><span id="pz-win-sub">The fewest possible.</span></div><div id="pz-card" role="dialog" aria-labelledby="pz-card-h" aria-describedby="pz-card-msg"><div class="pz-card-h" id="pz-card-h">Nice work!</div><div id="pz-card-msg"></div><button type="button" id="pz-tryagain">Try Again</button></div></div>
     </div>
     <div style="display:flex; flex-direction:column; gap:10px;">
       <!-- Puzzle buttons: the row spans exactly the board's width (left and right edges line up with it). Each button
@@ -628,8 +642,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     S[key]=prev; S.clicks++; S.hov=null; update();
     if(diff.length===1) flashItem(p===0?'v':'e', diff[0]);
   }
-  function showWin(){ var w=$('pz-win'); if(!w) return; clearTimeout(winTimer); winOn=true; w.classList.add('on'); winTimer=setTimeout(function(){ hideWin(); }, 1750); }
-  function hideWin(skipUpdate){ clearTimeout(winTimer); var w=$('pz-win'); if(!winOn) return; winOn=false; if(w) w.classList.remove('on'); if(!skipUpdate) update(); }
+  // opts.three: puzzle 4 solved in exactly 3 colors (two-line overlay). opts.card: puzzle 4 solved with that many
+  // colors (more than 3); after "Solved!" the challenge card replaces it and stays until the player acts.
+  var cardPending=0;
+  function showWin(opts){
+    opts=opts||{}; var w=$('pz-win'); if(!w) return; clearTimeout(winTimer); winOn=true;
+    var word=$('pz-win-word');
+    w.classList.remove('pz-cardmode'); word.classList.toggle('pz-long', !!opts.three);
+    $('pz-win-main').textContent = opts.three ? 'Solved in 3 colors!' : 'Solved!';
+    cardPending = opts.card || 0;
+    w.classList.add('on');
+    winTimer=setTimeout(function(){ if(cardPending) showCard(); else hideWin(); }, 1750);
+  }
+  function showCard(){
+    var w=$('pz-win'), n=cardPending; cardPending=0; clearTimeout(winTimer); if(!w || !winOn) return;
+    $('pz-card-msg').textContent='You used '+n+' colors, but this one can be done with just 3. Can you do it?';
+    w.classList.add('pz-cardmode');
+    var b=$('pz-tryagain'); try{ b.focus({preventScroll:true}); }catch(_){ }
+  }
+  function hideWin(skipUpdate){ clearTimeout(winTimer); cardPending=0; var w=$('pz-win'); if(!winOn) return; winOn=false; if(w) w.classList.remove('on'); if(!skipUpdate) update(); }
   // First-visit coach marks: puzzle 1 points at the top dot ("Tap here to play!" / "Click here to play!"), puzzle 2 at an outer
   // line ("Tap this edge to start!" / "Click this edge to start!"). After the first tap on that dot or line, the label says to tap again for a
   // different color; after the second tap it disappears.
@@ -814,13 +845,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     // Celebrate the moment a puzzle becomes solved: the status pops and glows, the dot pulses, the board turns green.
     // A player's own solve also shows the "Solved!" overlay for about 2 seconds.
     var solved=!!status.s, fx=[$('pz-status'), $('pz-dot'), root.querySelector('[data-board]')];
-    if(solved && !wasSolved){ fx.forEach(function(e){ if(!e) return; e.classList.remove('pz-solved'); void e.offsetWidth; e.classList.add('pz-solved'); }); if(userAct) showWin(); }
+    if(solved && !wasSolved){ fx.forEach(function(e){ if(!e) return; e.classList.remove('pz-solved'); void e.offsetWidth; e.classList.add('pz-solved'); }); if(userAct){ if(p===3) showWin(nu>3 ? {card:nu} : {three:true}); else showWin(); } }
     var na=$('pz-next-arrow'); if(na) na.classList.toggle('on', solved && p<3 && !winOn);
     else if(!solved){ fx.forEach(function(e){ if(e) e.classList.remove('pz-solved'); }); }
     wasSolved=solved;
   }
   function goto(p){ hideWin(true); clearTimers(); if(HINT[S.puzzle]) HINT[S.puzzle].done=true; S.puzzle=p; S.clicks=0; S.hov=null; S.solIdx=0; build(); update(); drawHint(); fitButtons(); }
-  $('pz-win').addEventListener('click',function(){ hideWin(); });
+  // Tapping the overlay: during "Solved!" it skips ahead (to the card on puzzle 4, otherwise it closes);
+  // once the card is showing, only Try Again or the buttons below the board close it.
+  $('pz-win').addEventListener('click',function(){ var w=$('pz-win'); if(w.classList.contains('pz-cardmode')) return; if(cardPending) showCard(); else hideWin(); });
+  $('pz-tryagain').addEventListener('click',function(e){ e.stopPropagation(); resetBoard(); });
   $('pz-undo').addEventListener('click',undo);
   // Ctrl+Z / Cmd+Z undoes while any part of the puzzle section is on screen (never elsewhere, never with Shift).
   document.addEventListener('keydown',function(e){
@@ -832,7 +866,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   });
   $('pz-next').addEventListener('click',function(){ goto((S.puzzle+1)%4); });
   $('pz-prev').addEventListener('click',function(){ goto(S.puzzle>0?S.puzzle-1:0); });
-  $('pz-reset').addEventListener('click',function(){ hideWin(true); clearTimers(); if(S[KEYS[S.puzzle]].some(function(x){ return x!=null; })) pushHist(); S[KEYS[S.puzzle]]=fill(LEN[S.puzzle]); S.clicks=0; S.hov=null; S.solIdx=0; update(); });
+  // Reset and Try Again: clear the board (recorded in Undo history) and zero the score.
+  function resetBoard(){ hideWin(true); clearTimers(); if(S[KEYS[S.puzzle]].some(function(x){ return x!=null; })) pushHist(); S[KEYS[S.puzzle]]=fill(LEN[S.puzzle]); S.clicks=0; S.hov=null; S.solIdx=0; update(); }
+  $('pz-reset').addEventListener('click',resetBoard);
   $('pz-solve').addEventListener('click',function(){
     hideWin(true); endHint(); clearTimers(); pushHist(); var p=S.puzzle, key=KEYS[p], sol=SOLS[p][S.solIdx||0];
     S[key]=fill(LEN[p]); S.solIdx = S.solIdx===0 ? 1 : 0; update();
@@ -840,10 +876,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     sol.forEach(function(c,q){ timers.push(setTimeout(function(){ var a=S[key].slice(); a[q]=c; S[key]=a; update(); }, t)); t+=120; });
   });
 
-  // Two columns only when the prose still gets a comfortable width (416px board track + gap).
+  // Two columns only when the prose still gets a comfortable width (at least 480px beside the 400px board + 26px gap).
   function layout(){
-    var w=root.getBoundingClientRect().width, split=w>=922;
-    root.style.gridTemplateColumns = split ? 'minmax(0,1fr) 416px' : 'minmax(0,1fr)';
+    var w=root.getBoundingClientRect().width, split=w>=906;
+    root.style.gridTemplateColumns = split ? 'minmax(0,1fr) 400px' : 'minmax(0,1fr)';
     root.style.gap = split ? '26px' : '18px';
     fitButtons();
   }
