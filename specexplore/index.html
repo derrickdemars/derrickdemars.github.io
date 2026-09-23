@@ -115,6 +115,13 @@ body.modal-open{overflow:hidden;}
 .detail{display:grid; grid-template-columns:minmax(0,420px) minmax(0,1fr); gap:30px; align-items:start;}
 .board{background:var(--inner); border:1px solid #e0ddd5; border-radius:14px; padding:10px;}
 .board-col{min-width:0;}
+/* Phones only: the count line, then the two buttons, sit just above the board (desktop and tablet keep them below). */
+@media (max-width:760px){
+  .board-col{display:flex; flex-direction:column;}
+  #cnav-slot{order:-1; display:flex; flex-direction:column;}
+  #cnav-slot .ccount{order:-1; margin:0 0 8px;}
+  #cnav-slot .cnav{margin:0 0 10px;}
+}
 .board svg{display:block; width:100%; height:auto;}
 .info h3{font-family:'Spectral',serif; font-size:min(22px, 5.2vw); font-weight:600; margin:0 0 8px; white-space:nowrap;}
 .info p{font-family:'Source Sans 3',sans-serif; font-size:15.5px; line-height:1.6; color:var(--text); margin:0 0 14px;}
@@ -178,7 +185,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <main>
     <section class="card">
       <h1>Spectra Explorer</h1>
-      <p class="lead">An <strong>edge-coloring</strong> of a graph assigns a color to each edge (each line joining two dots). This page studies edge-colorings of the complete graph <i>K<sub>n</sub></i>, in which every pair of the <i>n</i> vertices (dots) is joined by an edge. A <strong>mixed Ramsey problem</strong> fixes two forbidden subgraphs, <i>F</i> and <i>H</i>, and asks for edge-colorings with no <strong>monochromatic</strong> copy of <i>F</i> (every edge the same color) and no <strong>rainbow</strong> copy of <i>H</i> (every edge a different color). Too few colors force the first pattern; too many force the second. The <strong>mixed Ramsey spectrum</strong> MRS(<i>K<sub>n</sub></i>; <i>F</i>, <i>H</i>) is the set of all numbers of colors <i>k</i> for which some edge-coloring of <i>K<sub>n</sub></i> with exactly <i>k</i> colors avoids both, the object at the center of much of my research.</p>
+      <p class="lead">This page studies edge-colorings of the complete graph <i>K<sub>n</sub></i>, in which every pair of the <i>n</i> vertices (dots) is joined by an edge. A <strong>mixed Ramsey problem</strong> fixes two forbidden subgraphs, <i>F</i> and <i>H</i>, and asks for edge-colorings with no <strong>monochromatic</strong> copy of <i>F</i> (every edge the same color) and no <strong>rainbow</strong> copy of <i>H</i> (every edge a different color). Too few colors force the first pattern; too many force the second. The <strong>mixed Ramsey spectrum</strong> MRS(<i>K<sub>n</sub></i>; <i>F</i>, <i>H</i>) is the set of all numbers of colors <i>k</i> for which some edge-coloring of <i>K<sub>n</sub></i> with exactly <i>k</i> colors avoids both, the object at the center of much of my research.</p>
     </section>
     <section class="card" aria-labelledby="explore-h">
       <h2 class="explore-h" id="explore-h">To explore the spectra</h2>
