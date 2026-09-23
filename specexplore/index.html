@@ -256,7 +256,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var key=S.rule+'|'+S.n+'|'+S.k; if(CV.key===key) return;
     CV={key:key, idx:0};   // a new combination always starts at edge-coloring 1, the fixed example
   }
-  // Numerical order: "New edge-coloring" goes to the next number (after the last, back to 1);
+  // Numerical order: "Next Coloring" goes to the next number (after the last, back to 1);
   // "Previous" goes to the one before (grayed out at 1).
   function stepColoring(dir){
     var m=colorList().list.length; if(m<2) return;
@@ -387,7 +387,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var nav=h('div',{'class':'cnav'});
       var prev=h('button',{type:'button','class':'cbtn'},'\u2190 Previous'); prev.disabled = CV.idx===0;
       prev.addEventListener('click',function(){ stepColoring(-1); });
-      var next=h('button',{type:'button','class':'cbtn primary'},'New edge-coloring');
+      var next=h('button',{type:'button','class':'cbtn primary'},'Next Coloring \u2192');
       next.addEventListener('click',function(){ stepColoring(1); });
       nav.appendChild(prev); nav.appendChild(next); slot.appendChild(nav);
       var num=CV.idx+1;
