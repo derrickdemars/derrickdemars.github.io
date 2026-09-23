@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W3476JL2');</script>
+<!-- End Google Tag Manager -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5Z5SW66YG1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5Z5SW66YG1');
+</script>
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "ym49k6kw6h");
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paper Map · Derrick DeMars</title>
+<meta name="description" content="How Derrick DeMars's six papers on mixed Ramsey and anti-Ramsey problems build on one another: an interactive map of results, methods, and questions.">
+<!-- Not linked from the site yet: remove this noindex line when the page is ready to launch. -->
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico?v=4" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png?v=4">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=4">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png?v=4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=Source+Sans+3:ital,wght@0,400;0,600;1,400&amp;family=Source+Code+Pro:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+/* Same tokens as derrickdemars.com: page #E7E4DE, boxes #F4F2EE / #DDD9D1, inner #EFECE6, chips #E4E0D8,
+   labels #6F6B64, accent #2A6FDB; status colors match the home page's Publications section. */
+:root{--ink:#21221f; --text:#54514a; --label:#6f6b64; --accent:#2a6fdb; --box:#f4f2ee; --line:#ddd9d1; --inner:#efece6; --chip:#e4e0d8; --page:#e7e4de;
+  --pub:#2e8b57; --sub:#b07d22; --prep:#7a5aa8;}
+*{box-sizing:border-box;}
+html,body{margin:0; background:var(--page); color:var(--ink); font-family:'IBM Plex Sans',sans-serif;}
+a{color:var(--accent);}
+a:focus-visible, button:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:6px;}
+.wrap{max-width:1180px; margin:0 auto;}
+.bar{position:sticky; top:0; z-index:20; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:11px 44px; background:rgba(239,236,230,.93); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
+.bar a.name{font-family:'Spectral',serif; font-size:20px; font-weight:600; color:var(--ink); text-decoration:none;}
+.bar nav{display:flex; align-items:center; gap:24px; font-size:14px;}
+.bar nav a.nav{color:#5f5b54; text-decoration:none;}
+.bar nav a.nav:hover{color:var(--ink); text-decoration:underline; text-underline-offset:3px;}
+.bar nav span{color:var(--ink); font-weight:700;}
+main{padding:40px 44px 36px; display:flex; flex-direction:column; gap:22px;}
+.card{background:var(--box); border:1px solid var(--line); border-left:3px solid rgba(42,111,219,.5); border-radius:16px; padding:32px 34px;}
+h1{font-family:'Spectral',serif; font-weight:600; font-size:clamp(30px,5vw,44px); line-height:1.05; letter-spacing:-.02em; margin:0 0 14px;}
+.lead{font-family:'Source Sans 3',sans-serif; font-size:16px; line-height:1.64; color:var(--text); margin:0;}
+.lead strong{font-weight:600; color:#3a3935;}
+
+/* ---- controls ---- */
+.controls{display:flex; flex-wrap:wrap; gap:16px 28px; margin-top:22px; align-items:flex-end;}
+.group-label{font-size:13px; font-weight:600; color:var(--label); margin:0 0 7px;}
+.seg{display:inline-flex; border:1px solid #d6d1c8; border-radius:10px; overflow:hidden; background:#faf8f4;}
+.seg button{font-family:'IBM Plex Sans',sans-serif; font-size:13.5px; color:#3a3935; background:transparent; border:0; padding:9px 14px; cursor:pointer;}
+.seg button + button{border-left:1px solid #d6d1c8;}
+.seg button[aria-pressed="true"]{background:var(--accent); color:#fff;}
+.seg button:disabled{opacity:.45; cursor:default;}
+.filters{margin-top:18px;}
+.chips{display:flex; flex-wrap:wrap; gap:7px;}
+.chips button{display:inline-flex; align-items:center; gap:7px; font-family:'IBM Plex Sans',sans-serif; font-size:13px; color:#3a3935; background:#faf8f4; border:1px solid #d6d1c8; border-radius:999px; padding:6px 12px; cursor:pointer;}
+.chips button i{width:9px; height:9px; border-radius:50%; display:inline-block;}
+.chips button[aria-pressed="true"]{border-color:var(--ink); box-shadow:inset 0 0 0 1px var(--ink); background:#fff;}
+details.types{margin-top:10px; font-size:13.5px; color:var(--text);}
+details.types summary{cursor:pointer; color:var(--accent); font-weight:500;}
+details.types dl{display:grid; grid-template-columns:max-content 1fr; gap:4px 12px; margin:10px 0 0; font-family:'Source Sans 3',sans-serif; font-size:14.5px; line-height:1.45;}
+details.types dt{font-weight:600; color:#3a3935; display:flex; align-items:center; gap:7px;}
+details.types dt i{width:9px; height:9px; border-radius:50%; display:inline-block;}
+details.types dd{margin:0;}
+.legend{display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:16px; font-size:13px; color:var(--label);}
+.legend span{display:inline-flex; align-items:center; gap:6px;}
+.legend i{width:10px; height:10px; border-radius:3px; display:inline-block;}
+
+/* ---- workspace: map or list, plus the details panel ---- */
+.workspace{display:grid; grid-template-columns:minmax(0,1fr) 360px; gap:22px; align-items:start;}
+.viewcard{padding:18px 18px 14px;}
+.diagram-scroll{overflow:hidden;}
+.stage{position:relative;}
+.stage svg{position:absolute; left:0; top:0; overflow:visible;}
+.colhead{position:absolute; font-size:12px; font-weight:600; color:var(--label); white-space:nowrap; transition:opacity .3s ease;}
+.node{position:absolute; left:0; top:0; display:flex; flex-direction:column; justify-content:space-between; text-align:left;
+  background:#faf8f4; border:1px solid #d6d1c8; border-left:4px solid var(--c); border-radius:12px; padding:8px 10px 8px 11px; cursor:pointer;
+  font-family:'IBM Plex Sans',sans-serif; color:var(--ink); transition:opacity .2s ease, box-shadow .2s ease, border-color .2s ease;}
+.node .n-num{font-size:11.5px; font-weight:600; color:var(--label); letter-spacing:.02em;}
+.node .n-title{font-family:'Spectral',serif; font-size:14.5px; font-weight:600; line-height:1.18; overflow:hidden; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;}
+.node .n-status{font-size:11.5px; color:var(--label); display:flex; align-items:center; gap:5px;}
+.node .n-status i{width:7px; height:7px; border-radius:50%; background:var(--c); display:inline-block;}
+.node.dim{opacity:.28;}
+.node.hi{box-shadow:0 0 0 2px rgba(42,111,219,.35);}
+.node.sel{border-color:var(--accent); border-left-color:var(--c); box-shadow:0 0 0 2px var(--accent);}
+.edge path.line{fill:none; stroke:#8a857c; stroke-width:1.8; transition:stroke .2s ease;}
+.edge path.hit{fill:none; stroke:transparent; stroke-width:16; cursor:pointer; pointer-events:stroke;}
+.edge{transition:opacity .2s ease;}
+.edge.dim{opacity:.18;}
+.edge.hi path.line, .edge.sel path.line{stroke:var(--accent); stroke-width:2.4;}
+.edge.filtered{opacity:.1;}
+.echip{position:absolute; transform:translate(-50%,-50%); font-family:'IBM Plex Sans',sans-serif; font-size:12px; font-style:italic; color:#3a3935; background:#faf8f4; border:1px solid #d6d1c8; border-radius:999px; padding:2px 9px; white-space:nowrap; cursor:pointer; transition:opacity .2s ease;}
+.echip.dim{opacity:.25;}
+.echip.filtered{opacity:.15;}
+.echip.hi, .echip.sel{border-color:var(--accent); color:#1f4f9e;}
+.echip.rot{transform:translate(-50%,-50%) rotate(-90deg);}
+.stage.narrow .node .n-title{font-size:13px; -webkit-line-clamp:3;}
+.stage.narrow .node{padding:7px 8px 7px 9px;}
+.stage.narrow .echip{font-size:11px; padding:1px 7px;}
+.echip.sel{background:var(--accent); color:#fff;}
+.diagram-note{font-size:12.5px; color:var(--label); margin:8px 2px 0;}
+
+/* list view */
+.plist{display:flex; flex-direction:column; gap:14px;}
+.pcard{background:#faf8f4; border:1px solid #d6d1c8; border-left:4px solid var(--c); border-radius:12px; padding:14px 16px;}
+.pcard.sel{box-shadow:0 0 0 2px var(--accent);}
+.pcard .p-top{display:flex; flex-wrap:wrap; align-items:center; gap:8px; font-size:12px; color:var(--label); font-weight:600;}
+.pcard h3{margin:6px 0 6px; font-family:'Spectral',serif; font-size:18px; line-height:1.25; font-weight:600;}
+.pcard h3 button{all:unset; cursor:pointer; color:var(--ink);}
+.pcard h3 button:hover{color:#1f4f9e; text-decoration:underline; text-underline-offset:3px;}
+.pcard h3 button:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px;}
+.pcard p{font-family:'Source Sans 3',sans-serif; font-size:15px; line-height:1.55; color:var(--text); margin:0 0 8px;}
+.conns{display:flex; flex-wrap:wrap; align-items:center; gap:6px 8px; font-size:12.5px; margin-top:4px;}
+.conns b{font-weight:600; color:var(--label); margin-right:2px;}
+.conn{font-family:'IBM Plex Sans',sans-serif; font-size:12.5px; color:#3a3935; background:#fff; border:1px solid #d6d1c8; border-radius:999px; padding:4px 10px; cursor:pointer;}
+.conn em{color:#1f4f9e;}
+.conn.filtered{opacity:.3;}
+.conn.sel{border-color:var(--accent); box-shadow:inset 0 0 0 1px var(--accent);}
+
+/* status pills */
+.pill{display:inline-flex; align-items:center; gap:5px; font-size:11.5px; font-weight:600; color:var(--c); background:#fff; border:1px solid currentColor; border-radius:999px; padding:1px 8px;}
+.pill i{width:7px; height:7px; border-radius:50%; background:currentColor; display:inline-block;}
+
+/* details panel */
+.panel{position:sticky; top:70px; max-height:calc(100vh - 90px); overflow:auto; padding:22px 22px 20px;}
+.panel .empty{font-family:'Source Sans 3',sans-serif; font-size:15.5px; line-height:1.6; color:var(--text); margin:0;}
+.panel .empty strong{color:#3a3935;}
+.panel .ptop{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:8px;}
+.panel .ptop .kicker{font-size:12.5px; font-weight:600; color:var(--label); display:flex; align-items:center; gap:8px; flex-wrap:wrap;}
+.xbtn{flex-shrink:0; width:32px; height:32px; border-radius:50%; border:1px solid var(--line); background:#faf8f4; font-size:18px; line-height:1; cursor:pointer; color:#3a3935;}
+.panel h2{font-family:'Spectral',serif; font-size:21px; line-height:1.25; font-weight:600; margin:0 0 8px;}
+.panel .meta{font-size:13px; color:var(--label); line-height:1.5; margin:0 0 10px;}
+.panel .meta a{word-break:break-all;}
+.panel p.sum{font-family:'Source Sans 3',sans-serif; font-size:15px; line-height:1.55; color:var(--text); margin:0 0 14px;}
+.panel h4{font-size:13px; font-weight:600; color:var(--label); margin:16px 0 8px; letter-spacing:.01em;}
+.panel ol, .panel ul.contribs{margin:0; padding-left:18px; font-family:'Source Sans 3',sans-serif; font-size:15px; line-height:1.5; color:#3a3935;}
+.panel ul.contribs{list-style:none; padding-left:0;}
+.panel li{margin:0 0 10px;}
+.panel .detail{display:none; margin-top:6px; padding:9px 11px; background:var(--inner); border:1px solid var(--chip); border-radius:9px; font-size:14px; line-height:1.5; color:var(--text);}
+.panel.show-details .detail{display:block;}
+.panel code, .pcard code{font-family:'Source Code Pro',monospace; font-size:.86em; color:#5f5b54; background:#fff; border:1px solid var(--chip); border-radius:4px; padding:0 3px;}
+.tag{display:inline-flex; align-items:center; gap:5px; font-family:'IBM Plex Sans',sans-serif; font-size:11.5px; font-weight:600; color:#3a3935; margin-right:6px;}
+.tag i{width:8px; height:8px; border-radius:50%; display:inline-block;}
+.dir{font-family:'Source Code Pro',monospace; font-size:11.5px; color:var(--label); margin-right:6px;}
+.contribs li.faded{opacity:.35;}
+.toggle{font-family:'IBM Plex Sans',sans-serif; font-size:13px; font-weight:500; color:var(--accent); background:#fff; border:1px solid #cfdcf3; border-radius:8px; padding:6px 11px; cursor:pointer;}
+.pairs{display:flex; flex-wrap:wrap; gap:6px; margin:4px 0 6px;}
+.lab-chip{font-size:12.5px; font-style:italic; color:#fff; background:var(--accent); border-radius:999px; padding:2px 10px;}
+.filter-note{font-size:12.5px; color:var(--label); margin:0 0 8px;}
+
+.method{font-family:'Source Sans 3',sans-serif; font-size:14.5px; line-height:1.6; color:var(--text); margin:0;}
+.method h2{font-family:'Spectral',serif; font-size:17px; font-weight:600; color:#3a3935; margin:0 0 8px;}
+.errors{border:2px solid #d1495b; background:#fff5f5; color:#8a1f2d; border-radius:12px; padding:14px 18px; font-size:14px;}
+.errors ul{margin:6px 0 0; padding-left:18px;}
+
+footer{display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:16px; font-family:'Source Code Pro',monospace; font-size:12px; letter-spacing:.04em; color:#5f5b54; padding:16px 0 0; border-top:1px solid #e6e2da; margin-top:28px;}
+footer .f-right{text-align:right;}
+footer a.f-contact{color:var(--accent); text-decoration:none; border-bottom:1px solid rgba(42,111,219,.35);}
+footer a.f-top{display:inline-block; color:#5f5b54; text-decoration:none; border:1px solid var(--line); border-radius:999px; padding:9px 18px; background:var(--box); transition:transform .16s ease, box-shadow .25s ease;}
+footer a.f-top:hover{transform:scale(1.03); box-shadow:0 7px 20px rgba(20,22,28,0.16);}
+
+@media (prefers-reduced-motion: reduce){ .node,.edge,.echip,footer a.f-top{transition:none;} }
+@media (max-width:1023px){
+  .workspace{grid-template-columns:1fr;}
+  .panel{position:static; max-height:none;}
+}
+@media (max-width:760px){
+  .bar{padding:8px 16px;} .bar a.name{font-size:15px;} .bar nav{gap:16px;}
+  main{padding:12px 10px 22px; gap:16px;}
+  .card{padding:20px 16px; border-radius:12px;}
+  .viewcard{padding:12px 10px 10px;}
+  .lead{font-size:15px;}
+  footer{grid-template-columns:1fr; row-gap:12px; justify-items:center;}
+  footer > div{text-align:center !important;}
+  footer .f-mid{order:-1;}
+}
+@media (hover:none),(pointer:coarse){ .seg button,.chips button,.conn,.toggle{min-height:40px;} .xbtn{width:44px; height:44px;} }
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W3476JL2"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div class="wrap" id="top">
+  <div class="bar"><a class="name" href="https://derrickdemars.com/">Derrick DeMars</a><nav><a class="nav" href="https://derrickdemars.com/">Main</a><span aria-current="page">Paper Map</span></nav></div>
+  <main>
+    <div class="errors" id="data-errors" hidden></div>
+
+    <section class="card">
+      <h1>Paper Map</h1>
+      <p class="lead">How my papers build on one another. Each arrow points from a paper to a paper that builds on it, and each connection is broken down into the specific ways the two contribute to each other: <strong>results</strong> used or sharpened, <strong>methods</strong> reused, <strong>questions</strong> taken up, and more. Click a paper or an arrow to see the details, or filter the connections by type.</p>
+      <div class="controls">
+        <div><p class="group-label" id="view-label">View</p>
+          <div class="seg" role="group" aria-labelledby="view-label"><button type="button" data-view="diagram">Diagram</button><button type="button" data-view="list">List</button></div></div>
+        <div><p class="group-label" id="layout-label">Arrange papers by</p>
+          <div class="seg" role="group" aria-labelledby="layout-label"><button type="button" data-layout="dep">Dependency</button><button type="button" data-layout="time">Timeline</button></div></div>
+      </div>
+      <div class="filters">
+        <p class="group-label" id="filter-label">Show connections by type</p>
+        <div class="chips" id="chips" role="group" aria-labelledby="filter-label"></div>
+        <details class="types"><summary>What the types mean</summary><dl id="type-defs"></dl></details>
+      </div>
+      <div class="legend" id="legend"></div>
+    </section>
+
+    <div class="workspace">
+      <section class="card viewcard" id="view-card" aria-label="Paper map">
+        <div id="diagram-view">
+          <div class="diagram-scroll" id="diagram-scroll"><div class="stage" id="stage"></div></div>
+          <p class="diagram-note">Arrows point from a paper to the paper that builds on it, so later work sits lower; a double-headed arrow is a two-way connection.</p>
+        </div>
+        <div id="list-view" hidden><div class="plist" id="plist"></div></div>
+      </section>
+      <aside class="card panel" id="panel" aria-live="polite" tabindex="-1"></aside>
+    </div>
+
+    <section class="card method">
+      <h2>How this map was made</h2>
+      <p>Each connection comes from a close reading of the papers themselves: where one cites another, reuses a lemma or construction, generalizes a setting, sharpens a bound, or takes up an open question. Theorem and lemma names under “Show details” refer to the papers; for manuscripts that are not yet published they are the labels in the current draft.</p>
+    </section>
+
+    <footer>
+      <div class="f-left"><a class="f-contact" href="mailto:contact@derrickdemars.com">Contact Derrick DeMars</a></div>
+      <div class="f-mid"><a class="f-top" href="#top">&uarr; Back to top</a></div>
+      <div class="f-right">Last updated September 2026</div>
+    </footer>
+  </main>
+</div>
+<script>
+(function(){
+  /* =====================================================================
+     PAPER MAP CONTENT  (the only part you need to edit)
+     ---------------------------------------------------------------------
+     Source of truth: paper-map-notes.tex (in the project files).
+       * Paper details and main results come from Part III of the notes.
+       * Link contributions come from Part IV (details) and Part VI (short lines).
+     When the notes change, update the matching entry below.
+
+     HOW TO ADD A PAPER
+       1. Copy any entry in PAPERS, paste it at the end, and give it the
+          next number (7, 8, ...). Never renumber existing papers: links
+          and shareable URLs (#paper-4) use these numbers.
+       2. Fill in every field (see the field guide just above PAPERS).
+       3. Add one entry to LINKS for each paper it connects to.
+       4. Save and open the page. The diagram, list, filters, and timeline
+          place the new paper automatically. If anything in the data is
+          wrong (a typo in a type name, a link to a missing paper), a red
+          box at the top of the page lists the problem.
+
+     HOW TO ADD A LINK OR A CONTRIBUTION
+       * A link is one arrow. A contribution is one line in that arrow's
+         panel. Add as many contributions as the notes list for the pair.
+       * Use the allowed labels and types listed above LINKS.
+
+     WRITING MATH
+       Plain HTML, like the home page:
+         italics <i>K</i>   subscript <sub>n</sub>   superscript <sup>k</sup>
+         symbols  ≤ ≥ ≠ → ↔ ⇒ ⌈ ⌉ … − (minus) · ∈ ⊆ ≈ ℤ Θ χ
+         draft labels  <code>thm:main</code>
+       Text goes between backticks ` ` so apostrophes and quotes are safe.
+     ===================================================================== */
+
+  /* ---------------------------------------------------------------------
+     PAPERS. Fields:
+       id        paper number (as on the website)
+       node      short name shown in the diagram box (keep it under ~30 characters)
+       title     full title
+       authors   author list
+       venue     where it appeared, or "" if unpublished
+       year      publication or draft year (number)
+       status    "published" | "submitted" | "preparation"
+       doi       DOI without the https://doi.org/ part, or ""
+       summary   the summary shown on the home page
+       results   2 to 4 main results: { short: one line, detail: precise version }
+     --------------------------------------------------------------------- */
+  var PAPERS = [
+    {
+      id: 1,
+      node: `Two colors on every triangle`,
+      title: `A Mixed Ramsey Problem Revisited`,
+      authors: `Derrick DeMars and Peter Johnson`,
+      venue: `International Journal of Mathematics and Computer Science 16 (2021), no. 2, 723–727`,
+      year: 2021,
+      status: "published",
+      doi: "",
+      summary: `Studies edge-colorings of complete graphs in which every triangle uses exactly two colors, and determines the maximum number of colors such a coloring can have.`,
+      results: [
+        { short: `The full spectrum: a coloring of <i>K<sub>n</sub></i> in which every triangle uses exactly two colors can use exactly <i>k</i> colors precisely when <i>g</i>(<i>n</i>) ≤ <i>k</i> ≤ <i>n</i> − 1, where <i>g</i>(<i>n</i>) is ⌈2 log<sub>5</sub> <i>n</i>⌉ or ⌈2 log<sub>5</sub> <i>n</i>⌉ + 1.`,
+          detail: `Theorem 8. In later notation, MRS(<i>K<sub>n</sub></i>; <i>K</i><sub>3</sub>, <i>K</i><sub>3</sub>) = {<i>g</i>(<i>n</i>), …, <i>n</i> − 1}. The minimum <i>g</i>(<i>n</i>) is the <i>k</i> with <i>f</i>(<i>k</i> − 1) &lt; <i>n</i> ≤ <i>f</i>(<i>k</i>), where <i>f</i>(<i>k</i>) = 5<sup><i>k</i>/2</sup> for even <i>k</i> and 2·5<sup>(<i>k</i>−1)/2</sup> for odd <i>k</i> is the Chung–Graham function (Theorem 1, Lemma 2). For example, <i>g</i>(19) = 4 and <i>g</i>(51) = 6.` },
+        { short: `The maximum is <i>n</i> − 1: <i>n</i> colors always force a rainbow cycle, and <i>n</i> − 1 colors never have to.`,
+          detail: `Lemma 4 and Corollary 5: <i>n</i> colors on a connected <i>n</i>-vertex graph force a rainbow cycle. Theorem 6 (from Hoffman, Horn, Johnson, and Owens, with a short proof supplied): split a spanning tree at an edge, color the two sides with disjoint palettes, and give the cut one new color. Corollary 7: the maximum is <i>n</i> − 1.` },
+        { short: `Every count in between is reached by adding a vertex joined in one new color.`,
+          detail: `Proof of Theorem 8: a good (<i>k</i> − 1)-coloring of <i>K</i><sub><i>n</i>−1</sub> plus a new vertex whose edges all receive a new <i>k</i>th color is a good <i>k</i>-coloring of <i>K<sub>n</sub></i>.` }
+      ]
+    },
+    {
+      id: 2,
+      node: `Odd cycles vs. all cycles`,
+      title: `Forbidding monochromatic odd cycles and rainbow cycles in complete graphs`,
+      authors: `Derrick DeMars and Peter Johnson`,
+      venue: `Congressus Numerantium 237 (2026), 113–120`,
+      year: 2026,
+      status: "published",
+      doi: "10.61091/cn237-08",
+      summary: `Extends the mixed Ramsey spectrum to families of graphs, determining it completely where earlier work reached only partial ranges. Uses Gallai’s theorem, balanced binary trees, and a result of Magnant and Nowbandegani.`,
+      results: [
+        { short: `MRS(<i>K<sub>n</sub></i>; odd cycles, cycles) = {⌈log<sub>2</sub> <i>n</i>⌉, …, <i>n</i> − 1} for every <i>n</i> ≥ 2.`,
+          detail: `Main corollary (<code>cor: mainresult</code>), from <code>thm:binary-tree</code> (every value is attained) and <code>thm:minMRS</code> (nothing smaller works). The maximum <i>n</i> − 1 comes from Hoffman et al.: <i>n</i> colors force a rainbow cycle, and their (<i>n</i> − 1)-colorings also forbid monochromatic odd cycles.` },
+        { short: `Balanced binary trees give a coloring for every count in the range.`,
+          detail: `<code>thm:binary-tree</code>: split the vertex set in half repeatedly; the edges between two sibling sets get a color unused on higher levels; then merge colors on the same level one at a time, down to one color per level. Each color class is a union of complete bipartite graphs (no monochromatic odd cycle), and every cycle crosses the sibling cut of its lowest common ancestor at least twice (no rainbow cycle).` },
+        { short: `The minimum ⌈log<sub>2</sub> <i>n</i>⌉ comes from Gallai’s theorem with at most four parts.`,
+          detail: `<code>thm:minMRS</code>: a Gallai partition has at most five parts because <i>R</i>(3, 3) = 6, and five is ruled out because <i>K</i><sub>5</sub> needs three colors (<code>lem:minMRS-K_5=3</code>). Three parts reduce to two (an argument from Magnant and Nowbandegani); with two or four parts, the largest part has at least <i>n</i>/2 or <i>n</i>/4 vertices. Corollary: gr<sub><i>k</i></sub>(odd cycles : cycles) ≤ 2<sup><i>k</i></sup> + 1 for <i>k</i> ≥ 3.` }
+      ]
+    },
+    {
+      id: 3,
+      node: `Four-cycles: an alternate proof`,
+      title: `An alternate proof: forbidding monochromatic and rainbow four-cycles in complete graphs`,
+      authors: `Derrick DeMars`,
+      venue: "",
+      year: 2026,
+      status: "submitted",
+      doi: "",
+      summary: `Gives an elementary, self-contained alternate proof of the Axenovich–Choi theorem on monochromatic and rainbow four-cycles, highlighting intermediate results of independent interest.`,
+      results: [
+        { short: `An elementary proof that max MRS(<i>K<sub>n</sub></i>; <i>C</i><sub>4</sub>, <i>C</i><sub>4</sub>) = <i>n</i> for <i>n</i> ≥ 4.`,
+          detail: `<code>thm:(n+1)notinVSPECn&gt;6</code>: <i>n</i> + <i>i</i> ∉ MRS(<i>K<sub>n</sub></i>; <i>C</i><sub>4</sub>, <i>C</i><sub>4</sub>) for every <i>i</i> ≥ 1. The proof forces a rainbow structure and studies its largest rainbow cycle: two triangles joined by a path (the <i>B<sub>t</sub></i> lemmas) and long rainbow cycles (chord-dropping; a rainbow <i>C</i><sub>7</sub> forces a monochromatic <i>C</i><sub>4</sub> on its chords) all produce a monochromatic or rainbow <i>C</i><sub>4</sub>.` },
+        { short: `A chain construction: {<i>n</i> + 2 − <i>m</i>, …, <i>n</i> + 1 − <i>m</i> + (<i>m</i>−1 choose 2)} ⊆ MRS(<i>K<sub>n</sub></i>; <i>C<sub>m</sub></i>, <i>C<sub>m</sub></i>) for 3 ≤ <i>m</i> ≤ <i>n</i>.`,
+          detail: `<code>thm:hypomax-andsmallrange-forMRSof-C_m</code>: color a base <i>K</i><sub><i>m</i>−1</sub> with <i>b</i> colors, join <i>v<sub>m</sub></i> in a new color, then join each later vertex to everything before it in a fresh color. The two edges of any <i>m</i>-cycle at its highest vertex match (so it is not rainbow), and some earlier edge differs (so it is not monochromatic). With the monotonicity step, {<i>n</i> − 2, <i>n</i> − 1, <i>n</i>} ⊆ MRS(<i>K<sub>n</sub></i>; <i>C</i><sub>4</sub>, <i>C</i><sub>4</sub>).` },
+        { short: `<i>n</i> + 1 colors force a rainbow connected subgraph with one more edge than vertices.`,
+          detail: `<code>lem:two-rainbow-cycles-and-connected</code> and <code>prop:EndOfLemTrain</code>: such a subgraph contains two edge-disjoint rainbow cycles or a rainbow Θ-graph, which drives the upper bound.` }
+      ]
+    },
+    {
+      id: 4,
+      node: `Bipartite collapse`,
+      title: `Gallai colorings with no monochromatic <i>K</i><sub>3</sub> or <i>C</i><sub>5</sub>: bipartite collapse, exact values, and extremal colorings`,
+      authors: `Derrick DeMars`,
+      venue: "",
+      year: 2026,
+      status: "submitted",
+      doi: "",
+      summary: `Proves a bipartite collapse: within any Gallai coloring, forbidding the two shortest monochromatic odd cycles forces every color class to be bipartite, recovering the classical bipartite-cover threshold. Classifies the five extremal colorings at three colors, a distinction finer than any monochromatic degree sequence can detect.`,
+      results: [
+        { short: `Bipartite collapse: in a Gallai coloring, no monochromatic <i>K</i><sub>3</sub> and no monochromatic <i>C</i><sub>5</sub> force every color class to be bipartite.`,
+          detail: `Theorem A (<code>thm:collapse</code>). Consequently an edge-coloring of a complete graph has no rainbow <i>K</i><sub>3</sub>, no monochromatic <i>K</i><sub>3</sub>, and no monochromatic <i>C</i><sub>5</sub> if and only if it has no rainbow cycle and no monochromatic odd cycle: the same class of colorings (<code>cor:edge--coloring-collapse</code>). Proof by induction on a Gallai partition with at most four parts; each color class is a blow-up of a bipartite reduced class plus smaller classes.` },
+        { short: `Exact value <i>f</i>(<i>k</i>) = 2<sup><i>k</i></sup>: the largest complete graph with such a <i>k</i>-coloring has 2<sup><i>k</i></sup> vertices.`,
+          detail: `Theorem B (<code>thm:gen</code>). Lower bound: the lexicographic coloring of {0, 1}<sup><i>k</i></sup>, <i>c</i>(<i>u</i>, <i>v</i>) = max{<i>i</i> : <i>u<sub>i</sub></i> ≠ <i>v<sub>i</sub></i>}. Upper bound, proved twice: a Gallai-partition recursion, and Theorem A plus the bipartite-cover bound (if <i>E</i>(<i>K<sub>n</sub></i>) is covered by <i>m</i> bipartite graphs then <i>n</i> ≤ 2<sup><i>m</i></sup>).` },
+        { short: `Exactly five extremal 3-colorings of <i>K</i><sub>8</sub>, two of which share every monochromatic degree sequence.`,
+          detail: `Theorem C (<code>thm:main</code>, <code>prop:enum</code>): <i>f</i>(3) = 8 and, up to edge-color isomorphism, there are five extremal colorings; one has no monochromatic <i>K</i><sub>4,4</sub>. Built from the <i>C</i><sub>4</sub>- and <i>P</i><sub>3</sub>-gadgets on <i>K</i><sub>4</sub> (<code>lem:K4enum</code>) and the uniqueness of the pentagon–pentagram on <i>K</i><sub>5</sub> (<code>lem:K5uniq</code>).` },
+        { short: `The spectrum {⌈log<sub>2</sub> <i>n</i>⌉, …, <i>n</i> − 1} holds for every family between {<i>K</i><sub>3</sub>, <i>C</i><sub>5</sub>} and all odd cycles.`,
+          detail: `<code>cor:mrs-family-collapse</code>: whenever {<i>K</i><sub>3</sub>, <i>C</i><sub>5</sub>} ⊆ ℱ ⊆ odd cycles and {<i>K</i><sub>3</sub>} ⊆ ℋ ⊆ cycles, MRS(<i>K<sub>n</sub></i>; ℱ, ℋ) = {⌈log<sub>2</sub> <i>n</i>⌉, …, <i>n</i> − 1}.` }
+      ]
+    },
+    {
+      id: 5,
+      node: `Mixed = anti-Ramsey for cycles`,
+      title: `Exact Mixed and Anti-Ramsey Numbers for Cycles`,
+      authors: `Derrick DeMars`,
+      venue: "",
+      year: 2026,
+      status: "preparation",
+      doi: "",
+      summary: `Shows that forbidding a monochromatic subgraph alongside a rainbow cycle costs no colors, sharpening a 2010 theorem of Axenovich and Choi from asymptotic to exact. Uses a Hoffman block coloring, an elementary edge-cut lemma, and the anti-Ramsey values of Montellano-Ballesteros and Neumann-Lara.`,
+      results: [
+        { short: `max MRS(<i>K<sub>n</sub></i>; <i>F</i>, <i>C<sub>k</sub></i>) = ar(<i>K<sub>n</sub></i>, <i>C<sub>k</sub></i>) for every <i>n</i> ≥ <i>k</i>, whenever <i>F</i> is non-bipartite or bipartite with <i>s</i>(<i>F</i>) ≥ <i>k</i>.`,
+          detail: `Main theorem (<code>thm:main</code>). With <i>n</i> = (<i>k</i> − 1)<i>q</i> + <i>r</i>, the value is ((<i>k</i>−1 choose 2) + 1)<i>q</i> − 1 when <i>r</i> = 0, and ((<i>k</i>−1 choose 2) + 1)<i>q</i> + (<i>r</i> choose 2) otherwise; it does not depend on <i>F</i>. This sharpens the first branch of Axenovich and Choi (2010): no <i>O</i>(1) error term and no threshold on <i>n</i>.` },
+        { short: `The Hoffman block coloring uses exactly ar(<i>K<sub>n</sub></i>, <i>C<sub>k</sub></i>) colors.`,
+          detail: `<code>cons</code>, <code>prop:count</code>, <code>prop:match</code>: blocks of <i>k</i> − 1 vertices with private colors inside, and one source color from each block to every later block. No rainbow <i>C<sub>k</sub></i>, by an edge-cut lemma (a cycle crosses any cut at least twice); no monochromatic <i>F</i>, because each color class lies in a complete bipartite graph with one side of size at most <i>k</i> − 1. <code>prop:bip-fail</code> shows the condition <i>s</i>(<i>F</i>) ≥ <i>k</i> is sharp for this construction.` },
+        { short: `Extends to families of forbidden graphs and to sets of forbidden rainbow cycle lengths.`,
+          detail: `<code>cor:family</code> and <code>cor:cycle-set</code>: the answer is governed by the shortest forbidden rainbow length <i>g</i>, with ar(<i>K<sub>n</sub></i>, 𝒞<sub>ℒ</sub>) = ar(<i>K<sub>n</sub></i>, <i>C<sub>g</sub></i>). Worked table at <i>k</i> = 5 (<code>cor:diagonal-c5</code>): 7<i>q</i> − 1, 7<i>q</i>, 7<i>q</i> + 1, 7<i>q</i> + 3 for <i>n</i> = 4<i>q</i> + <i>r</i>.` }
+      ]
+    },
+    {
+      id: 6,
+      node: `(<i>C</i><sub>5</sub>, <i>C</i><sub>5</sub>)-good colorings`,
+      title: `Forbidding a rainbow <i>C</i><sub>5</sub> forces doubling: (<i>C</i><sub>5</sub>, <i>C</i><sub>5</sub>)-good colorings of complete graphs`,
+      authors: `Derrick DeMars`,
+      venue: "",
+      year: 2026,
+      status: "preparation",
+      doi: "",
+      summary: `Initiates the study of colorings with no monochromatic and no rainbow five-cycle, where no Gallai-type structure theorem is available. Uses a substitution framework, a seven-vertex Gallai block, and a binary-tree covering argument to prove a rate-two ceiling and the local rigidity of the Bondy–Erdős doubling.`,
+      results: [
+        { short: `A new good family: an explicit ℤ<sub>7</sub>-indexed block gives <i>f</i>(<i>k</i> + 3) ≥ 7<i>f</i>(<i>k</i>).`,
+          detail: `Theorem A (<code>thmA</code>): substitute good colorings into a Gallai 3-coloring of <i>K</i><sub>7</sub> that is a block. Consequences: closed-form lower bounds on <i>f</i>, and minR(<i>K<sub>n</sub></i>; <i>C</i><sub>5</sub>, <i>C</i><sub>5</sub>) ≤ 3 log<sub>7</sub> <i>n</i> + <i>O</i>(1). The first known good family not arising from Bondy–Erdős doubling.` },
+        { short: `Rate ceiling: every <i>t</i>-color Gallai coloring with no monochromatic <i>C</i><sub>3</sub> or <i>C</i><sub>5</sub> has at most 2<sup><i>t</i></sup> vertices.`,
+          detail: `Theorem B (<code>thm:rate2</code>), by a Gallai partition with at most four parts and Kraft-inequality ranks. So the best substitution rate is exactly 2, attained by the doubling, and towers from doubling-size seeds never exceed 2<sup><i>k</i>+1</sup> vertices on <i>k</i> colors.` },
+        { short: `Local rigidity: for <i>k</i> ≥ 4 the Bondy–Erdős doubling cannot be extended by a single vertex.`,
+          detail: `Theorem C (<code>thm:rigidity</code>), via forbidden color multisets, a <i>V</i><sub>2</sub>-forcing lemma, and a covering problem on a complete binary tree. Separately, the Day–Johnson colorings (which beat rate 2 without the rainbow condition) contain a rainbow <i>C</i><sub>5</sub>, so they are not good. Conjecture: <i>f</i>(<i>k</i>) = 2<sup><i>k</i>+1</sup>.` }
+      ]
+    }
+  ];
+
+  /* ---------------------------------------------------------------------
+     LINKS. One entry per arrow. Fields:
+       from, to   paper numbers; the arrow points from the paper that
+                  contributes to the paper that builds on it
+       both       true for a two-way connection (arrowheads at both ends)
+       label      one of: extends, sharpens, uses methods of, new proof of,
+                  continues, recovers, motivates, complements
+       contributions  one entry per line in the arrow's panel:
+         type     one of: Result, Method, Question, Framework, Scope, Contrast
+         dir      which way this contribution runs, e.g. "2→4" or "4→2" or "4↔6"
+         short    one plain-language line (Part VI of the notes)
+         detail   the full note (Part IV of the notes), shown under "Show details"
+     --------------------------------------------------------------------- */
+  var LINKS = [
+    {
+      from: 1, to: 2, label: "extends",
+      contributions: [
+        { type: "Framework", dir: "1→2",
+          short: `Same kind of question: fix <i>n</i> and find every number of colors that works.`,
+          detail: `Both papers determine a full spectrum. Paper 1 phrases it as a Voloshin spectrum VSPEC′(<i>K<sub>n</sub></i>; <i>X</i>, <i>Y</i>) with the rainbow-forbidden graph first; Paper 2 adopts the Axenovich–Iverson MRS(<i>K<sub>n</sub></i>; ℱ, ℋ) with the monochromatic-forbidden graph first, and extends it to families. The order of the arguments is reversed between the two.` },
+        { type: "Scope", dir: "1→2",
+          short: `One forbidden graph each way (<i>K</i><sub>3</sub>) becomes whole families: all odd cycles and all cycles.`,
+          detail: `Paper 1 forbids a monochromatic <i>K</i><sub>3</sub> and a rainbow <i>K</i><sub>3</sub>. Paper 2 forbids every monochromatic odd cycle and every rainbow cycle. Since no rainbow <i>K</i><sub>3</sub> already means no rainbow cycle (the chord lemma), the rainbow side describes the same colorings (Gallai colorings); the real extension is on the monochromatic side, from <i>K</i><sub>3</sub> to every odd cycle.` },
+        { type: "Result", dir: "1→2",
+          short: `Same maximum, <i>n</i> − 1, from the same rainbow-cycle bound.`,
+          detail: `With <i>n</i> colors a rainbow cycle is forced (Paper 1, Lemma 4 and Corollary 5), and <i>n</i> − 1 colors are attainable by a rainbow-cycle-forbidding coloring (Paper 1, Theorem 6; Paper 2, <code>thm:owens_n-1</code>, both from Hoffman et al.). Paper 2 adds that these colorings automatically have bipartite color classes, so they also avoid monochromatic odd cycles.` },
+        { type: "Contrast", dir: "1→2",
+          short: `The minimum falls from about 2 log<sub>5</sub> <i>n</i> to ⌈log<sub>2</sub> <i>n</i>⌉ once every odd cycle is forbidden.`,
+          detail: `Paper 1: <i>g</i>(<i>n</i>) ∈ {⌈2 log<sub>5</sub> <i>n</i>⌉, ⌈2 log<sub>5</sub> <i>n</i>⌉ + 1} (Lemma 2, from Chung–Graham). Paper 2: ⌈log<sub>2</sub> <i>n</i>⌉ (<code>thm:minMRS</code>). Paper 4 later explains the value 2<sup><i>k</i></sup> as the bipartite-cover threshold.` },
+        { type: "Method", dir: "1→2",
+          short: `The range is filled by merging colors on a binary tree instead of joining a vertex with a new color.`,
+          detail: `Paper 1 (proof of Theorem 8) joins a new vertex to a good coloring of <i>K</i><sub><i>n</i>−1</sub> using one new color. Paper 2 (<code>thm:binary-tree</code>) starts from the (<i>n</i> − 1)-color tree coloring and merges colors on the same level one at a time. Both change the count one color at a time; the tree version also keeps every color class bipartite.` }
+      ]
+    },
+    {
+      from: 2, to: 4, label: "sharpens",
+      contributions: [
+        { type: "Result", dir: "2→4",
+          short: `Same spectrum from far weaker hypotheses: {<i>K</i><sub>3</sub>, <i>C</i><sub>5</sub>} and {<i>K</i><sub>3</sub>} replace all odd cycles and all cycles.`,
+          detail: `Paper 4, <code>cor:mrs-family-collapse</code>: for every family between the two, MRS(<i>K<sub>n</sub></i>; ℱ, ℋ) = {⌈log<sub>2</sub> <i>n</i>⌉, …, <i>n</i> − 1}. The proof takes the full-family spectrum from Paper 2 for one inclusion and uses Theorem A (bipartite collapse) for the other. In Paper 4’s words, the theorem of Paper 2 “holds with its infinite lists of prohibitions replaced by {<i>K</i><sub>3</sub>, <i>C</i><sub>5</sub>} and {<i>K</i><sub>3</sub>}.”` },
+        { type: "Method", dir: "2→4",
+          short: `Paper 2’s binary-tree coloring is the lexicographic coloring of {0, 1}<sup><i>k</i></sup>.`,
+          detail: `Paper 4, <code>sec:genlb</code>: the coloring <i>c</i>(<i>u</i>, <i>v</i>) = max{<i>i</i> : <i>u<sub>i</sub></i> ≠ <i>v<sub>i</sub></i>} “is the balanced-binary-tree edge-coloring of” Paper 2. Paper 4 gives it a closed formula and its classical attribution (Erdős–Graham).` },
+        { type: "Method", dir: "2→4",
+          short: `The same Gallai-partition induction with at most four parts.`,
+          detail: `Paper 2, <code>thm:minMRS</code>: at most four parts, then a size count on the largest part. Paper 4, <code>sec:genub</code>: at most four parts (five would lift the pentagon–pentagram to a monochromatic <i>C</i><sub>5</sub>), then |<i>V<sub>i</sub></i>| ≤ <i>f</i>(<i>k</i> − 1) or <i>f</i>(<i>k</i> − 2) according to how many reduced colors leave the part. Same skeleton, with Paper 4 tracking the reduced colors more finely.` },
+        { type: "Result", dir: "2→4",
+          short: `Paper 4 uses Paper 2’s fact: no rainbow cycle exactly when no rainbow triangle.`,
+          detail: `Paper 4, <code>sec:program</code>, cites Paper 2 for the fact that a coloring of <i>K<sub>n</sub></i> is rainbow-cycle-forbidding precisely when it is Gallai, and uses it to identify Paper 2’s rainbow hypothesis with its own Gallai hypothesis.` },
+        { type: "Contrast", dir: "4→2",
+          short: `Paper 4 explains the value 2<sup><i>k</i></sup>: these colorings are exactly covers by <i>k</i> bipartite graphs.`,
+          detail: `By Theorem A the colorings behind Paper 2’s spectrum are exactly covers of <i>E</i>(<i>K<sub>n</sub></i>) by <i>k</i> bipartite graphs, which exist precisely when <i>n</i> ≤ 2<sup><i>k</i></sup> (<code>lem:bipcover</code>, the Graham–Pollak addressing bound). Paper 2 proves the number; Paper 4 says what the number is.` },
+        { type: "Scope", dir: "4→2",
+          short: `The spectrum is the same for every family in between, not just the two endpoints.`,
+          detail: `Paper 4 widens Paper 2 in the other direction: every pair of intermediate families gives the same spectrum as the full families.` }
+      ]
+    },
+    {
+      from: 2, to: 6, label: "uses methods of",
+      contributions: [
+        { type: "Method", dir: "2→6",
+          short: `Binary trees: a construction device in Paper 2, the object proved rigid in Paper 6.`,
+          detail: `Paper 2 builds its colorings from a balanced binary tree of vertex subsets (<code>thm:binary-tree</code>). Paper 6’s Bondy–Erdős doubling (<code>def:BE</code>) is a complete binary tree of nested bipartitions, and its rigidity proof (Theorem C) reduces to a covering problem on that tree: no assignment of {0, 1, ⋆} to the internal nodes covers every leaf (<code>lem:tree-covering</code>).` },
+        { type: "Method", dir: "2→6",
+          short: `The same parity argument: a cycle crosses a cut at least twice, so it is not rainbow.`,
+          detail: `Paper 2: a cycle whose vertices first split at a tree vertex uses that sibling cut at least twice. Paper 6, <code>lem:least-color</code>: a cycle in the doubling uses its least color an even number of times. Paper 4’s proof for the lexicographic coloring is the same argument.` },
+        { type: "Contrast", dir: "2→6",
+          short: `All odd cycles give growth 2<sup><i>k</i></sup>; forbidding only <i>C</i><sub>5</sub> conjecturally allows 2<sup><i>k</i>+1</sup>.`,
+          detail: `Paper 6, “Relation to the all-odd-cycles problem”: Paper 2’s minimum ⌈log<sub>2</sub> <i>n</i>⌉ means the all-odd-cycles requirement “collapses the per-color growth from 2<sup><i>k</i>+1</sup> to 2<sup><i>k</i></sup>.” Forbidding only <i>C</i><sub>5</sub> conjecturally allows 2<sup><i>k</i>+1</sup> (<code>conj:revised</code>).` },
+        { type: "Method", dir: "2→6",
+          short: `Gallai-partition induction, refined with the Kraft inequality.`,
+          detail: `Paper 2, <code>thm:minMRS</code>: at most four parts and a size count. Paper 6, <code>thm:rate2</code>: at most four parts, then ranks <i>d<sub>i</sub></i> with Σ 2<sup>−<i>d<sub>i</sub></i></sup> ≤ 1 and |<i>V<sub>i</sub></i>| ≤ 2<sup><i>t</i>−<i>d<sub>i</sub></i></sup>, the bookkeeping that substitution needs.` },
+        { type: "Scope", dir: "2→6",
+          short: `From whole families to the single length (<i>C</i><sub>5</sub>, <i>C</i><sub>5</sub>), and from a Gallai setting to one with no structure theorem.`,
+          detail: `Paper 2’s rainbow family contains <i>K</i><sub>3</sub>, so Gallai’s theorem applies. A rainbow-<i>C</i><sub>5</sub> ban gives no partition theorem, which is why Paper 6 must build structure by substitution.` }
+      ]
+    },
+    {
+      from: 4, to: 6, label: "continues",
+      contributions: [
+        { type: "Result", dir: "4→6",
+          short: `Paper 4’s bipartite collapse implies Paper 6’s rate ceiling <i>N</i> ≤ 2<sup><i>t</i></sup>.`,
+          detail: `Paper 6, <code>rem:masterlemma</code>: the companion paper “establishes the stronger structural fact that, under the same hypotheses, every color class is bipartite; the bound <i>N</i> ≤ 2<sup><i>t</i></sup> is then immediate from a bipartite cover, so Theorem <code>thm:rate2</code> also follows from that result.”` },
+        { type: "Method", dir: "6→4",
+          short: `Paper 6 gives an independent proof of the same bound.`,
+          detail: `Paper 6 proves <code>thm:rate2</code> self-containedly with ranks and the Kraft inequality, “because the color-count step is exactly the bookkeeping needed for substitution”: a second proof of Paper 4’s <code>cor:actual-colors</code>.` },
+        { type: "Result", dir: "4↔6",
+          short: `Two faces of one 2<sup><i>t</i></sup> threshold: a monochromatic conclusion and a rainbow one.`,
+          detail: `Paper 4, <code>cor:short-odd-forcing</code>: every Gallai <i>k</i>-coloring of <i>K</i><sub>2<sup><i>k</i></sup>+1</sub> contains a monochromatic <i>K</i><sub>3</sub> or <i>C</i><sub>5</sub>. Paper 6, <code>cor:no-block</code>: a coloring whose classes have odd girth greater than 5, on more than 2<sup><i>t</i></sup> vertices, contains a rainbow cycle of length at most 5. One keeps the rainbow condition and concludes monochromatic; the other keeps the monochromatic condition and concludes rainbow.` },
+        { type: "Scope", dir: "4→6",
+          short: `The “two shortest odd cycles” hypothesis carried to substitution blocks and to every <i>C</i><sub>2ℓ+1</sub>.`,
+          detail: `No monochromatic <i>C</i><sub>3</sub> or <i>C</i><sub>5</sub> is Paper 4’s subject and Paper 6’s block condition (B1). Paper 6 extends the ceiling to <i>C</i><sub>2ℓ+1</sub>-blocks for every ℓ ≥ 2 (<code>cor:odd-block-rate</code>) and to generalized doubling, which Paper 4 does not treat.` },
+        { type: "Method", dir: "4→6",
+          short: `Gallai partition with at most four parts, five ruled out by the pentagon–pentagram.`,
+          detail: `Paper 4, <code>lem:K5uniq</code> and <code>sec:genub</code>; Paper 6, <code>cl:rate2-2</code> (a five-vertex graph with no <i>C</i><sub>3</sub> or <i>C</i><sub>5</sub> is bipartite).` },
+        { type: "Contrast", dir: "6→4",
+          short: `Which hypothesis does what: the rainbow condition gives the partition, the short cycles give bipartiteness.`,
+          detail: `Paper 4 (Theorem A): inside Gallai colorings, the two monochromatic prohibitions alone force bipartite classes. Paper 6 (<code>thm:dj</code>, <code>cor:separation</code>): without a rainbow condition, the Day–Johnson colorings exceed rate 2, so the rainbow constraint is what enforces doubling in the mixed problem. Neither hypothesis works alone.` }
+      ]
+    },
+    {
+      from: 1, to: 3, label: "motivates",
+      contributions: [
+        { type: "Question", dir: "1→3",
+          short: `Paper 3 asks the <i>C</i><sub>4</sub> and <i>C<sub>m</sub></i> versions of Paper 1’s question.`,
+          detail: `Paper 3, introduction, after restating Paper 1’s theorem: “This led us to inquire about MRS(<i>K<sub>n</sub></i>; <i>C</i><sub>4</sub>, <i>C</i><sub>4</sub>) and more generally MRS(<i>K<sub>n</sub></i>; <i>C<sub>m</sub></i>, <i>C<sub>m</sub></i>).”` },
+        { type: "Method", dir: "1→3",
+          short: `Paper 1’s rainbow-cycle lemma, strengthened to two rainbow cycles or a Θ-graph.`,
+          detail: `Paper 1, Lemma 4: <i>n</i> colors on a connected <i>n</i>-vertex graph force a rainbow cycle. Paper 3, <code>lem:two-rainbow-cycles-and-connected</code> and <code>prop:EndOfLemTrain</code>: <i>n</i> + 1 colors force a rainbow connected subgraph with |<i>E</i>| = |<i>V</i>| + 1, hence two edge-disjoint rainbow cycles or a rainbow Θ-graph. This drives Paper 3’s upper bound.` },
+        { type: "Method", dir: "1→3",
+          short: `The same vertex-join step, reused to prove monotonicity.`,
+          detail: `Joining a vertex with a new color (Paper 1, proof of Theorem 8) is exactly Paper 3’s proof of the Axenovich–Choi monotonicity proposition: if <i>k</i> is in the spectrum for <i>K<sub>n</sub></i>, then <i>k</i> + 1 is in the spectrum for <i>K</i><sub><i>n</i>+1</sub>.` },
+        { type: "Result", dir: "1→3",
+          short: `Paper 1’s theorem is the <i>m</i> = 3 background for Paper 3’s <i>C<sub>m</sub></i> program.`,
+          detail: `Paper 3 restates Chung–Graham’s theorem and Paper 1’s main theorem as the triangle case of MRS(<i>K<sub>n</sub></i>; <i>C<sub>m</sub></i>, <i>C<sub>m</sub></i>); its chain construction at <i>m</i> = 3 gives <i>n</i> − 1, consistent with Paper 1’s maximum.` }
+      ]
+    },
+    {
+      from: 1, to: 4, label: "complements",
+      contributions: [
+        { type: "Scope", dir: "1→4",
+          short: `Paper 4’s hypotheses are Paper 1’s plus “no monochromatic <i>C</i><sub>5</sub>.”`,
+          detail: `Paper 1: no monochromatic <i>K</i><sub>3</sub> and no rainbow <i>K</i><sub>3</sub> (every triangle two colors). Paper 4’s colorings (<code>def:f</code>) add no monochromatic <i>C</i><sub>5</sub>, and Theorem A shows that one extra condition makes the class equal to Paper 2’s.` },
+        { type: "Contrast", dir: "1→4",
+          short: `Dropping that condition returns Paper 1’s problem: growth (√5)<sup><i>k</i></sup> instead of 2<sup><i>k</i></sup>.`,
+          detail: `Paper 4, “Sharpness of the hypotheses”: dropping the monochromatic-<i>C</i><sub>5</sub> condition lifts the maximum from 2<sup><i>k</i></sup> to the Chung–Graham value of order (√5)<sup><i>k</i></sup>, 10 at <i>k</i> = 3. That is Paper 1’s setting, whose minimum is about 2 log<sub>5</sub> <i>n</i> rather than ⌈log<sub>2</sub> <i>n</i>⌉.` },
+        { type: "Method", dir: "1→4",
+          short: `The pentagon–pentagram lies behind both.`,
+          detail: `The 2-coloring of <i>K</i><sub>5</sub> with both color classes a <i>C</i><sub>5</sub> is the extremal object behind Chung–Graham’s <i>f</i>(2) = 5, used in Paper 1, and it is Paper 4’s <code>lem:K5uniq</code>: the unique 2-coloring of <i>K</i><sub>5</sub> with no monochromatic <i>K</i><sub>3</sub>. Forbidding a monochromatic <i>C</i><sub>5</sub> is exactly what removes it.` }
+      ]
+    },
+    {
+      from: 1, to: 5, label: "recovers",
+      contributions: [
+        { type: "Result", dir: "1→5",
+          short: `Paper 5 at <i>k</i> = 3 and <i>F</i> = <i>K</i><sub>3</sub> recovers Paper 1’s maximum <i>n</i> − 1.`,
+          detail: `Paper 5’s <code>thm:main</code> (or <code>cor:clique</code>) with <i>k</i> = 3 and <i>F</i> = <i>K</i><sub>3</sub> gives max MRS(<i>K<sub>n</sub></i>; <i>K</i><sub>3</sub>, <i>C</i><sub>3</sub>) = ar(<i>K<sub>n</sub></i>, <i>C</i><sub>3</sub>) = <i>n</i> − 1: Paper 1’s Corollary 7, now a special case of a theorem covering every non-bipartite <i>F</i>.` },
+        { type: "Framework", dir: "1→5",
+          short: `Paper 5 cites Paper 1 as prior result (i) and focuses on the maximum side of such spectra.`,
+          detail: `Paper 5’s “What is new” paragraph lists MRS(<i>K<sub>n</sub></i>; <i>K</i><sub>3</sub>, <i>K</i><sub>3</sub>) = {<i>g</i>(<i>n</i>), …, <i>n</i> − 1} as prior result (i), citing Paper 1.` },
+        { type: "Contrast", dir: "1→5",
+          short: `Paper 1 supplies the minimum, which Paper 5’s method cannot reach.`,
+          detail: `Paper 1 determines both ends of its spectrum; Paper 5’s edge-cut method is one-sided (it proves a maximum by matching a construction against ar) and says nothing about minima. For (<i>K</i><sub>3</sub>, <i>K</i><sub>3</sub>) the two papers are complementary halves of one spectrum.` }
+      ]
+    },
+    {
+      from: 2, to: 5, label: "recovers",
+      contributions: [
+        { type: "Result", dir: "2→5",
+          short: `All odd cycles against all cycle lengths gives back Paper 2’s maximum, <i>n</i> − 1.`,
+          detail: `Paper 5’s <code>cor:family</code> (each odd cycle has χ = 3) with <code>cor:cycle-set</code> (all rainbow lengths, governed by the shortest, 3) gives max MRS(<i>K<sub>n</sub></i>; odd cycles, cycles) = ar(<i>K<sub>n</sub></i>, <i>C</i><sub>3</sub>) = <i>n</i> − 1, the maximum in Paper 2. Paper 5’s remark after <code>cor:family</code> cites Paper 2 for exactly this value.` },
+        { type: "Contrast", dir: "2→5",
+          short: `A single rainbow <i>C<sub>k</sub></i> allows far more colors than forbidding all cycles.`,
+          detail: `Paper 5, introduction (c): its family extension “differs from” Paper 2, “which has the family of all cycles as the rainbow constraint and consequently a smaller maximum”: about ((<i>k</i> − 2)/2)<i>n</i> colors instead of <i>n</i> − 1.` },
+        { type: "Framework", dir: "2→5",
+          short: `Forbidden families of graphs reappear in Paper 5’s corollaries.`,
+          detail: `Paper 2’s families ℱ and ℋ are the setting of Paper 5’s <code>cor:family</code> and <code>cor:cycle-set</code>.` }
+      ]
+    },
+    {
+      from: 3, to: 5, label: "sharpens",
+      contributions: [
+        { type: "Result", dir: "3→5",
+          short: `Paper 3’s chain reaches about <i>n</i> + 2 colors for <i>C</i><sub>5</sub>; Paper 5 reaches the optimum, about 7<i>n</i>/4.`,
+          detail: `Paper 5, introduction (a): its main theorem “strengthens the dissertation’s lower-bound construction significantly: for <i>F</i> = <i>C</i><sub>5</sub>, <i>n</i> large, the dissertation’s construction reaches roughly <i>n</i> + 2 colors while the present result establishes the optimum max MRS(<i>K<sub>n</sub></i>; <i>C</i><sub>5</sub>, <i>C</i><sub>5</sub>) = ar(<i>K<sub>n</sub></i>, <i>C</i><sub>5</sub>) ≈ 7<i>n</i>/4.” The dissertation construction is Paper 3’s chain.` },
+        { type: "Question", dir: "3→5",
+          short: `Paper 3’s <i>C</i><sub>4</sub> result is the solved base case of Paper 5’s open bipartite branch.`,
+          detail: `Paper 5’s first open problem (<code>q:bipartite</code>) concerns bipartite <i>F</i> with <i>s</i>(<i>F</i>) &lt; <i>k</i>. <i>C</i><sub>4</sub> has <i>s</i> = 2, so Paper 3’s max MRS(<i>K<sub>n</sub></i>; <i>C</i><sub>4</sub>, <i>C</i><sub>4</sub>) = <i>n</i> is the solved <i>k</i> = 4 instance; Paper 5 notes it “was re-proved in DeMars’s dissertation via a different construction.”` },
+        { type: "Method", dir: "3→5",
+          short: `Chain construction versus Hoffman block construction.`,
+          detail: `Paper 3’s chain joins vertices one at a time with fresh colors and gives about <i>n</i> colors; Paper 5’s Hoffman blocks use private colors inside blocks of size <i>k</i> − 1 and give about ((<i>k</i> − 2)/2)<i>n</i>. Paper 5 names the distinction explicitly.` },
+        { type: "Contrast", dir: "3→5",
+          short: `A long case analysis versus no case analysis at all.`,
+          detail: `Paper 3 proves its maximum by forcing rainbow substructures and a detailed case analysis. Paper 5 shows that on its branch the trivial bound max ≤ ar is already tight. Paper 3’s case (<i>C</i><sub>4</sub>, bipartite, <i>s</i> = 2 &lt; <i>k</i>) is exactly where Paper 5’s construction fails (<code>prop:bip-fail</code>), so the two methods do not overlap.` }
+      ]
+    },
+    {
+      from: 5, to: 6, both: true, label: "complements",
+      contributions: [
+        { type: "Contrast", dir: "5↔6",
+          short: `Paper 5 gives the maximum of MRS(<i>K<sub>n</sub></i>; <i>C</i><sub>5</sub>, <i>C</i><sub>5</sub>); Paper 6 studies its minimum.`,
+          detail: `Paper 5, <code>cor:diagonal-c5</code>: max MRS(<i>K<sub>n</sub></i>; <i>C</i><sub>5</sub>, <i>C</i><sub>5</sub>) = ar(<i>K<sub>n</sub></i>, <i>C</i><sub>5</sub>) exactly (7<i>q</i> − 1, 7<i>q</i>, 7<i>q</i> + 1, 7<i>q</i> + 3 for <i>n</i> = 4<i>q</i> + <i>r</i>). Paper 6: minR(<i>K<sub>n</sub></i>; <i>C</i><sub>5</sub>, <i>C</i><sub>5</sub>) ≤ 3 log<sub>7</sub> <i>n</i> + <i>O</i>(1) (<code>thm:upperbound</code>), conjecturally the inverse of <i>f</i>(<i>k</i>) = 2<sup><i>k</i>+1</sup>.` },
+        { type: "Result", dir: "5↔6",
+          short: `The spectrum is an interval, so together the two papers describe it entirely.`,
+          detail: `By Axenovich and Choi (2011), MRS(<i>K<sub>n</sub></i>; <i>C</i><sub>5</sub>, <i>C</i><sub>5</sub>) is an interval for every <i>n</i>, so it equals {minR(<i>K<sub>n</sub></i>; <i>C</i><sub>5</sub>, <i>C</i><sub>5</sub>), …, ar(<i>K<sub>n</sub></i>, <i>C</i><sub>5</sub>)} for <i>n</i> ≥ 5: the maximum settled by Paper 5, the minimum bounded by Paper 6.` }
+      ]
+    }
+  ];
+
+
+  /* =====================================================================
+     SETTINGS (rarely need changing)
+     ===================================================================== */
+  // Contribution types: name, color of its dot, and the one-line definition shown on the page.
+  var TYPES = [
+    { name: "Result",    color: "#2a6fdb", def: "A theorem or exact value of one paper is used, extended, sharpened, or recovered by the other." },
+    { name: "Method",    color: "#1f9aa8", def: "A construction, lemma, or proof technique is reused, adapted, or proved a new way." },
+    { name: "Question",  color: "#b07d22", def: "A problem posed or left open in one paper is taken up, answered, or contains the other as a solved case." },
+    { name: "Framework", color: "#7a5aa8", def: "Notation, a definition, or a setting introduced in one paper is adopted by the other." },
+    { name: "Scope",     color: "#2e8b57", def: "The same problem on a wider, narrower, or different family of graphs." },
+    { name: "Contrast",  color: "#d1495b", def: "A result that limits, complements, or explains a boundary of the other." }
+  ];
+  var LABELS = ["extends","sharpens","uses methods of","new proof of","continues","recovers","motivates","complements"];
+  var STATUS = {
+    published:   { name: "Published",      color: "#2e8b57" },
+    submitted:   { name: "Submitted",      color: "#b07d22" },
+    preparation: { name: "In preparation", color: "#7a5aa8" }
+  };
+
+  /* =====================================================================
+     EVERYTHING BELOW IS THE PAGE MACHINERY; content edits happen above.
+     ===================================================================== */
+  var $ = function(id){ return document.getElementById(id); };
+  function h(tag, attrs, html){ var e=document.createElement(tag); if(attrs) for(var a in attrs){ if(attrs[a]!=null) e.setAttribute(a, attrs[a]); } if(html!=null) e.innerHTML=html; return e; }
+  var NS='http://www.w3.org/2000/svg';
+  function sv(tag, attrs){ var e=document.createElementNS(NS,tag); for(var a in attrs) e.setAttribute(a, attrs[a]); return e; }
+  var typeByName={}; TYPES.forEach(function(t){ typeByName[t.name]=t; });
+  var paperById={}; PAPERS.forEach(function(p){ paperById[p.id]=p; });
+  function linkId(l){ return l.from+'-'+l.to; }
+  var linkById={}; LINKS.forEach(function(l){ linkById[linkId(l)]=l; });
+  function plain(html){ var d=document.createElement('div'); d.innerHTML=html; return d.textContent; }
+
+  // ---- data checks: problems are listed in a red box at the top of the page ----
+  (function validate(){
+    var errs=[], seen={};
+    PAPERS.forEach(function(p,i){
+      if(typeof p.id!=='number') errs.push('Paper entry '+(i+1)+' has no number (id).');
+      if(seen[p.id]) errs.push('Paper '+p.id+' is listed twice.'); seen[p.id]=1;
+      if(!STATUS[p.status]) errs.push('Paper '+p.id+': status "'+p.status+'" should be published, submitted, or preparation.');
+      ['node','title','authors','summary'].forEach(function(f){ if(!p[f]) errs.push('Paper '+p.id+' is missing its '+f+'.'); });
+      if(!p.results || !p.results.length) errs.push('Paper '+p.id+' has no main results.');
+    });
+    var lseen={};
+    LINKS.forEach(function(l,i){
+      var name='Link '+l.from+'→'+l.to;
+      if(!paperById[l.from] || !paperById[l.to]) errs.push(name+' points to a paper number that is not in PAPERS.');
+      if(l.from===l.to) errs.push(name+' connects a paper to itself.');
+      var key=Math.min(l.from,l.to)+'-'+Math.max(l.from,l.to);
+      if(lseen[key]) errs.push(name+' duplicates another link between the same two papers; put all contributions in one link.'); lseen[key]=1;
+      if(LABELS.indexOf(l.label)<0) errs.push(name+': label "'+l.label+'" is not one of: '+LABELS.join(', ')+'.');
+      (l.contributions||[]).forEach(function(c,j){
+        if(!typeByName[c.type]) errs.push(name+', contribution '+(j+1)+': type "'+c.type+'" should be one of: '+TYPES.map(function(t){return t.name;}).join(', ')+'.');
+        if(!c.short) errs.push(name+', contribution '+(j+1)+' has no short line.');
+      });
+      if(!l.contributions || !l.contributions.length) errs.push(name+' has no contributions.');
+    });
+    if(errs.length){ var box=$('data-errors'); box.hidden=false; box.innerHTML='<strong>The paper map data has '+errs.length+' problem'+(errs.length>1?'s':'')+':</strong><ul>'+errs.map(function(e){return '<li>'+e+'</li>';}).join('')+'</ul>'; }
+  })();
+
+  // ---- state ----
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var S = { view:'diagram', layout:'dep', filter:{}, sel:null, hover:null, details:false };
+  function filterOn(){ for(var k in S.filter) if(S.filter[k]) return true; return false; }
+  function linkPasses(l){ if(!filterOn()) return true; return l.contributions.some(function(c){ return S.filter[c.type]; }); }
+  function contribPasses(c){ return !filterOn() || !!S.filter[c.type]; }
+  function neighbors(id){ var s={}; s[id]=1; LINKS.forEach(function(l){ if(l.from===id) s[l.to]=1; if(l.to===id) s[l.from]=1; }); return s; }
+  function incident(id){ return LINKS.filter(function(l){ return l.from===id || l.to===id; }); }
+
+  /* ---------------- layouts ----------------
+     The map runs top to bottom. Dependency: a paper's level is one more than the deepest paper it
+     builds on (two-way links are ignored for placement). Timeline: levels by status and year. */
+  function levelsDep(){
+    var lev={}; PAPERS.forEach(function(p){ lev[p.id]=0; });
+    for(var pass=0; pass<PAPERS.length; pass++){
+      LINKS.forEach(function(l){ if(!l.both && paperById[l.from] && paperById[l.to] && lev[l.to] < lev[l.from]+1) lev[l.to]=lev[l.from]+1; });
+    }
+    var n=0; PAPERS.forEach(function(p){ n=Math.max(n,lev[p.id]+1); });
+    var rows=[]; for(var i=0;i<n;i++) rows.push([]);
+    PAPERS.slice().sort(function(a,b){return a.id-b.id;}).forEach(function(p){ rows[lev[p.id]].push(p.id); });
+    return { rows:rows, heads:null };
+  }
+  function levelsTime(){
+    var order=[], groups={};
+    function key(p){ return p.status==='published' ? 'P'+p.year : (p.status==='submitted' ? 'S' : 'W'); }
+    PAPERS.slice().sort(function(a,b){ var ka=key(a), kb=key(b); return ka<kb?-1:ka>kb?1:a.id-b.id; }).forEach(function(p){
+      var k=key(p); if(!groups[k]){ groups[k]=[]; order.push(k); } groups[k].push(p.id);
+    });
+    return { rows: order.map(function(k){ return groups[k]; }),
+             heads: order.map(function(k){ return k[0]==='P' ? 'Published · '+k.slice(1) : (k==='S' ? 'Submitted' : 'In preparation'); }) };
+  }
+
+  // Positions. Each level is a row; papers in a row sit side by side, centered. Long arrows (skipping a
+  // level) curve around the left or right side, so the side margins grow with the number of such arrows.
+  function geometry(layout, W){
+    var L = layout==='time' ? levelsTime() : levelsDep();
+    var narrow = W<560, levOf={}, relOf={}, maxPer=1;
+    L.rows.forEach(function(r,li){ maxPer=Math.max(maxPer,r.length); r.forEach(function(id,j){ levOf[id]=li; relOf[id]=j-(r.length-1)/2; }); });
+    var lanes=laneMap(levOf, relOf), laneGap=narrow?12:22, side={L:0,R:0};
+    for(var k in lanes){ side[lanes[k].side]=Math.max(side[lanes[k].side], lanes[k].lane+1); }
+    var edgeRoom=Math.max(side.L,side.R);
+    var mx = narrow ? 24+edgeRoom*laneGap : Math.max(70, 34+edgeRoom*laneGap+46);
+    var gapX = narrow ? 16 : 40;
+    var nodeW = Math.max(96, Math.min(220, (W-2*mx-gapX*(maxPer-1))/maxPer));
+    var nodeH = nodeW<150 ? 112 : 96, rowGap = narrow ? 74 : 84, padTop = L.heads ? 34 : 18, padBot = 18, arcDip = 46;
+    var lastRow = L.rows.length-1;
+    if(LINKS.some(function(l){ return levOf[l.from]===lastRow && levOf[l.to]===lastRow; })) padBot = arcDip+10;
+    var pos={};
+    L.rows.forEach(function(r,li){ r.forEach(function(id){ pos[id]={ x: W/2 + relOf[id]*(nodeW+gapX) - nodeW/2, y: padTop + li*(nodeH+rowGap) }; }); });
+    var H = padTop + L.rows.length*nodeH + (L.rows.length-1)*rowGap + padBot;
+    var rowTop = L.rows.map(function(r,li){ return padTop + li*(nodeH+rowGap); });
+    var heads = L.heads ? L.heads.map(function(t,li){ var r=L.rows[li], left=Math.min.apply(null,r.map(function(id){return pos[id].x;})); return { text:t, x:left, y:padTop+li*(nodeH+rowGap)-19 }; }) : [];
+    return { pos:pos, levOf:levOf, relOf:relOf, rows:L.rows, rowTop:rowTop, rowGap:rowGap, arcDip:arcDip, W:W, H:H, nodeW:nodeW, nodeH:nodeH, heads:heads, lanes:lanes, laneGap:laneGap, narrow:narrow };
+  }
+  // Arrows that skip a level curve around the side nearer their two papers; ones that overlap in levels on
+  // the same side get separate lanes so they don't sit on top of each other.
+  function laneMap(levOf, relOf){
+    var out={}, used=[];
+    LINKS.filter(function(l){ return paperById[l.from] && paperById[l.to] && Math.abs(levOf[l.to]-levOf[l.from])>1; })
+      .sort(function(a,b){ return Math.abs(levOf[a.to]-levOf[a.from]) - Math.abs(levOf[b.to]-levOf[b.from]) || a.from-b.from || a.to-b.to; })
+      .forEach(function(l){
+        var lo=Math.min(levOf[l.from],levOf[l.to]), hi=Math.max(levOf[l.from],levOf[l.to]);
+        var sd=(relOf[l.from]+relOf[l.to])/2<=0?'L':'R', lane=0;
+        used.forEach(function(u){ if(u.side===sd && u.lo<hi && lo<u.hi) lane=Math.max(lane,u.lane+1); });
+        used.push({side:sd,lo:lo,hi:hi,lane:lane}); out[linkId(l)]={side:sd,lane:lane};
+      });
+    return out;
+  }
+
+  /* ---------------- diagram ---------------- */
+  var stage=$('stage'), svg, gEdges, nodeEls={}, edgeEls={}, chipEls={}, headEls=[], cur=null, anim=0;
+  function buildDiagram(){
+    stage.innerHTML='';
+    svg=sv('svg',{'aria-hidden':'true'});
+    var defs=sv('defs',{});
+    [['ah','#8a857c'],['ah-hi','#2a6fdb']].forEach(function(m){
+      var mk=sv('marker',{id:m[0], viewBox:'0 0 10 10', refX:'9', refY:'5', markerWidth:'7', markerHeight:'7', orient:'auto-start-reverse'});
+      mk.appendChild(sv('path',{d:'M0,0 L10,5 L0,10 z', fill:m[1]})); defs.appendChild(mk);
+    });
+    svg.appendChild(defs); gEdges=sv('g',{}); svg.appendChild(gEdges); stage.appendChild(svg);
+    LINKS.forEach(function(l){
+      if(!paperById[l.from] || !paperById[l.to]) return;
+      var id=linkId(l), g=sv('g',{'class':'edge'}), hit=sv('path',{'class':'hit'}), line=sv('path',{'class':'line'});
+      g.appendChild(line); g.appendChild(hit); gEdges.appendChild(g);
+      hit.addEventListener('click',function(){ select({kind:'link', id:id}); });
+      var chip=h('button',{type:'button','class':'echip','aria-label':'Paper '+l.from+(l.both?' and ':' to ')+'Paper '+l.to+': '+l.label}, l.label);
+      chip.addEventListener('click',function(){ select({kind:'link', id:id}); });
+      stage.appendChild(chip);
+      edgeEls[id]={g:g, line:line, hit:hit, l:l}; chipEls[id]=chip;
+    });
+    PAPERS.forEach(function(p){
+      var st=STATUS[p.status]||STATUS.preparation;
+      var b=h('button',{type:'button','class':'node','aria-label':'Paper '+p.id+': '+plain(p.title)},
+        '<span class="n-num">PAPER '+p.id+'</span><span class="n-title">'+p.node+'</span><span class="n-status"><i></i>'+st.name+(p.status==='published'?' · '+p.year:'')+'</span>');
+      b.style.setProperty('--c', st.color);
+      b.addEventListener('click',function(){ select({kind:'paper', id:p.id}); });
+      b.addEventListener('pointerenter',function(e){ if(e.pointerType==='mouse'){ S.hover=p.id; paintStates(); } });
+      b.addEventListener('pointerleave',function(e){ if(e.pointerType==='mouse'){ S.hover=null; paintStates(); } });
+      b.addEventListener('focus',function(){ S.hover=p.id; paintStates(); });
+      b.addEventListener('blur',function(){ S.hover=null; paintStates(); });
+      stage.appendChild(b); nodeEls[p.id]=b;
+    });
+  }
+
+  // Edge shapes: papers on neighboring levels are joined by an S-curve from the bottom of one to the top of
+  // the other; papers on the same level by a straight line; longer arrows bow around the side (see laneMap).
+  // Each shape also lists candidate spots for its label (as points along the curve, t from 0 to 1).
+  function cubic(P,t){ var u=1-t; return { x:u*u*u*P[0].x+3*u*u*t*P[1].x+3*u*t*t*P[2].x+t*t*t*P[3].x, y:u*u*u*P[0].y+3*u*u*t*P[1].y+3*u*t*t*P[2].y+t*t*t*P[3].y }; }
+  function tForY(P,y){ // the curve's height changes monotonically along these arrows, so bisection finds t
+    var lo=0, hi=1, up=P[3].y>P[0].y;
+    for(var k=0;k<32;k++){ var m=(lo+hi)/2, py=cubic(P,m).y; if((py<y)===up) lo=m; else hi=m; }
+    return (lo+hi)/2;
+  }
+  function edgeGeom(g, l){
+    var A=g.pos[l.from], B=g.pos[l.to], w=g.nodeW, hh=g.nodeH, la=g.levOf[l.from], lb=g.levOf[l.to], P, cands;
+    if(la===lb){ // same row: an arc under the row, from one box's bottom to the other's
+      var leftFirst=A.x<B.x, sx=leftFirst?A.x+w*.72:A.x+w*.28, tx=leftFirst?B.x+w*.28:B.x+w*.72, y=A.y+hh, dip=g.arcDip;
+      P=[{x:sx,y:y},{x:sx,y:y+dip},{x:tx,y:y+dip},{x:tx,y:y}];
+      return { d:'M'+sx+','+y+' C'+sx+','+(y+dip)+' '+tx+','+(y+dip)+' '+tx+','+y, P:P, cands:[{t:.5},{t:.42},{t:.58}] };
+    }
+    var down=la<lb, span=Math.abs(lb-la);
+    if(span===1){
+      var sx1=A.x+w/2, sy1=down?A.y+hh:A.y, tx1=B.x+w/2, ty1=down?B.y:B.y+hh, dy=ty1-sy1;
+      P=[{x:sx1,y:sy1},{x:sx1,y:sy1+dy*.5},{x:tx1,y:ty1-dy*.5},{x:tx1,y:ty1}];
+      return { d:'M'+sx1+','+sy1+' C'+sx1+','+(sy1+dy*.5)+' '+tx1+','+(ty1-dy*.5)+' '+tx1+','+ty1, P:P,
+               cands:[.5,.38,.62,.3,.7,.24,.76].map(function(t){ return {t:t}; }) };
+    }
+    var ln=g.lanes[linkId(l)]||{side:'L',lane:0}, left=ln.side==='L';
+    var sx2=left?A.x:A.x+w, tx2=left?B.x:B.x+w, sy2=A.y+hh/2, ty2=B.y+hh/2;
+    var lo=Math.min(la,lb), hi=Math.max(la,lb), xs=[sx2,tx2];
+    for(var r=lo; r<=hi; r++) (g.rows[r]||[]).forEach(function(id){ xs.push(left?g.pos[id].x:g.pos[id].x+w); });
+    var limit = left ? Math.min.apply(null,xs)-18-ln.lane*g.laneGap : Math.max.apply(null,xs)+18+ln.lane*g.laneGap;
+    var xc=(limit-.125*(sx2+tx2))/.75;
+    P=[{x:sx2,y:sy2},{x:xc,y:sy2},{x:xc,y:ty2},{x:tx2,y:ty2}];
+    // Preferred label spots: where the curve crosses the gaps between rows (level, no paper beside it);
+    // fallback: turned sideways along the outer part of the curve.
+    var gaps=[]; for(var rr=lo; rr<hi; rr++){ var gy=g.rowTop[rr]+g.nodeH+g.rowGap/2; gaps.push({t:tForY(P,gy)}); }
+    gaps.sort(function(a,b){ return Math.abs(a.t-.5)-Math.abs(b.t-.5); });
+    cands=gaps.concat([.5,.4,.6,.3,.7].map(function(t){ return {t:t, rot:true}; }));
+    return { d:'M'+sx2+','+sy2+' C'+xc+','+sy2+' '+xc+','+ty2+' '+tx2+','+ty2, P:P, cands:cands };
+  }
+  function place(g){
+    stage.style.width='100%'; stage.style.height=g.H+'px'; stage.classList.toggle('narrow', g.nodeW<150);
+    svg.setAttribute('width',g.W); svg.setAttribute('height',g.H);
+    var rects=[];
+    PAPERS.forEach(function(p){ var e=nodeEls[p.id], q=g.pos[p.id]; if(!e||!q) return; e.style.width=g.nodeW+'px'; e.style.height=g.nodeH+'px'; e.style.transform='translate('+q.x+'px,'+q.y+'px)';
+      rects.push({l:q.x-4, r:q.x+g.nodeW+4, t:q.y-4, b:q.y+g.nodeH+4}); });
+    // Labels: most constrained first; each takes the first candidate spot that stays inside the map and
+    // touches no paper and no label placed before it.
+    var items=[];
+    for(var id in edgeEls){ var E=edgeEls[id], geo=edgeGeom(g, E.l); E.line.setAttribute('d',geo.d); E.hit.setAttribute('d',geo.d); items.push({id:id, geo:geo}); }
+    items.sort(function(a,b){ return a.geo.cands.length-b.geo.cands.length; });
+    var placed=[];
+    items.forEach(function(it){
+      var c=chipEls[it.id], cw=c.offsetWidth, ch=c.offsetHeight, best=null;
+      for(var k=0;k<it.geo.cands.length && !best;k++){
+        var cd=it.geo.cands[k], pt=cubic(it.geo.P, cd.t), x=pt.x, y=pt.y+(cd.dy||0), w=cd.rot?ch:cw, hgt=cd.rot?cw:ch;
+        var R={l:x-w/2-3, r:x+w/2+3, t:y-hgt/2-3, b:y+hgt/2+3};
+        if(R.l<0 || R.r>g.W || R.t<0 || R.b>g.H) continue;
+        var hit=rects.concat(placed).some(function(Q){ return !(R.r<=Q.l||R.l>=Q.r||R.b<=Q.t||R.t>=Q.b); });
+        if(!hit) best={x:x,y:y,rot:!!cd.rot,R:R};
+      }
+      if(!best){ var c0=it.geo.cands[0], p0=cubic(it.geo.P,c0.t); best={x:p0.x,y:p0.y+(c0.dy||0),rot:!!c0.rot,R:{l:p0.x-cw/2,r:p0.x+cw/2,t:p0.y-ch/2,b:p0.y+ch/2}}; }
+      c.style.left=best.x+'px'; c.style.top=best.y+'px'; c.classList.toggle('rot', best.rot);
+      placed.push(best.R);
+    });
+    headEls.forEach(function(e){ e.remove(); }); headEls=[];
+    g.heads.forEach(function(hd){ var e=h('div',{'class':'colhead'}, hd.text); e.style.left=hd.x+'px'; e.style.top=hd.y+'px'; stage.appendChild(e); headEls.push(e); });
+  }
+  function stageWidth(){ return Math.max(280, $('diagram-scroll').clientWidth); }
+  function lerpGeom(a,b,t){
+    var g={ pos:{}, levOf:b.levOf, relOf:b.relOf, rows:b.rows, rowGap:b.rowGap, arcDip:b.arcDip, rowTop:b.rowTop.map(function(v,i){ var av=a.rowTop[i]!=null?a.rowTop[i]:v; return av+(v-av)*t; }), lanes:b.lanes, laneGap:b.laneGap, narrow:b.narrow, W:b.W, H:a.H+(b.H-a.H)*t, nodeW:a.nodeW+(b.nodeW-a.nodeW)*t, nodeH:a.nodeH+(b.nodeH-a.nodeH)*t, heads:t<.5?a.heads:b.heads };
+    for(var id in b.pos){ var p=a.pos[id]||b.pos[id], q=b.pos[id]; g.pos[id]={ x:p.x+(q.x-p.x)*t, y:p.y+(q.y-p.y)*t }; }
+    return g;
+  }
+  function layoutDiagram(animate){
+    var target=geometry(S.layout, stageWidth());
+    cancelAnimationFrame(anim);
+    if(!animate || reduced || !cur){ cur=target; place(target); paintStates(); return; }
+    var from=cur, t0=null, dur=520;
+    function step(ts){
+      if(t0===null) t0=ts; var t=Math.min(1,(ts-t0)/dur), e=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+      var g=lerpGeom(from,target,e); place(g);
+      if(t<1) anim=requestAnimationFrame(step); else { cur=target; place(target); paintStates(); }
+    }
+    anim=requestAnimationFrame(step);
+  }
+  // Highlight, dim, selection, and filter states for the diagram.
+  function paintStates(){
+    var focus = S.hover!=null ? S.hover : (S.sel && S.sel.kind==='paper' ? S.sel.id : null);
+    var hiN=null, hiE=null;
+    if(focus!=null){ hiN=neighbors(focus); hiE={}; incident(focus).forEach(function(l){ hiE[linkId(l)]=1; }); }
+    else if(S.sel && S.sel.kind==='link' && linkById[S.sel.id]){ var L=linkById[S.sel.id]; hiN={}; hiN[L.from]=1; hiN[L.to]=1; hiE={}; hiE[S.sel.id]=1; }
+    PAPERS.forEach(function(p){
+      var e=nodeEls[p.id]; if(!e) return;
+      e.classList.toggle('dim', !!hiN && !hiN[p.id]);
+      e.classList.toggle('hi', !!hiN && !!hiN[p.id] && !(S.sel && S.sel.kind==='paper' && S.sel.id===p.id));
+      e.classList.toggle('sel', !!(S.sel && S.sel.kind==='paper' && S.sel.id===p.id));
+      e.setAttribute('aria-pressed', String(!!(S.sel && S.sel.kind==='paper' && S.sel.id===p.id)));
+    });
+    for(var id in edgeEls){
+      var E=edgeEls[id], sel=!!(S.sel && S.sel.kind==='link' && S.sel.id===id), hi=!!hiE && !!hiE[id], pass=linkPasses(E.l);
+      E.g.setAttribute('class','edge'+(hiE && !hi ? ' dim':'')+(hi&&!sel?' hi':'')+(sel?' sel':'')+(pass?'':' filtered'));
+      var mk=(hi||sel)?'url(#ah-hi)':'url(#ah)';
+      E.line.setAttribute('marker-end',mk); if(E.l.both) E.line.setAttribute('marker-start',mk); else E.line.removeAttribute('marker-start');
+      var c=chipEls[id]; // classList (not className) so the label's sideways setting survives
+      c.classList.toggle('dim', !!hiE && !hi); c.classList.toggle('hi', hi && !sel); c.classList.toggle('sel', sel); c.classList.toggle('filtered', !pass);
+      c.setAttribute('aria-pressed', String(sel));
+      if(hi||sel) E.g.parentNode.appendChild(E.g); // draw highlighted arrows on top
+    }
+  }
+
+  /* ---------------- list view ---------------- */
+  function connGroups(id){
+    var builds=[], leads=[], both=[];
+    LINKS.forEach(function(l){
+      if(!paperById[l.from] || !paperById[l.to]) return;
+      if(l.both && (l.from===id || l.to===id)) both.push({l:l, other: l.from===id?l.to:l.from});
+      else if(l.to===id) builds.push({l:l, other:l.from});
+      else if(l.from===id) leads.push({l:l, other:l.to});
+    });
+    var byNum=function(x,y){ return x.other-y.other; }; builds.sort(byNum); leads.sort(byNum); both.sort(byNum);
+    return [['Builds on',builds],['Leads to',leads],['Connected with',both]];
+  }
+  function connButton(item){
+    var b=h('button',{type:'button','class':'conn'+(linkPasses(item.l)?'':' filtered')+(S.sel&&S.sel.kind==='link'&&S.sel.id===linkId(item.l)?' sel':'')},
+      'Paper '+item.other+' · <em>'+item.l.label+'</em>');
+    b.addEventListener('click',function(){ select({kind:'link', id:linkId(item.l)}); });
+    return b;
+  }
+  function renderList(){
+    var box=$('plist'); box.innerHTML='';
+    PAPERS.slice().sort(function(a,b){return a.id-b.id;}).forEach(function(p){
+      var st=STATUS[p.status]||STATUS.preparation;
+      var card=h('article',{'class':'pcard'+(S.sel&&S.sel.kind==='paper'&&S.sel.id===p.id?' sel':'')});
+      card.style.setProperty('--c', st.color);
+      card.appendChild(h('div',{'class':'p-top'},'PAPER '+p.id+' <span class="pill" style="--c:'+st.color+';color:'+st.color+'"><i></i>'+st.name+'</span>'+(p.status==='published'?' '+p.year:'')));
+      var t=h('h3',{}), tb=h('button',{type:'button'}, p.title); tb.addEventListener('click',function(){ select({kind:'paper', id:p.id}); }); t.appendChild(tb); card.appendChild(t);
+      card.appendChild(h('p',{}, p.summary));
+      connGroups(p.id).forEach(function(gr){
+        if(!gr[1].length) return;
+        var row=h('div',{'class':'conns'},'<b>'+gr[0]+':</b>');
+        gr[1].forEach(function(it){ row.appendChild(connButton(it)); }); card.appendChild(row);
+      });
+      box.appendChild(card);
+    });
+  }
+
+  /* ---------------- details panel ---------------- */
+  var panel=$('panel');
+  function tagHTML(type){ var t=typeByName[type]; return '<span class="tag"><i style="background:'+(t?t.color:'#999')+'"></i>'+type+'</span>'; }
+  function statusPill(p){ var st=STATUS[p.status]||STATUS.preparation; return '<span class="pill" style="color:'+st.color+'"><i></i>'+st.name+'</span>'; }
+  function detailsToggle(){
+    var b=h('button',{type:'button','class':'toggle','aria-expanded':String(S.details)}, S.details?'Hide details':'Show details');
+    b.addEventListener('click',function(){ S.details=!S.details; panel.classList.toggle('show-details',S.details); b.textContent=S.details?'Hide details':'Show details'; b.setAttribute('aria-expanded',String(S.details)); });
+    return b;
+  }
+  function renderPanel(){
+    panel.innerHTML=''; panel.classList.toggle('show-details', S.details);
+    if(!S.sel){
+      panel.appendChild(h('p',{'class':'empty'},'<strong>Click a paper</strong> to see its summary, main results, and connections, or <strong>click an arrow</strong> (or its label) to see every way two papers contribute to each other.<br><br>Hover over a paper to light up everything connected to it.'));
+      return;
+    }
+    var top=h('div',{'class':'ptop'}), x=h('button',{type:'button','class':'xbtn','aria-label':'Close details'},'&times;');
+    x.addEventListener('click',function(){ select(null); });
+    if(S.sel.kind==='paper'){
+      var p=paperById[S.sel.id]; if(!p){ select(null); return; }
+      top.appendChild(h('div',{'class':'kicker'},'PAPER '+p.id+' '+statusPill(p))); top.appendChild(x); panel.appendChild(top);
+      panel.appendChild(h('h2',{id:'panel-h',tabindex:'-1'}, p.title));
+      var meta=p.authors+(p.venue?'<br>'+p.venue:'')+(p.doi?'<br><a href="https://doi.org/'+p.doi+'" target="_blank" rel="noopener">https://doi.org/'+p.doi+'</a>':'');
+      panel.appendChild(h('p',{'class':'meta'}, meta));
+      panel.appendChild(h('p',{'class':'sum'}, p.summary));
+      var rh=h('div',{'class':'ptop'}); rh.appendChild(h('h4',{style:'margin:6px 0 8px'},'Main results')); rh.appendChild(detailsToggle()); panel.appendChild(rh);
+      var ol=h('ol',{}); p.results.forEach(function(r){ ol.appendChild(h('li',{}, r.short+(r.detail?'<div class="detail">'+r.detail+'</div>':''))); }); panel.appendChild(ol);
+      connGroups(p.id).forEach(function(gr){
+        if(!gr[1].length) return;
+        panel.appendChild(h('h4',{}, gr[0]));
+        var row=h('div',{'class':'conns'}); gr[1].forEach(function(it){ row.appendChild(connButton(it)); }); panel.appendChild(row);
+      });
+    } else {
+      var l=linkById[S.sel.id]; if(!l){ select(null); return; }
+      top.appendChild(h('div',{'class':'kicker'},'CONNECTION <span class="lab-chip">'+l.label+'</span>')); top.appendChild(x); panel.appendChild(top);
+      panel.appendChild(h('h2',{id:'panel-h',tabindex:'-1'}, 'Paper '+l.from+(l.both?' ↔ ':' → ')+'Paper '+l.to));
+      var pairs=h('div',{'class':'pairs'});
+      [l.from,l.to].forEach(function(pid){ var pp=paperById[pid]; var b=h('button',{type:'button','class':'conn'},'Paper '+pid+' · '+pp.node); b.addEventListener('click',function(){ select({kind:'paper', id:pid}); }); pairs.appendChild(b); });
+      panel.appendChild(pairs);
+      var ch=h('div',{'class':'ptop'}); ch.appendChild(h('h4',{style:'margin:10px 0 8px'}, l.contributions.length+' contribution'+(l.contributions.length>1?'s':''))); ch.appendChild(detailsToggle()); panel.appendChild(ch);
+      if(filterOn()) panel.appendChild(h('p',{'class':'filter-note'},'Lines outside the selected types are faded.'));
+      var ul=h('ul',{'class':'contribs'});
+      l.contributions.forEach(function(c){ ul.appendChild(h('li',{'class':contribPasses(c)?'':'faded'}, tagHTML(c.type)+(c.dir?'<span class="dir">'+c.dir+'</span>':'')+c.short+(c.detail?'<div class="detail">'+c.detail+'</div>':''))); });
+      panel.appendChild(ul);
+    }
+  }
+
+  /* ---------------- selection and shareable links (#paper-4, #link-2-4) ---------------- */
+  function hashFor(sel){ return !sel ? '' : (sel.kind==='paper' ? '#paper-'+sel.id : '#link-'+sel.id); }
+  function parseHash(){
+    var m=/^#paper-(\d+)$/.exec(location.hash); if(m && paperById[+m[1]]) return {kind:'paper', id:+m[1]};
+    m=/^#link-(\d+-\d+)$/.exec(location.hash); if(m && linkById[m[1]]) return {kind:'link', id:m[1]};
+    return null;
+  }
+  function select(sel){
+    S.sel=sel;
+    var want=hashFor(sel);
+    if(want){ if(location.hash!==want) location.hash=want; }
+    else if(location.hash){ history.pushState(null,'',location.pathname+location.search); }
+    renderAll();
+    if(sel && window.matchMedia('(max-width:1023px)').matches){
+      try{ panel.scrollIntoView({behavior: reduced?'auto':'smooth', block:'start'}); }catch(_){ panel.scrollIntoView(); }
+    }
+    if(sel){ var hd=$('panel-h'); if(hd) try{ hd.focus({preventScroll:true}); }catch(_){ } }
+  }
+  window.addEventListener('hashchange',function(){ S.sel=parseHash(); renderAll(); });
+  window.addEventListener('popstate',function(){ S.sel=parseHash(); renderAll(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape' && S.sel){ select(null); } });
+
+  /* ---------------- controls ---------------- */
+  var chipBox=$('chips');
+  function renderChips(){
+    chipBox.innerHTML='';
+    var all=h('button',{type:'button','aria-pressed':String(!filterOn())},'All types');
+    all.addEventListener('click',function(){ S.filter={}; renderAll(); }); chipBox.appendChild(all);
+    TYPES.forEach(function(t){
+      var b=h('button',{type:'button','aria-pressed':String(!!S.filter[t.name]),title:t.def},'<i style="background:'+t.color+'"></i>'+t.name);
+      b.addEventListener('click',function(){ S.filter[t.name]=!S.filter[t.name]; renderAll(); });
+      chipBox.appendChild(b);
+    });
+  }
+  $('type-defs').innerHTML=TYPES.map(function(t){ return '<dt><i style="background:'+t.color+'"></i>'+t.name+'</dt><dd>'+t.def+'</dd>'; }).join('');
+  $('legend').innerHTML=Object.keys(STATUS).map(function(k){ return '<span><i style="background:'+STATUS[k].color+'"></i>'+STATUS[k].name+'</span>'; }).join('');
+  [].forEach.call(document.querySelectorAll('[data-view]'),function(b){ b.addEventListener('click',function(){ S.view=b.getAttribute('data-view'); renderAll(); if(S.view==='diagram') layoutDiagram(false); }); });
+  [].forEach.call(document.querySelectorAll('[data-layout]'),function(b){ b.addEventListener('click',function(){ if(S.layout===b.getAttribute('data-layout')) return; S.layout=b.getAttribute('data-layout'); renderAll(); layoutDiagram(true); }); });
+  function renderControls(){
+    [].forEach.call(document.querySelectorAll('[data-view]'),function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-view')===S.view)); });
+    [].forEach.call(document.querySelectorAll('[data-layout]'),function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-layout')===S.layout)); b.disabled = S.view!=='diagram'; });
+    $('diagram-view').hidden = S.view!=='diagram'; $('list-view').hidden = S.view!=='list';
+    renderChips();
+  }
+  function renderAll(){ renderControls(); if(S.view==='list') renderList(); paintStates(); renderPanel(); }
+
+  // Redraw when the map area changes width (one frame later, never inside the observer callback).
+  var lastW=-1, raf=0;
+  if(window.ResizeObserver) new ResizeObserver(function(en){ var w=Math.round(en[0].contentRect.width); if(w!==lastW){ lastW=w; cancelAnimationFrame(raf); raf=requestAnimationFrame(function(){ if(S.view==='diagram') layoutDiagram(false); }); } }).observe($('diagram-scroll'));
+  else window.addEventListener('resize',function(){ layoutDiagram(false); });
+
+  var topLink=document.querySelector('a.f-top');
+  topLink.addEventListener('click',function(e){ e.preventDefault(); try{ window.scrollTo({top:0, behavior: reduced?'auto':'smooth'}); }catch(_){ window.scrollTo(0,0); } });
+
+  buildDiagram();
+  S.sel=parseHash();
+  renderAll();
+  layoutDiagram(false);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ requestAnimationFrame(function(){ layoutDiagram(false); }); });
+})();
+</script>
+</body>
+</html>
