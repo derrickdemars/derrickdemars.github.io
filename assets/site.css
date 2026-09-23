@@ -67,6 +67,15 @@ body{font-family:var(--ui-font);}
 .bar nav > :first-child{margin-left:auto;} /* right-aligned when it fits, scrolls from the left when it does not */
 .bar nav a{color:var(--nav); text-decoration:none;}
 .bar nav [aria-current="page"]{color:var(--ink); font-weight:700;}
+/* When the links do not fit (phones), they scroll sideways and fade at whichever edge has more to see.
+   The site behaviors script sets data-fade="l", "r", or "l r" on the nav from its scroll position. */
+@property --fade-l{syntax:'<length>'; inherits:false; initial-value:0px;}
+@property --fade-r{syntax:'<length>'; inherits:false; initial-value:0px;}
+.bar nav{--fade-l:0px; --fade-r:0px; transition:--fade-l .2s ease, --fade-r .2s ease;
+  -webkit-mask-image:linear-gradient(to right, transparent 0, #000 var(--fade-l), #000 calc(100% - var(--fade-r)), transparent 100%);
+  mask-image:linear-gradient(to right, transparent 0, #000 var(--fade-l), #000 calc(100% - var(--fade-r)), transparent 100%);}
+.bar nav[data-fade~="l"]{--fade-l:28px;}
+.bar nav[data-fade~="r"]{--fade-r:28px;}
 @keyframes nameTap{0%{transform:scale(1); color:#21221f}35%{transform:scale(.94); color:#8c6f4e}100%{transform:scale(1); color:#21221f}}
 @keyframes nameTapStill{0%{color:#21221f}35%{color:#8c6f4e}100%{color:#21221f}}
 .bar a.name.name-tap{animation:nameTap .4s ease-out;}
@@ -132,6 +141,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible{outline:2px solid v
 .pill{display:inline-flex; align-items:center; gap:5px; font-size:11.5px; font-weight:600; color:var(--c); background:#fff; border:1px solid currentColor; border-radius:999px; padding:1px 8px;}
 .pill i{width:7px; height:7px; border-radius:50%; background:currentColor; display:inline-block;}
 [data-tag]{font-family:var(--mono-font); font-size:12.5px; color:var(--strong); background:var(--chip); border-radius:7px; padding:6px 11px;}
+.tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px;} /* a row of tags under a paragraph */
 
 /* ---- Footer ---- */
 .foot{display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:16px; margin-top:28px; padding-top:16px; border-top:1px solid var(--rule);
@@ -141,11 +151,15 @@ a:focus-visible, button:focus-visible, summary:focus-visible{outline:2px solid v
 .foot .f-right{text-align:right;}
 .foot a.f-top{display:inline-block; font-family:var(--mono-font); font-size:12px; letter-spacing:.04em; color:var(--nav); text-decoration:none;
   border:1px solid var(--line); border-radius:999px; padding:9px 18px; background:var(--box);}
+/* Middle column: one pill (Main) or a stack of pills (Back to top, then Back to Main), all as wide as the widest */
+.foot .f-mid{display:flex; flex-direction:column; align-items:stretch; gap:8px;}
+.foot .f-mid a.f-top{text-align:center;}
 
 /* ---- Touch screens: 44px minimum targets ---- */
 @media (hover:none),(pointer:coarse){
   .seg button, .opts button, .cbtn, .toggle, .chip, .chips button, .legend button{min-height:44px;}
   .xbtn, .modal-x{width:44px; height:44px;}
+  .foot a.f-top{display:flex; align-items:center; justify-content:center; min-height:44px; box-sizing:border-box; padding-top:0; padding-bottom:0;}
 }
 
 /* ---- Phones ---- */
@@ -161,7 +175,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible{outline:2px solid v
   .foot > div{text-align:center !important;}
   .foot .f-mid{order:-1;}
 }
-/* Narrowest phones (<= 400px): tighten the top bar so all three page links fit without scrolling */
+/* Narrowest phones (<= 400px): tighten the top bar so as much of the page links shows as possible; the rest scrolls with faded edges */
 @media (max-width:400px){
   .bar{padding:8px 12px;}
   .bar a.name{font-size:14px;}
@@ -174,6 +188,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible{outline:2px solid v
   a:not([data-box]):not([data-plain]), a[data-box]{transition:none;}
   a:not([data-box]):not([data-plain]):hover, a[data-box]:hover{transform:none;}
   html{scroll-behavior:auto !important;}
+  .bar nav{transition:none;}
 }
 
 /* ---- Print: no top bar, no Back to top ---- */
@@ -181,4 +196,5 @@ a:focus-visible, button:focus-visible, summary:focus-visible{outline:2px solid v
   html,body{background:#fff !important;}
   .screen{box-shadow:none !important; border:0 !important; background:#fff !important;}
   .bar, .foot .f-mid{display:none !important;}
+  [data-tag]{font-size:8.5pt !important; padding:2pt 5pt !important; background:#f0efec !important; -webkit-print-color-adjust:exact; print-color-adjust:exact;}
 }
