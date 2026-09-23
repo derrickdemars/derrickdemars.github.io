@@ -139,25 +139,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 @media (prefers-reduced-motion: reduce){#pz-win-word{animation:none !important; box-shadow:0 0 0 2px rgba(42,111,219,.4), 0 0 18px rgba(42,111,219,.4);}}
 @keyframes haloFlash{0%{opacity:1}22%{opacity:0.1}44%{opacity:1}66%{opacity:0.1}100%{opacity:1}}
 @media (prefers-reduced-motion: reduce){.otto-sparkle{animation:none !important;} *{scroll-behavior:auto !important;}}
-[data-r="card"] p, [data-r="pubrow"] > div[data-desc], [data-r="pubrow"] > div[data-desc-hold]{font-family:var(--body-font, 'IBM Plex Sans', sans-serif);}
+[data-r="card"] p, [data-r="pubrow"] > [data-r="pubtext"]{font-family:var(--body-font, 'IBM Plex Sans', sans-serif);}
 [style*="IBM Plex Mono"]{font-family:var(--mono-font, 'IBM Plex Mono', monospace) !important;}
 [style*="Spectral"]{font-family:var(--head-font, 'Spectral', serif) !important;}
 [data-r="card"] p{font-size:var(--fs-body) !important; line-height:var(--lh-body) !important;} /* body text size from site.css */
-[data-r="pubrow"] > div[data-desc], [data-r="pubrow"] > div[data-desc-hold]{font-size:calc(var(--body-scale, 1) * 15px) !important;}
+[data-r="pubrow"] > [data-r="pubtext"]{font-size:calc(var(--body-scale, 1) * 15px) !important;}
 [id^="d4-"]{scroll-margin-top:84px;}
-[data-desc]{position:relative; cursor:help;}
-[data-desc]::after{content:attr(data-desc); position:absolute; left:0; top:100%; margin-top:8px; width:320px; max-width:80vw; background:#21221f; color:#f4f2ee; font-size:13px; line-height:1.55; font-weight:400; padding:12px 14px; border-radius:10px; box-shadow:0 10px 28px rgba(20,22,28,0.24); opacity:0; visibility:hidden; transition:opacity .18s ease; z-index:60; pointer-events:none;}
-[data-desc]:hover::after{opacity:1; visibility:visible;}
-[data-desc][data-open]::after{opacity:1; visibility:visible;}
-[data-hint="tap"]{display:none;}
-@media (hover:none),(max-width:920px){[data-hint="hover"]{display:none;} [data-hint="tap"]{display:inline;}}
 @media (max-width:920px){
   [data-r="sidecard"]{border-left:3px solid rgba(42,111,219,.5) !important;}
-  [data-r="pubrow"] > div[data-desc], [data-r="pubrow"] > div[data-desc-hold]{font-size:calc(var(--body-scale, 1) * 14px) !important; line-height:1.5 !important;}
+  [data-r="pubrow"] > [data-r="pubtext"]{font-size:calc(var(--body-scale, 1) * 14px) !important; line-height:1.5 !important;}
 }
 @media (min-width:761px) and (max-width:920px){
   [data-r="card"] p{max-width:none !important;}
-  [data-r="pubrow"] > div[data-desc], [data-r="pubrow"] > div[data-desc-hold]{font-size:calc(var(--body-scale, 1) * 15px) !important; line-height:1.6 !important;}
+  [data-r="pubrow"] > [data-r="pubtext"]{font-size:calc(var(--body-scale, 1) * 15px) !important; line-height:1.6 !important;}
   [data-board]{width:85%; max-width:85%; margin:0 auto;}
   [data-r="cardgrid"]{grid-template-columns:repeat(auto-fit,minmax(185px,1fr)) !important; gap:12px !important;}
   [data-r="cardgrid"] > div{padding:16px !important;}
@@ -179,7 +173,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   [data-r="photo"], [data-r="cardgrid"] > div{border-radius:10px !important;}
   [data-r="cardgrid"] > div{padding:16px !important;}
   [data-r="cardgrid"]{gap:12px !important;}
-  [data-desc]::after{width:calc(100vw - 112px) !important; max-width:none !important;}
   [data-r="hero"]{grid-template-columns:1fr !important;}
   [data-r="photo"]{aspect-ratio:1/1 !important; object-position:50% 12% !important;}
   [data-r="pubrow"]{grid-template-columns:16px 1fr !important;}
@@ -202,12 +195,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   [data-r="hero"]{display:block !important;}
   [data-r="card"]{background:none !important; border:0 !important; border-left:2px solid #2a6fdb !important; border-radius:0 !important; padding:0 0 0 10pt !important; margin:0 0 14pt !important; break-inside:auto;}
   [data-r="card"] > div:first-child, [data-r="card"] > h2:first-child{border-bottom:0.6pt solid #bbb; padding-bottom:3pt; margin-bottom:8pt !important;}
-  [data-r="card"] p, [data-r="pubrow"] > div[data-desc], [data-r="pubrow"] > div[data-desc-hold]{font-size:calc(var(--body-scale, 1) * 11pt) !important; line-height:1.45 !important; max-width:none !important; color:#141414 !important;}
+  [data-r="card"] p, [data-r="pubrow"] > [data-r="pubtext"]{font-size:calc(var(--body-scale, 1) * 11pt) !important; line-height:1.45 !important; max-width:none !important; color:#141414 !important;}
   h1{font-size:24pt !important; margin-bottom:4pt !important;}
   [data-r="cardgrid"]{grid-template-columns:repeat(3,1fr) !important; gap:10pt !important;}
   [data-r="cardgrid"] > div{background:none !important; border:0.6pt solid #ddd !important; padding:8pt !important; break-inside:avoid;}
   [data-r="pubrow"]{break-inside:avoid; padding-top:8pt !important; margin-top:8pt !important;}
-  [data-desc]::after{display:none !important;}
   [data-tag]{font-size:8.5pt !important; padding:2pt 5pt !important; background:#f0efec !important; -webkit-print-color-adjust:exact; print-color-adjust:exact;}
   .foot{font-size:8.5pt !important;}
   .otto-sparkle{animation:none !important; -webkit-text-fill-color:#2a6fdb !important; color:#2a6fdb !important;}
@@ -241,7 +233,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div style="font-size:clamp(12.5px,3.5vw,17px); white-space:nowrap; color:#3a3935; font-weight:500; margin-bottom:16px;">Graph Theorist · Mathematics Educator</div>
             <div data-print-only="1" style="display:none; font-family:'IBM Plex Mono',monospace; font-size:9.5pt; color:#333; margin-bottom:4px;">contact@derrickdemars.com · ORCID 0000-0001-9360-3537 · linkedin.com/in/dr-demars</div>
             <div data-print-only="1" style="display:none; font-family:'IBM Plex Mono',monospace; font-size:9.5pt; color:#2a6fdb; margin-bottom:14px;">Open to postdoctoral and faculty positions</div>
-            <p style="font-size:15.5px; line-height:1.6; color:#54514a; margin:0 0 12px; max-width:46em;">Use too few colors and Ramsey theory forces a monochromatic copy; use too many and anti-Ramsey theory forces a rainbow one. I work in the narrow band between, on edge-colorings of complete graphs that must avoid both at once. I also teach mathematics to students who are capable but were taught to believe otherwise. I completed my Ph.D. at Auburn University under <a href="https://cosam.auburn.edu/directory/profile.php?id=johnspd" target="_blank" rel="noopener" style="color:#2a6fdb; text-decoration:none; border-bottom:1px solid rgba(42,111,219,.35);">Peter Johnson</a>, Professor Emeritus, and earned a <strong style="font-weight:600; color:#3a3935;">Departmental Citation</strong> for “exceptional contributions” to research. My dissertation forbade monochromatic and rainbow cycles, and families of cycles, at the same time; my current work builds the methods the harder cases require. Read on to <a href="#d4-overview" style="color:#2a6fdb; text-decoration:none; border-bottom:1px solid rgba(42,111,219,.35);">III. Research Interests</a> for the problems and methods, and to <a href="#d4-puzzle" style="color:#2a6fdb; text-decoration:none; border-bottom:1px solid rgba(42,111,219,.35);">IV for four puzzles</a> I built for you to try that demonstrate both.</p>
+            <p style="font-size:15.5px; line-height:1.6; color:#54514a; margin:0 0 12px; max-width:46em;">Use too few colors and Ramsey theory forces a monochromatic copy; use too many and anti-Ramsey theory forces a rainbow one. I work in the narrow band between, on edge-colorings of complete graphs that must avoid both at once. I also teach mathematics to students who are capable but were taught to believe otherwise.</p>
+            <p style="font-size:15.5px; line-height:1.6; color:#54514a; margin:0 0 12px; max-width:46em;">I completed my Ph.D. at Auburn University under <a href="https://cosam.auburn.edu/directory/profile.php?id=johnspd" target="_blank" rel="noopener" style="color:#2a6fdb; text-decoration:none; border-bottom:1px solid rgba(42,111,219,.35);">Peter Johnson</a>, Professor Emeritus, and earned a <strong style="font-weight:600; color:#3a3935;">Departmental Citation</strong> for “exceptional contributions” to research. My dissertation forbade monochromatic and rainbow cycles, and families of cycles, at the same time; my current work builds the methods the harder cases require. Read on to <a href="#d4-overview" style="color:#2a6fdb; text-decoration:none; border-bottom:1px solid rgba(42,111,219,.35);">III. Research Interests</a> for the problems and methods, and to <a href="#d4-puzzle" style="color:#2a6fdb; text-decoration:none; border-bottom:1px solid rgba(42,111,219,.35);">IV for four puzzles</a> I built for you to try that demonstrate both.</p>
             <p style="font-size:15.5px; line-height:1.6; color:#54514a; margin:0 0 16px; max-width:46em;">Most of my students have some combination of dyslexia, ADHD, and autism, and I teach them at <a href="https://www.innovaprep.org/" target="_blank" rel="noopener" style="color:#2a6fdb; text-decoration:none; border-bottom:1px solid rgba(42,111,219,.35);">Innova Preparatory School</a>, where I was named <strong style="font-weight:600; color:#3a3935;">Teacher of the Year</strong> in 2024–2025 and again in 2025–2026. Research and teaching have each made me better at the other, and I am eager to bring both to a postdoctoral or faculty role.</p>
             <div style="display:flex; flex-wrap:wrap; gap:8px;">
               <span data-tag="1">Mathematics Education</span>
@@ -279,7 +272,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="card" data-r="card">
         <h2 id="d4-education" class="sec-h" style="margin:0 0 20px;"><span data-num="1">I. </span>Education</h2>
         <div data-r="cardgrid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px;">
-          <div data-desc="Dissertation: Forbidding Monochromatic and Rainbow Cycles and Families of Cycles" style="background:#efece6; border:1px solid #e4e0d8; border-radius:12px; padding:20px;">
+          <div style="background:#efece6; border:1px solid #e4e0d8; border-radius:12px; padding:20px;">
             <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#6f6b64; margin-bottom:10px;">2020–2023</div>
             <div style="font-family:'Spectral',serif; font-size:18px; font-weight:600; line-height:1.2;">Ph.D., Mathematics</div>
             <div style="font-size:13.5px; color:#6f6b64; margin-top:6px;">Auburn University</div>
@@ -366,38 +359,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div id="d4-publications" class="card" data-r="card">
         <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:6px;">
           <h2 class="sec-h" style="margin:0;"><span data-num="1">V. </span>Publications &amp; Manuscripts</h2>
-          <!-- Hidden until wanted: remove "hidden" and "display:none;" to show the summary hint again -->
-          <div hidden style="display:none; font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:#6f6b64;"><span data-hint="hover">hover a title for a summary</span><span data-hint="tap">tap a title for a summary</span></div>
         </div>
         <p style="font-size:15.5px; line-height:1.64; color:#54514a; margin:6px 0 0;">See how these connect in the <a href="/manuscript-map/" style="color:#2a6fdb; text-decoration:none; border-bottom:1px solid rgba(42,111,219,.35);">Manuscript Map</a>.</p>
         <div data-r="pubrow" style="display:grid; grid-template-columns:16px 1fr 104px; gap:10px; padding:18px 0 0; margin-top:18px; border-top:1px solid #e4e0d8; align-items:baseline;">
           <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#54514a;">6</div>
-          <div data-desc-hold="Initiates the study of colorings with no monochromatic and no rainbow five-cycle, where no Gallai-type structure theorem is available. Uses a substitution framework, a seven-vertex Gallai block, and a binary-tree covering argument to prove a rate-two ceiling and the local rigidity of the Bondy–Erdős doubling." style="font-size:15px; line-height:1.5;"><span style="font-weight:600;">DeMars, D.</span> Forbidding a rainbow <i>C</i><sub>5</sub> forces doubling: (<i>C</i><sub>5</sub>,<i>C</i><sub>5</sub>)-good colorings of complete graphs.</div>
+          <div data-r="pubtext" style="font-size:15px; line-height:1.5;"><span style="font-weight:600;">DeMars, D.</span> Forbidding a rainbow <i>C</i><sub>5</sub> forces doubling: (<i>C</i><sub>5</sub>,<i>C</i><sub>5</sub>)-good colorings of complete graphs.</div>
           <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.05em; text-transform:uppercase; color:#7a5aa8; justify-self:end;">● In Preparation</span>
         </div>
         <div data-r="pubrow" style="display:grid; grid-template-columns:16px 1fr 104px; gap:10px; padding:18px 0 0; margin-top:18px; border-top:1px solid #e4e0d8; align-items:baseline;">
           <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#54514a;">5</div>
-          <div data-desc-hold="Shows that forbidding a monochromatic subgraph alongside a rainbow cycle costs no colors, sharpening a 2010 theorem of Axenovich and Choi from asymptotic to exact. Uses a Hoffman block coloring, an elementary edge-cut lemma, and the anti-Ramsey values of Montellano-Ballesteros and Neumann-Lara." style="font-size:15px; line-height:1.5;"><span style="font-weight:600;">DeMars, D.</span> Exact Mixed and Anti-Ramsey Numbers for Cycles.</div>
+          <div data-r="pubtext" style="font-size:15px; line-height:1.5;"><span style="font-weight:600;">DeMars, D.</span> Exact Mixed and Anti-Ramsey Numbers for Cycles.</div>
           <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.05em; text-transform:uppercase; color:#7a5aa8; justify-self:end;">● In Preparation</span>
         </div>
         <div data-r="pubrow" style="display:grid; grid-template-columns:16px 1fr 104px; gap:10px; padding:18px 0 0; margin-top:18px; border-top:1px solid #e4e0d8; align-items:baseline;">
           <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#54514a;">4</div>
-          <div data-desc="Proves a bipartite collapse: within any Gallai coloring, forbidding the two shortest monochromatic odd cycles forces every color class to be bipartite, recovering the classical bipartite-cover threshold. Classifies the five extremal colorings at three colors, a distinction finer than any monochromatic degree sequence can detect." style="font-size:15px; line-height:1.5;"><span style="font-weight:600;">DeMars, D.</span> Gallai colorings with no monochromatic <i>K</i><sub>3</sub> or <i>C</i><sub>5</sub>: bipartite collapse, exact values, and extremal colorings.</div>
+          <div data-r="pubtext" style="font-size:15px; line-height:1.5;"><span style="font-weight:600;">DeMars, D.</span> Gallai colorings with no monochromatic <i>K</i><sub>3</sub> or <i>C</i><sub>5</sub>: bipartite collapse, exact values, and extremal colorings.</div>
           <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.05em; text-transform:uppercase; color:#b07d22; justify-self:end;">● Submitted</span>
         </div>
         <div data-r="pubrow" style="display:grid; grid-template-columns:16px 1fr 104px; gap:10px; padding:18px 0 0; margin-top:18px; border-top:1px solid #e4e0d8; align-items:baseline;">
           <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#54514a;">3</div>
-          <div data-desc="Gives an elementary, self-contained alternate proof of the Axenovich–Choi theorem on monochromatic and rainbow four-cycles, highlighting intermediate results of independent interest." style="font-size:15px; line-height:1.5;"><span style="font-weight:600;">DeMars, D.</span> An alternate proof: forbidding monochromatic and rainbow four-cycles in complete graphs.</div>
+          <div data-r="pubtext" style="font-size:15px; line-height:1.5;"><span style="font-weight:600;">DeMars, D.</span> An alternate proof: forbidding monochromatic and rainbow four-cycles in complete graphs.</div>
           <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.05em; text-transform:uppercase; color:#b07d22; justify-self:end;">● Submitted</span>
         </div>
         <div data-r="pubrow" style="display:grid; grid-template-columns:16px 1fr 104px; gap:10px; padding:18px 0 0; margin-top:18px; border-top:1px solid #e4e0d8; align-items:baseline;">
           <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#54514a;">2</div>
-          <div data-desc="Extends the mixed Ramsey spectrum to families of graphs, determining it completely where earlier work reached only partial ranges. Uses Gallai’s theorem, balanced binary trees, and a result of Magnant and Nowbandegani." style="font-size:15px; line-height:1.5;"><span style="font-weight:600;">Derrick DeMars</span>, Peter Johnson. Forbidding monochromatic odd cycles and rainbow cycles in complete graphs, <span style="color:#6f6b64;">Congressus Numerantium, Volume 237, pp. 113–120.</span> <a href="https://doi.org/10.61091/cn237-08" target="_blank" rel="noopener" style="color:#2a6fdb; text-decoration:none; border-bottom:1px solid rgba(42,111,219,.35);">https://doi.org/10.61091/cn237-08</a>.</div>
+          <div data-r="pubtext" style="font-size:15px; line-height:1.5;"><span style="font-weight:600;">Derrick DeMars</span>, Peter Johnson. Forbidding monochromatic odd cycles and rainbow cycles in complete graphs, <span style="color:#6f6b64;">Congressus Numerantium, Volume 237, pp. 113–120.</span> <a href="https://doi.org/10.61091/cn237-08" target="_blank" rel="noopener" style="color:#2a6fdb; text-decoration:none; border-bottom:1px solid rgba(42,111,219,.35);">https://doi.org/10.61091/cn237-08</a>.</div>
           <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.05em; text-transform:uppercase; color:#2e8b57; justify-self:end;">● Published</span>
         </div>
         <div data-r="pubrow" style="display:grid; grid-template-columns:16px 1fr 104px; gap:10px; padding:18px 0 0; margin-top:18px; border-top:1px solid #e4e0d8; align-items:baseline;">
           <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#54514a;">1</div>
-          <div data-desc="Studies edge-colorings of complete graphs in which every triangle uses exactly two colors, and determines the maximum number of colors such a coloring can have." style="font-size:15px; line-height:1.5;"><span style="font-weight:600;">DeMars, D.</span> and Johnson, P. A Mixed Ramsey Problem Revisited. <span style="color:#6f6b64;">International Journal of Mathematics and Computer Science, vol. 16, pp. 723–727.</span></div>
+          <div data-r="pubtext" style="font-size:15px; line-height:1.5;"><span style="font-weight:600;">DeMars, D.</span> and Johnson, P. A Mixed Ramsey Problem Revisited. <span style="color:#6f6b64;">International Journal of Mathematics and Computer Science, vol. 16, pp. 723–727.</span></div>
           <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.05em; text-transform:uppercase; color:#2e8b57; justify-self:end;">● Published</span>
         </div>
       </div>
@@ -441,23 +432,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     tags.forEach(function(t){ g.appendChild(t); });
   });
 })();
-</script>
-<script>
-(function(){
-  // Touch devices: tap a [data-desc] element to reveal its summary, tap again or elsewhere to close.
-  document.addEventListener('click', function(e){
-    var t=e.target;
-    var host=(t && t.closest) ? t.closest('[data-desc]') : null;
-    var open=document.querySelectorAll('[data-desc][data-open]');
-    [].forEach.call(open, function(el){ if(el!==host) el.removeAttribute('data-open'); });
-    if(host){
-      if(host.hasAttribute('data-open')) host.removeAttribute('data-open');
-      else if(window.matchMedia && window.matchMedia('(hover: none)').matches) host.setAttribute('data-open','');
-    }
-  }, true);
-
-})();
-
 </script>
 <script>
 (function(){
@@ -574,8 +548,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var g=$('pz-hint'); if(!g) return;
     while(g.firstChild) g.removeChild(g.firstChild);
     var h=HINT[S.puzzle]; if(!h || h.done) return;
-    // First-label wording matches the device: "Tap" on phones and tablets, "Click" on desktop (same test the
-    // publications "tap/hover a title" hint uses).
+    // First-label wording matches the device: "Tap" on phones and tablets, "Click" on desktop.
     var tap = !!(tapMQ && tapMQ.matches);
     var first = S.puzzle===0 ? [tap ? 'Tap here to play!' : 'Click here to play!'] : [tap ? 'Tap this edge to start!' : 'Click this edge to start!'];
     var lines = h.stage===0 ? first : ['Tap again for a','different color'];
