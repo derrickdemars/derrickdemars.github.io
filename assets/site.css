@@ -59,8 +59,8 @@ body{font-family:var(--ui-font);}
 .bar{position:sticky; top:0; z-index:20; display:flex; align-items:center; justify-content:space-between; gap:16px;
   padding:11px 44px; background:rgba(239,236,230,.93); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
   border-bottom:1px solid var(--line); border-radius:5px 5px 0 0;}
-.bar a.name{display:inline-block; flex-shrink:0; font-family:var(--head-font); font-size:20px; font-weight:600; letter-spacing:-.01em; color:var(--ink); text-decoration:none; cursor:pointer;}
-.bar nav{display:flex; align-items:center; justify-content:flex-start; gap:28px; min-width:0; flex:1 1 auto; font-size:14px;
+.bar a.name{display:inline-block; flex-shrink:0; font-family:var(--head-font); font-size:18px; font-weight:600; letter-spacing:-.01em; color:var(--ink); text-decoration:none; cursor:pointer;}
+.bar nav{display:flex; align-items:center; justify-content:flex-start; gap:28px; min-width:0; flex:1 1 auto; font-size:15px;
   overflow-x:auto; scrollbar-width:none; -webkit-overflow-scrolling:touch; white-space:nowrap;}
 .bar nav::-webkit-scrollbar{display:none;}
 .bar nav > *{flex:0 0 auto;}
