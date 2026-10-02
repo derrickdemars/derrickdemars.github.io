@@ -43,6 +43,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 /* Page-only styles for the 404 page (GitHub Pages serves /404.html for any address that does not exist).
    Every path here is absolute so the page works at any broken address. Shared styles come from /assets/site.css. */
 .page{min-height:50vh;}
+
+/* "Did you know?" box: a random math fact that changes every 20 seconds.
+   The blue bar's 20s fill animation IS the timer: when it ends, the next fact shows. Pausing the bar pauses the timer. */
+.fact .fact-tag{display:flex; margin:0 0 12px;}
+.fact .fact-text{min-height:calc(var(--lh-body) * 2em); transition:opacity .2s ease;}
+.fact .fact-text.out{opacity:0;}
+.fact .fact-row{display:flex; align-items:center; gap:16px; margin-top:20px;}
+.fact .fact-row[hidden]{display:none;}
+.fact .cbtn{--bf:13.5px; padding:.66em 1em; flex-shrink:0;}
+.fact .fact-bar{flex:1; height:4px; border-radius:999px; background:var(--chip); overflow:hidden;}
+.fact .fact-bar i{display:block; height:100%; border-radius:999px; background:var(--accent); transform:scaleX(0); transform-origin:left center;}
+.fact .fact-bar i.run{animation:factFill 20s linear forwards;}
+@keyframes factFill{ from{transform:scaleX(0);} to{transform:scaleX(1);} }
+/* Pause while a mouse is over the box, or while keyboard focus is inside it */
+@media (hover:hover){ .fact:hover .fact-bar i{animation-play-state:paused;} }
+.fact:has(:focus-visible) .fact-bar i{animation-play-state:paused;}
+.sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;}
+@media (max-width:760px){ .fact .fact-row{gap:12px; margin-top:16px;} }
+/* Reduced motion: no auto-rotation, no fade, no bar; the button still works */
+@media (prefers-reduced-motion: reduce){
+  .fact .fact-bar{display:none;}
+  .fact .fact-text{transition:none;}
+}
+@media print{ .fact .fact-row{display:none !important;} }
 </style>
 </head>
 <body>
@@ -62,10 +86,124 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="prose">There is no page at this address. It may have moved, or the link may have a typo.</p>
     </section>
 
+    <section class="card fact" aria-labelledby="fact-h">
+      <h2 id="fact-h" class="sec-h">Did you know?</h2>
+      <div class="fact-tag"><span data-tag="1" id="fact-tag">Graph Theory</span></div>
+      <p class="prose fact-text" id="fact-text">Among any six people, there are always three who all know each other or three who are all strangers. Five people aren’t enough to guarantee it, so the Ramsey number <i>R</i>(3,3) is 6.</p>
+      <div class="fact-row" id="fact-row" hidden>
+        <button type="button" class="cbtn" id="fact-next">Another fact</button>
+        <div class="fact-bar" aria-hidden="true"><i id="fact-bar"></i></div>
+      </div>
+      <div class="sr-only" aria-live="polite" id="fact-live"></div>
+    </section>
+
     <footer class="foot" aria-hidden="true"></footer>
   </main>
 </div>
 </div>
+<script>
+/* 404 page: "Did you know?" fact box.
+   - 50 facts, dealt from a shuffled deck: no repeats until all 50 have shown, and never the same fact twice in a row.
+   - The blue bar fills over 20 seconds; when it finishes, the next fact fades in. Its CSS animation is the timer,
+     so hovering the box (mouse) or keyboard focus inside it pauses both the bar and the timer.
+   - "Another fact" shows the next fact at once and restarts the 20-second timer.
+   - Reduced motion: no auto-rotation, no fade, no bar; the button still works.
+   - Screen readers hear a new fact only when the button is pressed.
+   Without JavaScript the first fact (written into the HTML) stays and the button row stays hidden. */
+(function(){
+  var G='Graph Theory', C='Constants & Infinity', H='History', P='Probability', Z='Puzzles';
+  var facts=[
+    /* Graph Theory (15) */
+    [G,'Among any six people, there are always three who all know each other or three who are all strangers. Five people aren’t enough to guarantee it, so the Ramsey number <i>R</i>(3,3) is 6.'],
+    [G,'Among any 18 people, there are always four mutual acquaintances or four mutual strangers. Greenwood and Gleason showed in 1955 that 17 people aren’t enough.'],
+    [G,'No one knows the exact value of <i>R</i>(5,5). The best current bounds place it between 43 and 46, with the upper bound proved in 2024.'],
+    [G,'Paul Erdős joked that if aliens demanded the value of <i>R</i>(5,5) or they would destroy Earth, we should put every computer and mathematician to work on it. If they demanded <i>R</i>(6,6), we should try to destroy the aliens.'],
+    [G,'The Four Color Theorem says every map can be colored with four colors so that neighboring regions differ. Appel and Haken proved it in 1976, making it the first major theorem proved with essential help from a computer.'],
+    [G,'Graph theory began in 1736, when Leonhard Euler proved that no walk through Königsberg could cross each of its seven bridges exactly once.'],
+    [G,'The Petersen graph has just 10 vertices and 15 edges, yet it is a counterexample to so many conjectures that it has been called a graph theorist’s best friend. It is the smallest graph where every vertex has three edges and the edges cannot be properly 3-colored without a bridge.'],
+    [G,'A map drawn on the surface of a doughnut may need as many as seven colors, not just four.'],
+    [G,'The Friendship Theorem: if every two people at a party have exactly one friend in common, then someone at the party is friends with everyone.'],
+    [G,'At any party, the number of people who shake an odd number of hands is always even.'],
+    [G,'Connecting three houses to three utilities without any lines crossing is impossible on a flat sheet of paper, because the graph <i>K</i><sub>3,3</sub> is not planar. On the surface of a coffee mug, it can be done.'],
+    [G,'There are exactly <i>n</i><sup><i>n</i>−2</sup> different trees on <i>n</i> labeled vertices, a result known as Cayley’s formula. For just 5 vertices, that is already 125 trees.'],
+    [G,'Anti-Ramsey theory flips the usual question. Instead of forcing one color, it asks how many colors can be used on a complete graph before a fully multicolored (“rainbow”) copy of a pattern must appear. Erdős, Simonovits, and Sós introduced the idea in 1975.'],
+    [G,'However you color the numbers 1 through 9 red and blue, three of them in arithmetic progression (like 3, 5, 7) will share a color. With only 1 through 8, you can avoid it.'],
+    /* Constants & Infinity (16) */
+    [C,'Some infinities are bigger than others. Georg Cantor proved that there are more real numbers than whole numbers, even though both sets are infinite.'],
+    [C,'Hilbert’s Hotel has infinitely many rooms, all full. A new guest can still check in: every guest moves from room <i>n</i> to room <i>n</i> + 1, and room 1 opens up.'],
+    [C,'There are exactly as many fractions as there are whole numbers, even though infinitely many fractions sit between any two whole numbers.'],
+    [C,'The Continuum Hypothesis asks whether there is an infinity strictly between the whole numbers and the real numbers. Gödel and Cohen showed that the standard axioms of mathematics can neither prove nor disprove it.'],
+    [C,'π is transcendental, which Lindemann proved in 1882. That settled an ancient Greek problem: with compass and straightedge alone, it is impossible to construct a square with the same area as a given circle.'],
+    [C,'Euler’s identity, <i>e</i><sup><i>i</i>π</sup> + 1 = 0, links five of the most important numbers in mathematics in one equation.'],
+    [C,'If a bank paid 100% interest compounded continuously, $1 would grow to <i>e</i> ≈ $2.718 in a year. This is how Jacob Bernoulli first encountered the constant.'],
+    [C,'0.999… (repeating forever) is exactly equal to 1, not just very close to it.'],
+    [C,'The sum 1 + 1/2 + 1/3 + 1/4 + ⋯ grows without bound, but very slowly. It takes 12,367 terms just to pass 10.'],
+    [C,'Euler solved the Basel problem in 1734: the sum 1 + 1/4 + 1/9 + 1/16 + ⋯ of reciprocals of squares equals π<sup>2</sup>/6.'],
+    [C,'The ratios of consecutive Fibonacci numbers, such as 8/5, 13/8, and 21/13, get closer and closer to the golden ratio φ ≈ 1.618. φ is the number whose square is one more than itself.'],
+    [C,'Almost every real number is transcendental, yet no one knows whether π + <i>e</i> is even irrational.'],
+    [C,'The Banach–Tarski paradox: using the Axiom of Choice, a solid ball can be cut into finitely many pieces and reassembled into two balls, each the same size as the original.'],
+    [C,'Graham’s number arose as an upper bound in a Ramsey theory problem. It is so large that the observable universe could not hold its digits, yet its last digit is known to be 7.'],
+    [C,'Gabriel’s Horn has finite volume but infinite surface area. You could fill it with paint, but you could never paint its surface.'],
+    [C,'The Euler–Mascheroni constant γ ≈ 0.5772 has been studied for nearly 300 years, and no one knows whether it is a fraction.'],
+    /* History (16) */
+    [H,'Paul Erdős wrote around 1,500 papers with more than 500 collaborators. Mathematicians still measure their “Erdős number”: their distance from him through chains of coauthors.'],
+    [H,'Ramsey theory is named for Frank Ramsey, who proved his famous theorem as a side step in a paper on logic. He died in 1930 at age 26, the year the paper appeared.'],
+    [H,'The “Happy Ending Problem” began with a question from Esther Klein about points in the plane. It led to the 1935 Erdős–Szekeres theorem, and Klein went on to marry George Szekeres, which is how Erdős came up with the name.'],
+    [H,'When Hardy remarked that his taxi number, 1729, seemed dull, Ramanujan replied that it is the smallest number expressible as a sum of two cubes in two different ways: 1<sup>3</sup> + 12<sup>3</sup> = 9<sup>3</sup> + 10<sup>3</sup>.'],
+    [H,'Emmy Noether proved that every symmetry in physics corresponds to a conservation law. Einstein called her the most significant creative mathematical genius since women began higher education.'],
+    [H,'The story goes that a young Carl Friedrich Gauss summed 1 through 100 in seconds by pairing 1 + 100, 2 + 99, and so on, giving 50 pairs of 101, or 5050.'],
+    [H,'Évariste Galois laid the foundations of group theory and died in a duel at age 20. He wrote out his ideas in a letter the night before.'],
+    [H,'Pierre de Fermat wrote in a margin around 1637 that he had a marvelous proof that would not fit there. Andrew Wiles finally proved Fermat’s Last Theorem in 1994, more than 350 years later.'],
+    [H,'Brahmagupta gave the first known rules for arithmetic with zero in 628 CE.'],
+    [H,'The word “algebra” comes from <em>al-jabr</em> in the title of a book by Muhammad al-Khwarizmi, and the word “algorithm” comes from his name.'],
+    [H,'Sophie Germain wrote to Gauss under the male pen name “Monsieur LeBlanc.” When Gauss learned who she was, his admiration only grew.'],
+    [H,'In 2014, Maryam Mirzakhani became the first woman to win the Fields Medal, the highest honor in mathematics.'],
+    [H,'In 1900, David Hilbert presented a list of 23 problems that shaped mathematics for the next century. Several remain unsolved.'],
+    [H,'Ada Lovelace published what is often called the first computer program in 1843: a method for computing Bernoulli numbers on Babbage’s Analytical Engine, a machine that was never built.'],
+    [H,'Leonhard Euler went almost completely blind in his later years and kept publishing at an astonishing pace by dictating his work.'],
+    [H,'In 1931, Kurt Gödel proved that any consistent system of axioms strong enough to do arithmetic contains true statements it cannot prove.'],
+    /* Probability (2) */
+    [P,'In a room of just 23 people, there is better than a 50% chance that two of them share a birthday. With 70 people, the chance passes 99.9%.'],
+    [P,'In the Monty Hall problem, you pick one of three doors and the host, who knows where the car is, opens another door to reveal a goat. Switching to the remaining door wins the car 2/3 of the time, not 1/2.'],
+    /* Puzzles (2) */
+    [Z,'The Tower of Hanoi with <i>n</i> disks takes exactly 2<sup><i>n</i></sup> − 1 moves to solve. With 64 disks at one move per second, that is about 585 billion years.'],
+    [Z,'During the 15 puzzle craze of the 1880s, a prize was offered for sliding the tiles back into order with only 14 and 15 swapped. No one could collect it, because exactly half of all arrangements can never be reached, and that one is among them.']
+  ];
+  var tagEl=document.getElementById('fact-tag'), textEl=document.getElementById('fact-text'),
+      row=document.getElementById('fact-row'), btn=document.getElementById('fact-next'),
+      bar=document.getElementById('fact-bar'), live=document.getElementById('fact-live');
+  if(!tagEl || !textEl || !row || !btn || !bar) return;
+  var still=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var deck=[], last=-1, fadeTimer=null;
+  function deal(){
+    if(!deck.length){
+      for(var k=0;k<facts.length;k++) deck.push(k);
+      for(var i=deck.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=deck[i]; deck[i]=deck[j]; deck[j]=t; }
+      if(deck[0]===last){ var s=1+Math.floor(Math.random()*(deck.length-1)); deck[0]=deck[s]; deck[s]=last; } /* never twice in a row across a reshuffle */
+    }
+    last=deck.shift(); return facts[last];
+  }
+  function put(f){ tagEl.textContent=f[0]; textEl.innerHTML=f[1]; }
+  function startBar(){ /* restart the 20s fill from empty */
+    if(still) return;
+    bar.classList.remove('run'); void bar.offsetWidth; bar.classList.add('run');
+  }
+  function show(announce){
+    var f=deal();
+    if(announce && live) live.textContent=f[0]+'. '+textEl.ownerDocument.createRange().createContextualFragment(f[1]).textContent;
+    if(still){ put(f); return; }
+    clearTimeout(fadeTimer);
+    textEl.classList.add('out');
+    fadeTimer=setTimeout(function(){ put(f); textEl.classList.remove('out'); }, 200);
+    startBar();
+  }
+  put(deal());                      /* a random fact on every page load */
+  row.hidden=false;
+  btn.addEventListener('click', function(){ show(true); });   /* next fact now, timer restarts */
+  bar.addEventListener('animationend', function(){ show(false); }); /* 20s are up */
+  startBar();
+})();
+</script>
 <script>
 /* Site behaviors: identical on every page of derrickdemars.com.
    1. The top-bar name plays a short press animation when tapped or clicked.
